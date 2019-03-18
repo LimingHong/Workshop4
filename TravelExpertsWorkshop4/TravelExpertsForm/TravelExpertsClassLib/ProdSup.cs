@@ -9,5 +9,7 @@ namespace TravelExpertsClassLib
     public class ProSup
     {     
         public int ProductSupplierId {get;set;}
+        public int ProductId { get; set; }
+        public int SupplierId { get; set; }
     }
 }

@@ -13,7 +13,7 @@ namespace TravelExpertsClassLib
         
 
             //method for creating an empty list wich will display data
-            public static List<Products> GetPackages()
+            public static List<Products> GetProducts()
             {
                 List<Products> products = new List<Products>();
                 try
@@ -38,7 +38,7 @@ namespace TravelExpertsClassLib
                             {
                                 Pro = new Products();
                                 Pro.ProductId = Convert.ToInt32(dr["ProductId"]);
-                            if (dr["PkgStartDate"] != DBNull.Value)
+                            if (dr["ProdName"] != DBNull.Value)
                             { Pro.ProdName = Convert.ToString(dr["ProdName"]); }
                             else
                             {
