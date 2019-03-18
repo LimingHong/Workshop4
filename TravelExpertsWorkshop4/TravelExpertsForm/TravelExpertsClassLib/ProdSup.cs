@@ -6,7 +6,8 @@ using System.Threading.Tasks;
 
 namespace TravelExpertsClassLib
 {
-    class ProSup
-    {
+    public class ProSup
+    {     
+        public int ProductSupplierId {get;set;}
     }
 }

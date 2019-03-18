@@ -6,7 +6,10 @@ using System.Threading.Tasks;
 
 namespace TravelExpertsClassLib
 {//product class
-    class Products
+    public class Products
     {
+        public int ProductId { get; set; }
+
+        public string ProdName { get; set; }
     }
 }
