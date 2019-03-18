@@ -6,8 +6,21 @@ using System.Threading.Tasks;
 
 namespace TravelExpertsClassLib
 {
-    class Packages
-
+    public class Packages
     {
+        public int PackageID { get; set; }
+
+        public string PkgName { get; set; }
+
+        public DateTime? PkgStartDate { get; set; }
+
+        public DateTime? PkgEndDate { get; set; }
+
+        public string PkgDescription { get; set; }
+
+        public decimal PkgBasePrice { get; set; }
+
+        public decimal PkgAgencyCommission { get; set; }
+
     }
 }
