@@ -1,0 +1,16 @@
+select * from Products;
+select * from Packages;
+select * from Suppliers
+
+select * from Products_suppliers 
+select * from Packages_Products_Suppliers
+
+(select * from Products_Suppliers ps 
+inner join Products p on ps.ProductId = p.ProductId
+inner join Suppliers s on ps.SupplierId = s.SupplierId) 
+
+with temp as
+(select p.ProductSupplierId ,ProdName, SupName, PackageId from Packages_Products_Suppliers as p, (select ProductSupplierId ,ProdName, SupName from Products_Suppliers ps 
+inner join Products p on ps.ProductId = p.ProductId
+inner join Suppliers s on ps.SupplierId = s.SupplierId ) as t where p.ProductSupplierId = t.ProductSupplierId)
+select pa.PackageId,PkgName,PkgStartDate,PkgEndDate,PkgDesc,PkgBasePrice,PkgAgencyCommission,ProductSupplierId,ProdName,SupName from Packages as pa, temp as t where pa.PackageId = t.PackageId
