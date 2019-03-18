@@ -6,7 +6,9 @@ using System.Threading.Tasks;
 
 namespace TravelExpertsClassLib
 {
-    class PacProSup
+    public class PacProSup
     {
+        public int PackageId { get; set; }
+        public long ProductSupplierId { get; set; }
     }
 }

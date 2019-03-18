@@ -13,6 +13,10 @@ namespace TravelExpertsClassLib
         protected static SqlConnection GetConnection()
         {
             string connectionString = @"Data Source=localhost\SQLEXPRESS;Initial Catalog=TravelExperts;Integrated Security=True";
+
+            // ERIC version
+            // @"Data Source=ELW9OOSD223362;Initial Catalog=TravelExperts;Integrated Security=True";
+
             return new SqlConnection(connectionString);
         }
     }
