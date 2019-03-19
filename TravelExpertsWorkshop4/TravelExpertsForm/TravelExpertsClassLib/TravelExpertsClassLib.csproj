@@ -57,7 +57,6 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Properties\DataSources\Packages.datasource" />
-    <None Include="Properties\DataSources\PacProSup.datasource" />
     <None Include="Properties\DataSources\Products.datasource" />
     <None Include="Properties\DataSources\ProSup.datasource" />
     <None Include="Properties\DataSources\Suppliers.datasource" />

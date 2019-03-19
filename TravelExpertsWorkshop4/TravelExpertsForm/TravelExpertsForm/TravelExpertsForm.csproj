@@ -66,11 +66,7 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
-    <None Include="Properties\DataSources\Packages.datasource" />
-    <None Include="Properties\DataSources\PacProSup.datasource" />
-    <None Include="Properties\DataSources\Products.datasource" />
-    <None Include="Properties\DataSources\ProSup.datasource" />
-    <None Include="Properties\DataSources\Suppliers.datasource" />
+    <None Include="Properties\DataSources\TravelExpertsClassLib.PacProSup.datasource" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
