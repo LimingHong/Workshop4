@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace TravelExpertsClassLib
 {
-    class ProductsDB : TravelExpertsDB
+    public class ProductsDB : TravelExpertsDB
     {
         
 

@@ -19,10 +19,20 @@ namespace TravelExpertsClassLib
             {
                 Packages pkg; // for reading
 
-                string selectQuery = "SELECT PackageID,  PkgName, PkgStartDate, PkgEndDate, " +
-                                     "        PkgDescription, PkgBasePrice, PkgAgencyCommission " +
+                //PackageId
+                //PkgName
+                //PkgStartDate
+                //PkgEndDate
+                //PkgDesc
+                //PkgBasePrice
+                //PkgAgencyCommission
+                string selectQuery = "SELECT PackageId,  PkgName, PkgStartDate, PkgEndDate, " +
+                                     "        PkgDesc, PkgBasePrice, PkgAgencyCommission " +
                                      "FROM Packages " +
-                                     "ORDER BY PackageID";
+                                     "ORDER BY PackageId";
+
+
+
                 using (SqlConnection con = GetConnection())
                 {
                     //use "con" anywhere in this block
@@ -37,10 +47,11 @@ namespace TravelExpertsClassLib
                         while (dr.Read())// while there is data in data reader
                         {
                             pkg = new Packages();
-                            pkg.PackageID = (int)dr["PackageID"];
+                            pkg.PackageId = (int)dr["PackageId"];
                             pkg.PkgName = (string)dr["PkgName"];
-                            pkg.PkgStartDate = (DateTime)dr["PkgStartDate"];
+                            //pkg.PkgStartDate = (DateTime)dr["PkgStartDate"];
                             pkg.PkgEndDate = (DateTime)dr["PkgEndDate"];
+                            pkg.PkgDesc = dr["PkgDesc"] as string;
 
 
                             // PkgStartDate with exception handling for null values

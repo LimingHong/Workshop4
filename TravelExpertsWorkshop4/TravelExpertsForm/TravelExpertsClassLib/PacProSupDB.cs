@@ -9,9 +9,9 @@ using System.Windows.Forms;
 
 namespace TravelExpertsClassLib
 {
-    class PacProSupDB: TravelExpertsDB
+    public class PacProSupDB: TravelExpertsDB
     {
-        public List<PacProSup> GetPacProSup()
+        public static List<PacProSup> GetPacProSup()
         {
             List<PacProSup> newPacProSup = new List<PacProSup>(); // empty list object
             try

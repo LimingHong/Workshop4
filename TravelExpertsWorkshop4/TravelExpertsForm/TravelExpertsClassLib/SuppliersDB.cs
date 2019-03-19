@@ -12,7 +12,7 @@ namespace TravelExpertsClassLib
 {
     public class SuppliersDB:TravelExpertsDB
     {
-        public List<Suppliers> GetSuppliers()
+        public static List<Suppliers> GetSuppliers()
         {
             List<Suppliers> newSuppliers = new List<Suppliers>(); // empty list object
             try

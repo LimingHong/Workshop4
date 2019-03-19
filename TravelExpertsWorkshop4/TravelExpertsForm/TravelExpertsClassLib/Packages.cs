@@ -8,7 +8,14 @@ namespace TravelExpertsClassLib
 {
     public class Packages
     {
-        public int PackageID { get; set; }
+        //PackageId
+        //PkgName
+        //PkgStartDate
+        //PkgEndDate
+        //PkgDesc
+        //PkgBasePrice
+        //PkgAgencyCommission
+        public int PackageId { get; set; }
 
         public string PkgName { get; set; }
 
@@ -16,7 +23,7 @@ namespace TravelExpertsClassLib
 
         public DateTime? PkgEndDate { get; set; }
 
-        public string PkgDescription { get; set; }
+        public string PkgDesc { get; set; }
 
         public decimal PkgBasePrice { get; set; }
 
