@@ -49,12 +49,15 @@ namespace TravelExpertsClassLib
                             pkg = new Packages();
                             pkg.PackageId = (int)dr["PackageId"];
                             pkg.PkgName = (string)dr["PkgName"];
-                            //pkg.PkgStartDate = (DateTime)dr["PkgStartDate"];
+                            
                             pkg.PkgDesc = dr["PkgDesc"] as string;
                             pkg.PkgBasePrice = Convert.ToDecimal(dr["PkgBasePrice"]);
                             pkg.PkgAgencyCommission = Convert.ToDecimal(dr["PkgAgencyCommission"]);
 
-                            pkg.PkgEndDate = (DateTime)dr["PkgEndDate"];
+                            //pkg.PkgStartDate = (DateTime)dr["PkgStartDate"];
+                            //pkg.PkgEndDate = (DateTime)dr["PkgEndDate"];
+
+
                             // PkgStartDate with exception handling for null values
                             if (dr["PkgStartDate"] != DBNull.Value)
                             {
@@ -64,6 +67,17 @@ namespace TravelExpertsClassLib
                             else
                             {
                                 pkg.PkgStartDate = null;
+                            }
+
+                            // PkgEndDate with exception handling for null values
+                            if (dr["PkgEndDate"] != DBNull.Value)
+                            {
+                                pkg.PkgEndDate = Convert.ToDateTime(dr["PkgEndDate"]);
+
+                            }
+                            else
+                            {
+                                pkg.PkgEndDate = null;
                             }
 
 
