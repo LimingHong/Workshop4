@@ -18,7 +18,7 @@ namespace TravelExpertsClassLib
             {
                 PacProSup currentPacProSup; // for reading
 
-                string selectJoinQuery = "select * from PacProSup;";
+                string selectJoinQuery = "select * from Packages_Products_Suppliers";
 
                 // block code style
                 using (SqlConnection con = GetConnection())
@@ -35,6 +35,8 @@ namespace TravelExpertsClassLib
 
                         while (dr.Read())  // while there is still data in the datareader
                         {
+                            /*PackageId
+                              ProductSupplierId*/
                             currentPacProSup = new PacProSup();
                             currentPacProSup.PackageId = Convert.ToInt32(dr["PackageId"]);
                             currentPacProSup.ProductSupplierId = Convert.ToInt64(dr["ProductSupplierId"]);
@@ -49,7 +51,7 @@ namespace TravelExpertsClassLib
             }
             catch (Exception)
             {
-                MessageBox.Show("Connection Error Try Again");
+                MessageBox.Show("Connection Error. Failed to retrieve PacProSup information");
             }
 
             return newPacProSup;

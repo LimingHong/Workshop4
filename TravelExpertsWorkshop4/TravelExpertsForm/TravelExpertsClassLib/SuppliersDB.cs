@@ -19,7 +19,7 @@ namespace TravelExpertsClassLib
             {
                 Suppliers currentSupllier; // for reading
                 
-                string selectJoinQuery = "select * from Suppliers;";
+                string selectJoinQuery = "select * from Suppliers";
 
                 // block code style
                 using (SqlConnection con = GetConnection())
@@ -37,6 +37,7 @@ namespace TravelExpertsClassLib
                         while (dr.Read())  // while there is still data in the datareader
                         {
                             currentSupllier = new Suppliers();
+                            //SupplierId SupName
                             currentSupllier.SupplierId = Convert.ToInt64(dr["SupplierId"]);
                             currentSupllier.SupName = dr["SupName"] as string;
                             
@@ -50,7 +51,7 @@ namespace TravelExpertsClassLib
             }
             catch (Exception )
             {
-                MessageBox.Show("Connection Error Try Again");
+                MessageBox.Show("Connection Error. Failed to retrieve Suppliers information");
             }
 
             return newSuppliers;
