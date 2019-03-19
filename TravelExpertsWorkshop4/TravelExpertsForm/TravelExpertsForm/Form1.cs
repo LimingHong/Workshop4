@@ -22,7 +22,38 @@ namespace TravelExpertsForm
         {
             InitializeComponent();
         }
+        /*
+         * KEEP IN MIND THAT
+         *          Pkg many:many Products
+         *          Pkg many:many Suppliers
+         *          vice versa
+         */
 
+
+        /* For LINQ in the future
+         *
+         * select p.PackageId ,pps.ProductSupplierId,PkgName,PkgStartDate,PkgEndDate,PkgDesc,PkgBasePrice,PkgAgencyCommission,ProductId,SupplierId from Packages_Products_Suppliers pps
+	        inner join  Packages p
+		    on p.PackageId = pps.PackageId
+	        inner join Products_Suppliers pp
+		    on pps.ProductSupplierId = pp.ProductSupplierId
+         */
+
+        /*
+         *select p.PackageId ,PkgName,pt.ProductId, ProdName,ss.SupplierId, ss.SupName from Packages_Products_Suppliers pps
+	            inner join  Packages p
+	            	on p.PackageId = pps.PackageId
+	            inner join Products_Suppliers pp
+	            	on pps.ProductSupplierId = pp.ProductSupplierId
+	            inner join Products pt
+	            	 on pt.ProductId = pp.ProductId
+	            inner join Suppliers ss
+	            	on ss.SupplierId = pp.SupplierId
+         *
+         * Querying for better visualization 
+         *
+         *
+         */
         private void BindPackages()
         {
             packagesBindingSource.DataSource = AllPackages;
