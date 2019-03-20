@@ -36,6 +36,9 @@
             System.Windows.Forms.Label pkgEndDateLabel;
             System.Windows.Forms.Label pkgNameLabel;
             System.Windows.Forms.Label pkgStartDateLabel;
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle19 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle20 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle21 = new System.Windows.Forms.DataGridViewCellStyle();
             this.packagesBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.packageIdComboBox = new System.Windows.Forms.ComboBox();
             this.pkgAgencyCommissionTextBox = new System.Windows.Forms.TextBox();
@@ -47,9 +50,14 @@
             this.productsBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.suppliersBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.ProSupDataGridview = new System.Windows.Forms.DataGridView();
-            this.PacProSupBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.ProdNameCB = new System.Windows.Forms.DataGridViewComboBoxColumn();
             this.SupNameCB = new System.Windows.Forms.DataGridViewComboBoxColumn();
+            this.PacProSupBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.button1 = new System.Windows.Forms.Button();
+            this.button2 = new System.Windows.Forms.Button();
+            this.EnableEditProSup = new System.Windows.Forms.Button();
+            this.button3 = new System.Windows.Forms.Button();
+            this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
             packageIdLabel = new System.Windows.Forms.Label();
             pkgAgencyCommissionLabel = new System.Windows.Forms.Label();
             pkgBasePriceLabel = new System.Windows.Forms.Label();
@@ -145,7 +153,6 @@
             // 
             // pkgAgencyCommissionTextBox
             // 
-            this.pkgAgencyCommissionTextBox.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.packagesBindingSource, "PkgAgencyCommission", true));
             this.pkgAgencyCommissionTextBox.Location = new System.Drawing.Point(166, 331);
             this.pkgAgencyCommissionTextBox.Name = "pkgAgencyCommissionTextBox";
             this.pkgAgencyCommissionTextBox.Size = new System.Drawing.Size(200, 20);
@@ -153,7 +160,6 @@
             // 
             // pkgBasePriceTextBox
             // 
-            this.pkgBasePriceTextBox.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.packagesBindingSource, "PkgBasePrice", true));
             this.pkgBasePriceTextBox.Location = new System.Drawing.Point(166, 399);
             this.pkgBasePriceTextBox.Name = "pkgBasePriceTextBox";
             this.pkgBasePriceTextBox.Size = new System.Drawing.Size(200, 20);
@@ -161,7 +167,6 @@
             // 
             // pkgDescRichTextBox
             // 
-            this.pkgDescRichTextBox.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.packagesBindingSource, "PkgDesc", true));
             this.pkgDescRichTextBox.Location = new System.Drawing.Point(166, 119);
             this.pkgDescRichTextBox.Name = "pkgDescRichTextBox";
             this.pkgDescRichTextBox.Size = new System.Drawing.Size(200, 96);
@@ -170,7 +175,6 @@
             // 
             // pkgEndDateDateTimePicker
             // 
-            this.pkgEndDateDateTimePicker.DataBindings.Add(new System.Windows.Forms.Binding("Value", this.packagesBindingSource, "PkgEndDate", true));
             this.pkgEndDateDateTimePicker.Location = new System.Drawing.Point(166, 233);
             this.pkgEndDateDateTimePicker.Name = "pkgEndDateDateTimePicker";
             this.pkgEndDateDateTimePicker.Size = new System.Drawing.Size(200, 20);
@@ -178,7 +182,6 @@
             // 
             // pkgNameTextBox
             // 
-            this.pkgNameTextBox.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.packagesBindingSource, "PkgName", true));
             this.pkgNameTextBox.Location = new System.Drawing.Point(166, 64);
             this.pkgNameTextBox.Name = "pkgNameTextBox";
             this.pkgNameTextBox.Size = new System.Drawing.Size(200, 20);
@@ -186,7 +189,6 @@
             // 
             // pkgStartDateDateTimePicker
             // 
-            this.pkgStartDateDateTimePicker.DataBindings.Add(new System.Windows.Forms.Binding("Value", this.packagesBindingSource, "PkgStartDate", true));
             this.pkgStartDateDateTimePicker.Location = new System.Drawing.Point(166, 284);
             this.pkgStartDateDateTimePicker.Name = "pkgStartDateDateTimePicker";
             this.pkgStartDateDateTimePicker.Size = new System.Drawing.Size(200, 20);
@@ -202,15 +204,40 @@
             // 
             // ProSupDataGridview
             // 
+            dataGridViewCellStyle19.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle19.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle19.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle19.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle19.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle19.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle19.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.ProSupDataGridview.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle19;
             this.ProSupDataGridview.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.ProSupDataGridview.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.ProdNameCB,
             this.SupNameCB});
-            this.ProSupDataGridview.Dock = System.Windows.Forms.DockStyle.Right;
-            this.ProSupDataGridview.Location = new System.Drawing.Point(466, 0);
+            dataGridViewCellStyle20.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle20.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle20.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle20.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle20.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle20.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle20.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.ProSupDataGridview.DefaultCellStyle = dataGridViewCellStyle20;
+            this.ProSupDataGridview.Enabled = false;
+            this.ProSupDataGridview.Location = new System.Drawing.Point(426, 0);
             this.ProSupDataGridview.Name = "ProSupDataGridview";
-            this.ProSupDataGridview.Size = new System.Drawing.Size(485, 461);
+            dataGridViewCellStyle21.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle21.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle21.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle21.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle21.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle21.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle21.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.ProSupDataGridview.RowHeadersDefaultCellStyle = dataGridViewCellStyle21;
+            this.ProSupDataGridview.Size = new System.Drawing.Size(485, 455);
             this.ProSupDataGridview.TabIndex = 32;
+            this.toolTip1.SetToolTip(this.ProSupDataGridview, "Click Edit to modify");
             this.ProSupDataGridview.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.ProSupDataGridview_CellContentClick);
             // 
             // ProdNameCB
@@ -235,11 +262,52 @@
             this.SupNameCB.ValueMember = "SupplierId";
             this.SupNameCB.Width = 200;
             // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(53, 479);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(75, 23);
+            this.button1.TabIndex = 33;
+            this.button1.Text = "button1";
+            this.button1.UseVisualStyleBackColor = true;
+            // 
+            // button2
+            // 
+            this.button2.Location = new System.Drawing.Point(166, 479);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(75, 23);
+            this.button2.TabIndex = 34;
+            this.button2.Text = "button2";
+            this.button2.UseVisualStyleBackColor = true;
+            // 
+            // EnableEditProSup
+            // 
+            this.EnableEditProSup.Location = new System.Drawing.Point(609, 432);
+            this.EnableEditProSup.Name = "EnableEditProSup";
+            this.EnableEditProSup.Size = new System.Drawing.Size(126, 23);
+            this.EnableEditProSup.TabIndex = 35;
+            this.EnableEditProSup.Text = "Enable Editing";
+            this.EnableEditProSup.UseVisualStyleBackColor = true;
+            this.EnableEditProSup.Click += new System.EventHandler(this.EnableEditProSup_Click);
+            // 
+            // button3
+            // 
+            this.button3.Location = new System.Drawing.Point(291, 479);
+            this.button3.Name = "button3";
+            this.button3.Size = new System.Drawing.Size(75, 23);
+            this.button3.TabIndex = 36;
+            this.button3.Text = "button3";
+            this.button3.UseVisualStyleBackColor = true;
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(951, 461);
+            this.ClientSize = new System.Drawing.Size(911, 524);
+            this.Controls.Add(this.button3);
+            this.Controls.Add(this.EnableEditProSup);
+            this.Controls.Add(this.button2);
+            this.Controls.Add(this.button1);
             this.Controls.Add(this.ProSupDataGridview);
             this.Controls.Add(packageIdLabel);
             this.Controls.Add(this.packageIdComboBox);
@@ -283,6 +351,11 @@
         private System.Windows.Forms.BindingSource PacProSupBindingSource;
         private System.Windows.Forms.DataGridViewComboBoxColumn ProdNameCB;
         private System.Windows.Forms.DataGridViewComboBoxColumn SupNameCB;
+        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Button EnableEditProSup;
+        private System.Windows.Forms.Button button3;
+        private System.Windows.Forms.ToolTip toolTip1;
     }
 }
 

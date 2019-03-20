@@ -22,6 +22,7 @@ namespace TravelExpertsForm
         public MainForm()
         {
             InitializeComponent();
+            
         }
 
         /*
@@ -56,6 +57,8 @@ namespace TravelExpertsForm
          *
          *
          */
+
+        // filtering ProSup for data gridview
         private void FilterPacProSup(ComboBox inputCB)
         {
             
@@ -74,42 +77,64 @@ namespace TravelExpertsForm
                 PacProSupBindingSource.DataSource = filteredProSup;
                 ProSupDataGridview.DataSource = PacProSupBindingSource;
                 this.ProSupDataGridview.Columns["PackageId"].Visible = false;
-                this.ProSupDataGridview.Columns["ProdName"].Visible = false;
-                this.ProSupDataGridview.Columns["SupName"].Visible = false;
+                this.ProSupDataGridview.Columns["ProdName"].Visible  = false;
+                this.ProSupDataGridview.Columns["SupName"].Visible   = false;
 
+                
             }
 
 
         }
 
+        private void DisplayPacInfo(ComboBox inputCB)
+        {
+            if (!String.IsNullOrEmpty(inputCB.Text))
+            {
+                int value = Convert.ToInt32(inputCB.SelectedValue);
+
+                Packages filterPackage = AllPackages.First(p => p.PackageId == value);
+
+
+                pkgNameTextBox.Text = filterPackage.PkgName;
+                pkgDescRichTextBox.Text = filterPackage.PkgDesc;
+                pkgStartDateDateTimePicker.Value = (DateTime)filterPackage.PkgStartDate;
+                pkgEndDateDateTimePicker.Value = (DateTime)filterPackage.PkgEndDate;
+                pkgAgencyCommissionTextBox.Text = filterPackage.PkgBasePrice.ToString("c2");
+                pkgBasePriceTextBox.Text = filterPackage.PkgBasePrice.ToString("c2");
+            }
+        }
+
+
         private void BindPackages()
         {
             packagesBindingSource.DataSource = AllPackages;
-            
-            // formating currency display
-            decimal BasePrice, AgentCommission;
-            Decimal.TryParse(pkgBasePriceTextBox.Text, out BasePrice);
-            Decimal.TryParse(pkgAgencyCommissionTextBox.Text, out AgentCommission);
-
-            pkgBasePriceTextBox.Text = String.Format(System.Globalization.CultureInfo.CurrentCulture, "{0:C2}", BasePrice);
-            pkgAgencyCommissionTextBox.Text = String.Format(System.Globalization.CultureInfo.CurrentCulture, "{0:C2}", AgentCommission);
-
         }
-        
+
         private void Form1_Load(object sender, EventArgs e)
         {
             BindPackages();
             FilterPacProSup(packageIdComboBox);
+            DisplayPacInfo(packageIdComboBox);
         }
 
         private void packageIdComboBox_SelectedIndexChanged(object sender, EventArgs e)
         {
+            DisplayPacInfo(packageIdComboBox);
             FilterPacProSup(packageIdComboBox);
+            
         }
 
         private void ProSupDataGridview_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
 
         }
+
+        private void EnableEditProSup_Click(object sender, EventArgs e)
+        {
+            EnableEditProSup.Visible = false;
+            ProSupDataGridview.Enabled = true;
+        }
+
+        
     }
 }
