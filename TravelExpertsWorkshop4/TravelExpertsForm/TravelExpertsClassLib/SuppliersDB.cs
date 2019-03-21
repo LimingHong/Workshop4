@@ -56,5 +56,69 @@ namespace TravelExpertsClassLib
 
             return newSuppliers;
         }
+        public static bool UpdateSupplier(Suppliers oldSuppliers, Suppliers newSuppliers)
+        {
+            bool success = true;
+            SqlConnection con = TravelExpertsDB.GetConnection();
+            string updateStatement = "UPDATE Suppliers set " +
+                               "SupName=@SupName " +
+                               "WHERE SupplierId=@OldSupplierId ";
+            SqlCommand cmd = new SqlCommand(updateStatement, con);
+            if (newSuppliers.SupName == null)
+            { cmd.Parameters.AddWithValue("@SupName", DBNull.Value); }
+            else
+            { cmd.Parameters.AddWithValue("@SupName", newSuppliers.SupName); }
+
+            cmd.Parameters.AddWithValue("@OldSupplierID", oldSuppliers.SupName);
+
+            if (oldSuppliers.SupName == null)
+            { cmd.Parameters.AddWithValue("@OldSupName", DBNull.Value); }
+            else
+                cmd.Parameters.AddWithValue("@OldSupName", oldSuppliers.SupName);
+
+            try
+            {
+                con.Open();
+                int rowsUpdated = cmd.ExecuteNonQuery();
+                if (rowsUpdated == 0) success = false; //did not update()
+            }
+            catch (Exception ex) { throw ex; }
+            finally { con.Close(); }
+
+            return success;
+
+
+        }
+
+        public static int AddSupplier(Suppliers Sup)
+        {
+            int SupID = 0;
+            SqlConnection con = TravelExpertsDB.GetConnection();
+            string insertStatement = "INSERT INTO Suppliers (SupName) " +
+                                     "VALUES(@SupName)";
+            SqlCommand cmd = new SqlCommand(insertStatement, con);
+            cmd.Parameters.AddWithValue("@SupName", Sup.SupName);
+
+            try
+            {
+                con.Open();
+                cmd.ExecuteNonQuery();
+                string selectQuery = "SELECT IDENT_CURRENT('Suppliers') FROM Suppliers"; // identity value
+                SqlCommand selectCommand = new SqlCommand(selectQuery, con);
+                SupID = Convert.ToInt32(selectCommand.ExecuteScalar()); // single value
+                // typecasting (int) does not work
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                con.Close();
+            }
+            return SupID;
+        }
+
+
     }
 }

@@ -67,6 +67,8 @@
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
     <None Include="Properties\DataSources\TravelExpertsClassLib.PacProSup.datasource" />
+    <None Include="Properties\DataSources\TravelExpertsClassLib.Products.datasource" />
+    <None Include="Properties\DataSources\TravelExpertsClassLib.Suppliers.datasource" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>

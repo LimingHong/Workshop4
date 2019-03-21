@@ -19,6 +19,7 @@ namespace TravelExpertsForm
         protected List<ProSup> ProSupLinkages = ProSupDB.GetProSups();
         protected List<PacProSup> PacProSupLinkages = PacProSupDB.GetPacProSup() ;
 
+
         public MainForm()
         {
             InitializeComponent();
@@ -135,9 +136,6 @@ namespace TravelExpertsForm
             ProSupDataGridview.Enabled = true;
         }
 
-        private void tabPage1_Click(object sender, EventArgs e)
-        {
-
-        }
+       
     }
 }
