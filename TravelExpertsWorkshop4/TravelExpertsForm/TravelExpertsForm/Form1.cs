@@ -112,9 +112,10 @@ namespace TravelExpertsForm
 
         private void Form1_Load(object sender, EventArgs e)
         {
+            MainTabControl.SelectTab(PackageTab);
             BindPackages();
-            FilterPacProSup(packageIdComboBox);
             DisplayPacInfo(packageIdComboBox);
+            FilterPacProSup(packageIdComboBox);
         }
 
         private void packageIdComboBox_SelectedIndexChanged(object sender, EventArgs e)
