@@ -389,6 +389,7 @@
             this.SavePacBtn.Text = "Save";
             this.SavePacBtn.UseVisualStyleBackColor = true;
             this.SavePacBtn.Visible = false;
+            this.SavePacBtn.Click += new System.EventHandler(this.SavePacBtn_Click);
             // 
             // PacAddBtn
             // 

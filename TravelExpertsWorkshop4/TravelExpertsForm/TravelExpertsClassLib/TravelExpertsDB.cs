@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data.SqlClient;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Data.SqlClient;
 
 namespace TravelExpertsClassLib
 {
@@ -12,10 +7,10 @@ namespace TravelExpertsClassLib
         //method to connect to "Northwind" database and get data from "Orders" table
         protected static SqlConnection GetConnection()
         {
-            //string connectionString = @"Data Source=localhost\SQLEXPRESS;Initial Catalog=TravelExperts;Integrated Security=True";
+            //string connectionString = @"Data Source=localhost\sqlexpress;Initial Catalog=TravelExperts;Integrated Security=True";
 
             // ERIC version
-            string connectionString = @"Data Source=ELW9OOSD223362;Initial Catalog=TravelExperts;Integrated Security=True";
+            string connectionString = @"Data Source=localhost;Initial Catalog=TravelExperts;Integrated Security=True";
 
             return new SqlConnection(connectionString);
         }

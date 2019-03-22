@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace TravelExpertsClassLib
@@ -12,92 +8,99 @@ namespace TravelExpertsClassLib
     /// </summary>
     public static class Validator
     {
-       
 
-        /// <summary>
-        /// Checks whether the user entered data into a text box.
-        /// </summary>
-        /// <param name="textBox">The text box control to be validated.</param>
-        /// <returns>True if the user has entered data.</returns>
-        public static bool IsPresent(Control control)
+
+        public static bool IsPresent(TextBox textBox, string name)
         {
-            if (control.GetType().ToString() == "System.Windows.Forms.TextBox")
+            if (textBox.Text == "")
             {
-                TextBox textBox = (TextBox)control;
-                if (textBox.Text == "")
-                {
-                    MessageBox.Show(textBox.Tag + " is a required field.");
-                    textBox.Focus();
-                    return false;
-                }
-            }
-            else if (control.GetType().ToString() == "System.Windows.Forms.ComboBox")
-            {
-                ComboBox comboBox = (ComboBox)control;
-                if (comboBox.SelectedIndex == -1)
-                {
-                    MessageBox.Show(comboBox.Tag + " is a required field.", "Entry Error");
-                    comboBox.Focus();
-                    return false;
-                }
+                MessageBox.Show(name + " is a required field.", "Entry Error");
+                textBox.Focus();
+                return false;
             }
             return true;
         }
 
-        /// <summary>
-        /// Checks whether the user entered a decimal value into a text box.
-        /// </summary>
-        /// <param name="textBox">The text box control to be validated.</param>
-        /// <returns>True if the user has entered a decimal value.</returns>
-        public static bool IsDecimal(TextBox textBox)
+        public static bool IsPresentRichTB(RichTextBox richtextBox, string name)
         {
-            try
+            if (richtextBox.Text == "")
             {
-                Convert.ToDecimal(textBox.Text);
+                MessageBox.Show(name + " is a required field.", "Entry Error");
+                richtextBox.Focus();
+                return false;
+            }
+            return true;
+        }
+
+        public static bool IsPresentDateTimePicker(DateTimePicker dateTimePicker, string name)
+        {
+            if (dateTimePicker.Text == "")
+            {
+                MessageBox.Show(name + " is a required field.", "Entry Error");
+                dateTimePicker.Focus();
+                return false;
+            }
+            return true;
+        }
+
+        public static bool IsCorrectLength(TextBox textBox, string name, int maxLen)
+        {
+            if ((textBox.Text).Length > maxLen)
+            {
+                MessageBox.Show(name + " can be at most " + maxLen.ToString() + " long", "Entry Error");
+                textBox.Focus();
+                return false;
+            }
+            return true;
+        }
+        public static bool IsDecimal(TextBox textBox, string name)
+        {
+            decimal number = 0m;
+            if (Decimal.TryParse(textBox.Text, out number))
+            {
                 return true;
             }
-            catch (FormatException)
+            else
             {
-                MessageBox.Show(textBox.Tag + " must be a decimal number.");
+                MessageBox.Show(name + " must be a decimal value.", "Entry Error");
                 textBox.Focus();
                 return false;
             }
         }
 
-        /// <summary>
-        /// Checks whether the user entered an int value into a text box.
-        /// </summary>
-        /// <param name="textBox">The text box control to be validated.</param>
-        /// <returns>True if the user has entered an int value.</returns>
-        public static bool IsInt32(TextBox textBox)
+        public static bool IsInt32(TextBox textBox, string name)
         {
-            try
+            int number = 0;
+            if (Int32.TryParse(textBox.Text, out number))
             {
-                Convert.ToInt32(textBox.Text);
                 return true;
             }
-            catch (FormatException)
+            else
             {
-                MessageBox.Show(textBox.Tag + " must be an integer.");
+                MessageBox.Show(name + " must be an integer.", "Entry Error");
                 textBox.Focus();
                 return false;
             }
         }
 
-        /// <summary>
-        /// Checks whether the user entered a value within a specified range into a text box.
-        /// </summary>
-        /// <param name="textBox">The text box control to be validated.</param>
-        /// <param name="min">The minimum value for the range.</param>
-        /// <param name="max">The maximum value for the range.</param>
-        /// <returns>True if the user has entered a value within the specified range.</returns>
-        public static bool IsWithinRange(TextBox textBox, decimal min, decimal max)
+        public static bool IsNonNegativeDecimal(TextBox textBox, string name)
         {
             decimal number = Convert.ToDecimal(textBox.Text);
-            if (number < min || number > max)
+            if (number < 0)
             {
-                MessageBox.Show(textBox.Tag + " must be between " + min
-                    + " and " + max + ".");
+                MessageBox.Show(name + " must be positive or zero", "Entry Error");
+                textBox.Focus();
+                return false;
+            }
+            return true;
+        }
+
+        public static bool IsNonNegativeInt(TextBox textBox, string name)
+        {
+            int number = Convert.ToInt32(textBox.Text);
+            if (number < 0)
+            {
+                MessageBox.Show(name + " must be positive or zero", "Entry Error");
                 textBox.Focus();
                 return false;
             }

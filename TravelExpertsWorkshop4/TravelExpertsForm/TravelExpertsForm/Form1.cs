@@ -1,12 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
 using System.Drawing;
-using System.Globalization;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using TravelExpertsClassLib;
 
@@ -14,17 +10,17 @@ namespace TravelExpertsForm
 {
     public partial class MainForm : Form
     {
-        protected List<Packages> AllPackages = PackagesDB.GetPackages();
-        protected List<Products> AllProducts = ProductsDB.GetProducts();
-        protected List<Suppliers> AllSuppliers = SuppliersDB.GetSuppliers();
-        protected List<ProSup> ProSupLinkages = ProSupDB.GetProSups();
-        protected List<PacProSup> PacProSupLinkages = PacProSupDB.GetPacProSup() ;
+        protected List<Packages> AllPackages;
+        protected List<Products> AllProducts;
+        protected List<Suppliers> AllSuppliers;
+        protected List<ProSup> ProSupLinkages;
+        protected List<PacProSup> PacProSupLinkages;
 
         /*
          * Boolean indicators for Packages page
          */
         private bool EditPacStatus = false;
-
+        private bool AddPacStatus = false;
 
         public MainForm()
         {
@@ -32,6 +28,16 @@ namespace TravelExpertsForm
             this.ClientSize = new Size(967, 591);
 
         }
+
+        private void UpdateAllInfos()
+        {
+            AllPackages = PackagesDB.GetPackages();
+            AllProducts = ProductsDB.GetProducts();
+            AllSuppliers = SuppliersDB.GetSuppliers();
+            ProSupLinkages = ProSupDB.GetProSups();
+            PacProSupLinkages = PacProSupDB.GetPacProSup();
+        }
+
 
         /*
          * KEEP IN MIND THAT
@@ -67,9 +73,10 @@ namespace TravelExpertsForm
          */
 
         // filtering ProSup for data gridview
+
         private void FilterPacProSup(ComboBox inputCB)
         {
-            
+
             if (!String.IsNullOrEmpty(inputCB.Text))
             {
                 int value = Convert.ToInt32(inputCB.SelectedValue);
@@ -77,18 +84,18 @@ namespace TravelExpertsForm
                 suppliersBindingSource.DataSource = AllSuppliers;
 
                 var filteredProSup = from pps in PacProSupLinkages
-                    where value == pps.PackageId
-                    select pps;
-                
+                                     where value == pps.PackageId
+                                     select pps;
+
                 //MessageBox.Show(filteredProSup.Count().ToString());
 
                 PacProSupBindingSource.DataSource = filteredProSup;
                 ProSupDataGridview.DataSource = PacProSupBindingSource;
                 this.ProSupDataGridview.Columns["PackageId"].Visible = false;
-                this.ProSupDataGridview.Columns["ProdName"].Visible  = false;
-                this.ProSupDataGridview.Columns["SupName"].Visible   = false;
+                this.ProSupDataGridview.Columns["ProdName"].Visible = false;
+                this.ProSupDataGridview.Columns["SupName"].Visible = false;
 
-                
+
             }
 
 
@@ -109,7 +116,7 @@ namespace TravelExpertsForm
                 pkgStartDateDateTimePicker.Value = (DateTime)filterPackage.PkgStartDate;
                 pkgEndDateDateTimePicker.Value = (DateTime)filterPackage.PkgEndDate;
 
-                if(EditPacStatus)
+                if (EditPacStatus)
                 {
                     formatNumerical = "f2";
                 }
@@ -131,6 +138,7 @@ namespace TravelExpertsForm
 
         private void Form1_Load(object sender, EventArgs e)
         {
+            UpdateAllInfos();
             MainTabControl.SelectTab(PackageTab);
             BindPackages();
             DisplayPacInfo(packageIdComboBox);
@@ -139,13 +147,13 @@ namespace TravelExpertsForm
             DisplaySupInfo(supplierIdComboBox);
         }
 
-      
+
 
         private void packageIdComboBox_SelectedIndexChanged(object sender, EventArgs e)
         {
             DisplayPacInfo(packageIdComboBox);
             FilterPacProSup(packageIdComboBox);
-            
+
         }
 
         private void ProSupDataGridview_CellContentClick(object sender, DataGridViewCellEventArgs e)
@@ -167,8 +175,10 @@ namespace TravelExpertsForm
         private void AddEditConfig(string inputAction)
         {
             bool displayStatus = true;
-            switch (inputAction){
+            switch (inputAction)
+            {
                 case "Adding":
+                    AddPacStatus = true;
                     ActionLabelPac.Text = "Adding";
                     AddPacIDTB.Visible = displayStatus;
                     packageIdComboBox.Visible = packageIdComboBox.Enabled = !displayStatus;
@@ -186,7 +196,7 @@ namespace TravelExpertsForm
                     break;
 
                 case "Cancel":
-                    EditPacStatus = displayStatus = false;
+                    AddPacStatus = EditPacStatus = displayStatus = false;
                     ActionLabelPac.Text = "Viewing";
                     DisplayPacInfo(packageIdComboBox);
                     FilterPacProSup(packageIdComboBox);
@@ -196,10 +206,10 @@ namespace TravelExpertsForm
             }
 
             pkgStartDateDateTimePicker.Enabled =
-                pkgEndDateDateTimePicker.Enabled = 
+                pkgEndDateDateTimePicker.Enabled =
                     SavePacBtn.Visible = CancelPacBtn.Visible = displayStatus;
 
-            EditPacBtn.Visible = PacAddBtn.Visible = 
+            EditPacBtn.Visible = PacAddBtn.Visible =
             pkgNameTextBox.ReadOnly =
                 pkgDescRichTextBox.ReadOnly =
                     pkgAgencyCommissionTextBox.ReadOnly =
@@ -209,6 +219,9 @@ namespace TravelExpertsForm
         private void PacAddBtn_Click(object sender, EventArgs e)
         {
             AddEditConfig("Adding");
+            PacProSupBindingSource.DataSource = new List<PacProSup>();
+
+
         }
 
         private void EditPacBtn_Click(object sender, EventArgs e)
@@ -221,7 +234,7 @@ namespace TravelExpertsForm
             AddEditConfig("Cancel");
         }
 
-       
+
         private void DisplaySupInfo(ComboBox supplierIdComboBox)
         {
             suppliersBindingSource.DataSource = AllSuppliers;
@@ -236,6 +249,7 @@ namespace TravelExpertsForm
         {
             DisplaySupInfo(supplierIdComboBox);
         }
+
         private void DisplayProInfo(ComboBox packageIdComboBox)
         {
             productsBindingSource.DataSource = AllProducts;
@@ -263,15 +277,15 @@ namespace TravelExpertsForm
 
         }
 
-        private Products productUpdate( TextBox prodNameTextBox, Products product)
+        private Products productUpdate(TextBox prodNameTextBox, Products product)
         {
             Products newProduct = CreateObject(product);
             newProduct.ProdName = prodNameTextBox.Text;
             return newProduct;
         }
-        private Products productUpdate1 (TextBox newID, TextBox newName)
+        private Products productUpdate1(TextBox newID, TextBox newName)
         {
-            Products Pro = new Products(); 
+            Products Pro = new Products();
 
             Pro.ProductId = Convert.ToInt32(txtNewProductID.Text);
             Pro.ProdName = txtNewProductName.Text;
@@ -282,70 +296,135 @@ namespace TravelExpertsForm
 
         private void btnEdit_Click(object sender, EventArgs e)
         {
-            try
-            {
-                if (Validator.IsPresent(prodNameTextBox) && Validator.IsPresent(productIdComboBox))
-                {
-                    Products findOldProduct = FindOldProduct(productIdComboBox);
+            //try
+            //{
+            //    if (Validator.IsPresent(prodNameTextBox) && Validator.IsPresent(productIdComboBox))
+            //    {
+            //        Products findOldProduct = FindOldProduct(productIdComboBox);
 
 
-                    if (findOldProduct != null)
-                    {
-                        Products newProduct = productUpdate(prodNameTextBox, CreateObject(findOldProduct));
+            //        if (findOldProduct != null)
+            //        {
+            //            Products newProduct = productUpdate(prodNameTextBox, CreateObject(findOldProduct));
 
 
-                        bool Success = ProductsDB.UpdateProduct(findOldProduct, newProduct);
+            //            bool Success = ProductsDB.UpdateProduct(findOldProduct, newProduct);
 
-                        if (Success)
-                            MessageBox.Show("Product is updated :)");
-                        productsDataGridView.DataSource = AllProducts;
-                    }
-                    else
-                    {
-                        MessageBox.Show("Cant find Product ID");
-                    }
-                }
-                else
-                {
-                    MessageBox.Show("The product id is invalid. ");
-                }
-            }
-            //catch the other error and show the ex error message from db class
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message, ex.GetType().ToString());
-            }
+            //            if (Success)
+            //                MessageBox.Show("Product is updated :)");
+            //            productsDataGridView.DataSource = AllProducts;
+            //        }
+            //        else
+            //        {
+            //            MessageBox.Show("Cant find Product ID");
+            //        }
+            //    }
+            //    else
+            //    {
+            //        MessageBox.Show("The product id is invalid. ");
+            //    }
+            //}
+            ////catch the other error and show the ex error message from db class
+            //catch (Exception ex)
+            //{
+            //    MessageBox.Show(ex.Message, ex.GetType().ToString());
+            //}
         }
 
         private void btnProAdd_Click(object sender, EventArgs e)
         {
-            try
-            {
-                if (Validator.IsPresent(prodNameTextBox) && Validator.IsPresent(productIdComboBox))
-                {
-                    
+            //try
+            //{
+            //    if (Validator.IsPresent(prodNameTextBox) && Validator.IsPresent(productIdComboBox))
+            //    {
 
 
 
-                    Products newProduct = productUpdate1(txtNewProductID,txtNewProductName);
+
+            //        Products newProduct = productUpdate1(txtNewProductID, txtNewProductName);
 
 
-                    newProduct.ProductId = ProductsDB.AddProduct(newProduct);
-
-                   
-                        MessageBox.Show("Product is updated :)");
-                    productsDataGridView.DataSource = AllProducts;
+            //        newProduct.ProductId = ProductsDB.AddProduct(newProduct);
 
 
-                }
-            }
-            //catch the other error and show the ex error message from db class
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message, ex.GetType().ToString());
-            }
+            //        MessageBox.Show("Product is updated :)");
+            //        productsDataGridView.DataSource = AllProducts;
+
+
+            //    }
+            //}
+            ////catch the other error and show the ex error message from db class
+            //catch (Exception ex)
+            //{
+            //    MessageBox.Show(ex.Message, ex.GetType().ToString());
+            //}
         }
 
-        
+        private void SavePacBtn_Click(object sender, EventArgs e)
+        {
+            string indicator = ""; // for testing purpose
+
+            if (AddPacStatus)
+            {
+
+                //testing = "Saving item in add mode ";
+
+            }
+
+            if (EditPacStatus)
+            {
+                /*
+                 * pkgNameTextBox
+                pkgDescRichTextBox
+                pkgStartDateDateTimePicker
+                pkgEndDateDateTimePicker           
+                pkgAgencyCommissionTextBox
+                pkgBasePriceTextBox
+                 */
+
+                //testing = "Saving item in edit mode ";
+                if (
+                    //check if present
+                    Validator.IsPresent(pkgNameTextBox, "Package Name") &&
+                    Validator.IsPresentRichTB(pkgDescRichTextBox, "Package Description") &&
+                    Validator.IsPresentDateTimePicker(pkgStartDateDateTimePicker, "Package Start Date") &&
+                    Validator.IsPresentDateTimePicker(pkgEndDateDateTimePicker, "Package End Date") &&
+                    Validator.IsPresent(pkgAgencyCommissionTextBox, "Agency Commission") &&
+                    Validator.IsPresent(pkgBasePriceTextBox, "Price") &&
+                    //check valid values
+                    Validator.IsDecimal(pkgAgencyCommissionTextBox, "Agency Commission") &&
+                    Validator.IsDecimal(pkgBasePriceTextBox, "Price") &&
+                    Validator.IsNonNegativeDecimal(pkgAgencyCommissionTextBox, "Agency Commission") &&
+                    Validator.IsNonNegativeDecimal(pkgBasePriceTextBox, "Price")
+                    )
+                {
+
+                    int value = Convert.ToInt32(packageIdComboBox.SelectedValue);
+
+                    Packages newPac = new Packages();
+
+                    newPac.PackageId = value;
+                    newPac.PkgName = pkgNameTextBox.Text;
+                    newPac.PkgStartDate = pkgStartDateDateTimePicker.Value;
+                    newPac.PkgEndDate = pkgEndDateDateTimePicker.Value;
+                    newPac.PkgDesc = pkgDescRichTextBox.Text;
+                    newPac.PkgBasePrice = Convert.ToDecimal(pkgBasePriceTextBox.Text);
+                    newPac.PkgAgencyCommission = Convert.ToDecimal(pkgAgencyCommissionTextBox.Text);
+
+                    indicator = "Update Package Failed. ";
+
+                    if (PackagesDB.UpdatePackage(newPac))
+                    {
+                        indicator = "Update Package Successful !";
+                        UpdateAllInfos();
+                    }
+
+                }
+
+
+            }
+
+            MessageBox.Show(indicator);
+        }
     }
 }

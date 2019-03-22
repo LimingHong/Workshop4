@@ -2,15 +2,12 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace TravelExpertsClassLib
 {
-    public class PackagesDB:TravelExpertsDB
+    public class PackagesDB : TravelExpertsDB
     {
-    
+
         //method for creating an empty list wich will display data
         public static List<Packages> GetPackages()
         {
@@ -42,14 +39,16 @@ namespace TravelExpertsClassLib
                         //any exception will be thrown to the place where this method was called
                         con.Open(); // open connection
 
-                        SqlDataReader dr = cmd.ExecuteReader(CommandBehavior.CloseConnection); // closes connection when done reading
+                        SqlDataReader
+                            dr = cmd.ExecuteReader(CommandBehavior
+                                .CloseConnection); // closes connection when done reading
 
-                        while (dr.Read())// while there is data in data reader
+                        while (dr.Read()) // while there is data in data reader
                         {
                             pkg = new Packages();
                             pkg.PackageId = (int)dr["PackageId"];
                             pkg.PkgName = (string)dr["PkgName"];
-                            
+
                             pkg.PkgDesc = dr["PkgDesc"] as string;
                             pkg.PkgBasePrice = Convert.ToDecimal(dr["PkgBasePrice"]);
                             pkg.PkgAgencyCommission = Convert.ToDecimal(dr["PkgAgencyCommission"]);
@@ -95,11 +94,71 @@ namespace TravelExpertsClassLib
             {
                 throw e;
             }
+
             return packages;
-
-
-
-
         }
+
+        public static bool UpdatePackage(Packages inputPackages)
+        {
+
+            //PackageId
+            //PkgName
+            //PkgStartDate
+            //PkgEndDate
+            //PkgDesc
+            //PkgBasePrice
+            //PkgAgencyCommission
+
+            Packages pkg; // for reading
+
+            bool success = true;
+
+            // block code style
+            string UpdateStatement = " UPDATE Packages SET " +
+                                     "PkgName = @PkgName, " +
+                                     "PkgStartDate = @PkgStartDate, " +
+                                     "PkgEndDate = @PkgEndDate, " +
+                                     "PkgDesc = @PkgDesc, " +
+                                     "PkgBasePrice = @PkgBasePrice, " +
+                                     "PkgAgencyCommission = @PkgAgencyCommission " +
+                                     "WHERE PackageId = @PackageId";
+
+
+            SqlConnection con = GetConnection();
+
+            SqlCommand cmd = new SqlCommand(UpdateStatement, con);
+
+
+            cmd.Parameters.AddWithValue("@PkgName", inputPackages.PkgName);
+            cmd.Parameters.AddWithValue("@PkgStartDate", inputPackages.PkgStartDate);
+            cmd.Parameters.AddWithValue("@PkgEndDate", inputPackages.PkgEndDate);
+            cmd.Parameters.AddWithValue("@PkgDesc", inputPackages.PkgDesc);
+            cmd.Parameters.AddWithValue("@PkgBasePrice", inputPackages.PkgBasePrice);
+            cmd.Parameters.AddWithValue("@PkgAgencyCommission", inputPackages.PkgAgencyCommission);
+            cmd.Parameters.AddWithValue("@PackageId", inputPackages.PackageId);
+
+            try
+            {
+                // use cmd anywhere in this block
+                // any exception will be thrown to the place where this method was called
+                con.Open();
+                int rowsUpdated = cmd.ExecuteNonQuery();
+                if (rowsUpdated == 0) success = false;
+
+            }
+            catch (Exception e)
+            {
+
+                throw e;
+            }
+            finally
+            {
+                con.Close();
+            }
+
+            return success;
+        }
+
+
     }
 }
