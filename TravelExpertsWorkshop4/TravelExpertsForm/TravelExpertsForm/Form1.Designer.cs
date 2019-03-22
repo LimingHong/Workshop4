@@ -57,14 +57,14 @@
             this.EnableEditProSup = new System.Windows.Forms.Button();
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
             this.MainTabControl = new System.Windows.Forms.TabControl();
-            this.PackageTab = new System.Windows.Forms.TabPage();
             this.ProductTab = new System.Windows.Forms.TabPage();
-            this.SuppliersTab = new System.Windows.Forms.TabPage();
-            this.PacAddBtn = new System.Windows.Forms.Button();
-            this.SavePacBtn = new System.Windows.Forms.Button();
-            this.CancelPacBtn = new System.Windows.Forms.Button();
-            this.ActionLabelPac = new System.Windows.Forms.Label();
+            this.PackageTab = new System.Windows.Forms.TabPage();
             this.AddPacIDTB = new System.Windows.Forms.TextBox();
+            this.ActionLabelPac = new System.Windows.Forms.Label();
+            this.CancelPacBtn = new System.Windows.Forms.Button();
+            this.SavePacBtn = new System.Windows.Forms.Button();
+            this.PacAddBtn = new System.Windows.Forms.Button();
+            this.SuppliersTab = new System.Windows.Forms.TabPage();
             packageIdLabel = new System.Windows.Forms.Label();
             pkgAgencyCommissionLabel = new System.Windows.Forms.Label();
             pkgBasePriceLabel = new System.Windows.Forms.Label();
@@ -178,6 +178,7 @@
             // 
             // pkgDescRichTextBox
             // 
+            this.pkgDescRichTextBox.BackColor = System.Drawing.SystemColors.ControlLightLight;
             this.pkgDescRichTextBox.Location = new System.Drawing.Point(66, 121);
             this.pkgDescRichTextBox.Name = "pkgDescRichTextBox";
             this.pkgDescRichTextBox.ReadOnly = true;
@@ -309,6 +310,16 @@
             this.MainTabControl.Size = new System.Drawing.Size(950, 557);
             this.MainTabControl.TabIndex = 37;
             // 
+            // ProductTab
+            // 
+            this.ProductTab.Location = new System.Drawing.Point(4, 22);
+            this.ProductTab.Name = "ProductTab";
+            this.ProductTab.Padding = new System.Windows.Forms.Padding(3);
+            this.ProductTab.Size = new System.Drawing.Size(942, 531);
+            this.ProductTab.TabIndex = 1;
+            this.ProductTab.Text = "Products";
+            this.ProductTab.UseVisualStyleBackColor = true;
+            // 
             // PackageTab
             // 
             this.PackageTab.Controls.Add(this.AddPacIDTB);
@@ -342,45 +353,24 @@
             this.PackageTab.UseVisualStyleBackColor = true;
             this.PackageTab.Click += new System.EventHandler(this.tabPage1_Click);
             // 
-            // ProductTab
+            // AddPacIDTB
             // 
-            this.ProductTab.Location = new System.Drawing.Point(4, 22);
-            this.ProductTab.Name = "ProductTab";
-            this.ProductTab.Padding = new System.Windows.Forms.Padding(3);
-            this.ProductTab.Size = new System.Drawing.Size(942, 531);
-            this.ProductTab.TabIndex = 1;
-            this.ProductTab.Text = "Products";
-            this.ProductTab.UseVisualStyleBackColor = true;
+            this.AddPacIDTB.Location = new System.Drawing.Point(162, 27);
+            this.AddPacIDTB.Name = "AddPacIDTB";
+            this.AddPacIDTB.ReadOnly = true;
+            this.AddPacIDTB.Size = new System.Drawing.Size(200, 20);
+            this.AddPacIDTB.TabIndex = 41;
+            this.AddPacIDTB.Visible = false;
             // 
-            // SuppliersTab
+            // ActionLabelPac
             // 
-            this.SuppliersTab.Location = new System.Drawing.Point(4, 22);
-            this.SuppliersTab.Name = "SuppliersTab";
-            this.SuppliersTab.Padding = new System.Windows.Forms.Padding(3);
-            this.SuppliersTab.Size = new System.Drawing.Size(942, 531);
-            this.SuppliersTab.TabIndex = 2;
-            this.SuppliersTab.Text = "Suppliers";
-            this.SuppliersTab.UseVisualStyleBackColor = true;
-            // 
-            // PacAddBtn
-            // 
-            this.PacAddBtn.Location = new System.Drawing.Point(89, 483);
-            this.PacAddBtn.Name = "PacAddBtn";
-            this.PacAddBtn.Size = new System.Drawing.Size(75, 23);
-            this.PacAddBtn.TabIndex = 36;
-            this.PacAddBtn.Text = "Add";
-            this.PacAddBtn.UseVisualStyleBackColor = true;
-            this.PacAddBtn.Click += new System.EventHandler(this.PacAddBtn_Click);
-            // 
-            // SavePacBtn
-            // 
-            this.SavePacBtn.Location = new System.Drawing.Point(71, 470);
-            this.SavePacBtn.Name = "SavePacBtn";
-            this.SavePacBtn.Size = new System.Drawing.Size(75, 23);
-            this.SavePacBtn.TabIndex = 37;
-            this.SavePacBtn.Text = "Save";
-            this.SavePacBtn.UseVisualStyleBackColor = true;
-            this.SavePacBtn.Visible = false;
+            this.ActionLabelPac.AutoSize = true;
+            this.ActionLabelPac.ForeColor = System.Drawing.Color.SeaGreen;
+            this.ActionLabelPac.Location = new System.Drawing.Point(8, 19);
+            this.ActionLabelPac.Name = "ActionLabelPac";
+            this.ActionLabelPac.Size = new System.Drawing.Size(44, 13);
+            this.ActionLabelPac.TabIndex = 40;
+            this.ActionLabelPac.Text = "Viewing";
             // 
             // CancelPacBtn
             // 
@@ -393,24 +383,35 @@
             this.CancelPacBtn.Visible = false;
             this.CancelPacBtn.Click += new System.EventHandler(this.CancelPacBtn_Click);
             // 
-            // ActionLabelPac
+            // SavePacBtn
             // 
-            this.ActionLabelPac.AutoSize = true;
-            this.ActionLabelPac.ForeColor = System.Drawing.Color.SeaGreen;
-            this.ActionLabelPac.Location = new System.Drawing.Point(8, 19);
-            this.ActionLabelPac.Name = "ActionLabelPac";
-            this.ActionLabelPac.Size = new System.Drawing.Size(44, 13);
-            this.ActionLabelPac.TabIndex = 40;
-            this.ActionLabelPac.Text = "Viewing";
+            this.SavePacBtn.Location = new System.Drawing.Point(71, 470);
+            this.SavePacBtn.Name = "SavePacBtn";
+            this.SavePacBtn.Size = new System.Drawing.Size(75, 23);
+            this.SavePacBtn.TabIndex = 37;
+            this.SavePacBtn.Text = "Save";
+            this.SavePacBtn.UseVisualStyleBackColor = true;
+            this.SavePacBtn.Visible = false;
             // 
-            // AddPacIDTB
+            // PacAddBtn
             // 
-            this.AddPacIDTB.Location = new System.Drawing.Point(162, 27);
-            this.AddPacIDTB.Name = "AddPacIDTB";
-            this.AddPacIDTB.ReadOnly = true;
-            this.AddPacIDTB.Size = new System.Drawing.Size(200, 20);
-            this.AddPacIDTB.TabIndex = 41;
-            this.AddPacIDTB.Visible = false;
+            this.PacAddBtn.Location = new System.Drawing.Point(89, 483);
+            this.PacAddBtn.Name = "PacAddBtn";
+            this.PacAddBtn.Size = new System.Drawing.Size(75, 23);
+            this.PacAddBtn.TabIndex = 36;
+            this.PacAddBtn.Text = "Add";
+            this.PacAddBtn.UseVisualStyleBackColor = true;
+            this.PacAddBtn.Click += new System.EventHandler(this.PacAddBtn_Click);
+            // 
+            // SuppliersTab
+            // 
+            this.SuppliersTab.Location = new System.Drawing.Point(4, 22);
+            this.SuppliersTab.Name = "SuppliersTab";
+            this.SuppliersTab.Padding = new System.Windows.Forms.Padding(3);
+            this.SuppliersTab.Size = new System.Drawing.Size(942, 531);
+            this.SuppliersTab.TabIndex = 2;
+            this.SuppliersTab.Text = "Suppliers";
+            this.SuppliersTab.UseVisualStyleBackColor = true;
             // 
             // MainForm
             // 
