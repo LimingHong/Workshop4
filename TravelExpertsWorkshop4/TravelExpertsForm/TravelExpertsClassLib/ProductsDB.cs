@@ -92,6 +92,7 @@ namespace TravelExpertsClassLib
                 con.Open();
                 int rowsUpdated = cmd.ExecuteNonQuery();
                 if (rowsUpdated == 0) success = false; //did not update()
+               
             }
             catch (Exception ex) { throw ex; }
             finally { con.Close(); }

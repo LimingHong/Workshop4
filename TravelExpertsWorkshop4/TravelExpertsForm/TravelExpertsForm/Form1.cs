@@ -269,11 +269,11 @@ namespace TravelExpertsForm
             newProduct.ProdName = prodNameTextBox.Text;
             return newProduct;
         }
-        private Products productUpdate1 (TextBox newID, TextBox newName)
+        private Products productUpdate1 (TextBox newName)
         {
             Products Pro = new Products(); 
 
-            Pro.ProductId = Convert.ToInt32(txtNewProductID.Text);
+            //Pro.ProductId = Convert.ToInt32(txtNewProductID.Text);
             Pro.ProdName = txtNewProductName.Text;
             return Pro;
         }
@@ -321,20 +321,20 @@ namespace TravelExpertsForm
         {
             try
             {
-                if (Validator.IsPresent(prodNameTextBox) && Validator.IsPresent(productIdComboBox))
+                if (Validator.IsPresent(txtNewProductName))
                 {
                     
 
 
 
-                    Products newProduct = productUpdate1(txtNewProductID,txtNewProductName);
+                    Products newProduct = productUpdate1(txtNewProductName);
 
 
                     newProduct.ProductId = ProductsDB.AddProduct(newProduct);
 
                    
-                        MessageBox.Show("Product is updated :)");
-                    productsDataGridView.DataSource = AllProducts;
+                        MessageBox.Show("Product is Added :)");
+                   
 
 
                 }
@@ -344,6 +344,33 @@ namespace TravelExpertsForm
             {
                 MessageBox.Show(ex.Message, ex.GetType().ToString());
             }
+        }
+
+        private void AddNewProduct(object sender, EventArgs e)
+        {
+            btnProAdd.Visible = true;
+            txtNewProductName.Visible = true;
+            //txtNewProductID.Visible = true;
+            prodNameTextBox.ReadOnly = true;
+            productIdComboBox.Enabled = false;
+            btuProAddback.Visible = true;
+            //lblNewProductIDD.Visible = true;
+            lblNewProName.Visible = true;
+            btuProAddback.Visible = true;
+
+
+        }
+
+        private void backPro(object sender, EventArgs e)
+        {
+            btnProAdd.Visible = false;
+            txtNewProductName.Visible = false;
+            //txtNewProductID.Visible = false;
+            prodNameTextBox.ReadOnly = false;
+            btuProAddback.Visible = false;
+            //lblNewProductIDD.Visible = false;
+            lblNewProName.Visible = false;
+            productIdComboBox.Enabled = true;
         }
 
         
