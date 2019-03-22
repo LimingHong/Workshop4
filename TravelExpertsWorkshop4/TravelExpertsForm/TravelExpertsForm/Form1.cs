@@ -29,7 +29,8 @@ namespace TravelExpertsForm
         public MainForm()
         {
             InitializeComponent();
-            
+            this.ClientSize = new Size(967, 591);
+
         }
 
         /*
@@ -344,5 +345,7 @@ namespace TravelExpertsForm
                 MessageBox.Show(ex.Message, ex.GetType().ToString());
             }
         }
+
+        
     }
 }
