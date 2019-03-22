@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -139,6 +140,62 @@ namespace TravelExpertsForm
         private void tabPage1_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void AddEditConfig(string inputAction)
+        {
+            bool displayStatus = true;
+            switch (inputAction){
+                case "Adding":
+                    ActionLabelPac.Text = "Adding";
+                    AddPacIDTB.Visible = displayStatus;
+                    packageIdComboBox.Visible = !displayStatus;
+                    pkgNameTextBox.Text =
+                        pkgDescRichTextBox.Text =
+                            pkgAgencyCommissionTextBox.Text =
+                                pkgBasePriceTextBox.Text = "";
+                    break;
+
+                case "Editing":
+                    ActionLabelPac.Text = "Editing";
+                    pkgAgencyCommissionTextBox.Text = decimal.Parse(pkgAgencyCommissionTextBox.Text, NumberStyles.Any).ToString("f2");
+                    pkgBasePriceTextBox.Text = decimal.Parse(pkgBasePriceTextBox.Text, NumberStyles.Any).ToString("f2");
+                    break;
+
+                case "Cancel":
+                    ActionLabelPac.Text = "Viewing";
+                    displayStatus = false;
+                    DisplayPacInfo(packageIdComboBox);
+                    FilterPacProSup(packageIdComboBox);
+                    AddPacIDTB.Visible = displayStatus;
+                    packageIdComboBox.Visible = !displayStatus;
+                    break;
+            }
+
+            pkgStartDateDateTimePicker.Enabled =
+                pkgEndDateDateTimePicker.Enabled = 
+                    SavePacBtn.Visible = CancelPacBtn.Visible = displayStatus;
+
+            EditPacBtn.Visible = PacAddBtn.Visible = 
+            pkgNameTextBox.ReadOnly =
+                pkgDescRichTextBox.ReadOnly =
+                    pkgAgencyCommissionTextBox.ReadOnly =
+                        pkgBasePriceTextBox.ReadOnly = !displayStatus;
+        }
+
+        private void PacAddBtn_Click(object sender, EventArgs e)
+        {
+            AddEditConfig("Adding");
+        }
+
+        private void EditPacBtn_Click(object sender, EventArgs e)
+        {
+            AddEditConfig("Editing");
+        }
+
+        private void CancelPacBtn_Click(object sender, EventArgs e)
+        {
+            AddEditConfig("Cancel");
         }
     }
 }
