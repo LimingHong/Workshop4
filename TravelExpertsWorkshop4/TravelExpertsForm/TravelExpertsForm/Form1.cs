@@ -283,11 +283,11 @@ namespace TravelExpertsForm
             newProduct.ProdName = prodNameTextBox.Text;
             return newProduct;
         }
-        private Products productUpdate1(TextBox newID, TextBox newName)
+        private Products productUpdate1(TextBox newName)
         {
             Products Pro = new Products();
 
-            Pro.ProductId = Convert.ToInt32(txtNewProductID.Text);
+            //Pro.ProductId = Convert.ToInt32(txtNewProductID.Text);
             Pro.ProdName = txtNewProductName.Text;
             return Pro;
         }
@@ -398,6 +398,7 @@ namespace TravelExpertsForm
                     Validator.IsNonNegativeDecimal(pkgBasePriceTextBox, "Price")
                     )
                 {
+                    Products newProduct = productUpdate1(txtNewProductName);
 
                     int value = Convert.ToInt32(packageIdComboBox.SelectedValue);
 
@@ -410,6 +411,9 @@ namespace TravelExpertsForm
                     newPac.PkgDesc = pkgDescRichTextBox.Text;
                     newPac.PkgBasePrice = Convert.ToDecimal(pkgBasePriceTextBox.Text);
                     newPac.PkgAgencyCommission = Convert.ToDecimal(pkgAgencyCommissionTextBox.Text);
+
+                    MessageBox.Show("Product is Added :)");
+
 
                     indicator = "Update Package Failed. ";
 
@@ -426,5 +430,33 @@ namespace TravelExpertsForm
 
             MessageBox.Show(indicator);
         }
+        private void AddNewProduct(object sender, EventArgs e)
+        {
+            btnProAdd.Visible = true;
+            txtNewProductName.Visible = true;
+            //txtNewProductID.Visible = true;
+            prodNameTextBox.ReadOnly = true;
+            productIdComboBox.Enabled = false;
+            btuProAddback.Visible = true;
+            //lblNewProductIDD.Visible = true;
+            lblNewProName.Visible = true;
+            btuProAddback.Visible = true;
+
+
+        }
+
+        private void backPro(object sender, EventArgs e)
+        {
+            btnProAdd.Visible = false;
+            txtNewProductName.Visible = false;
+            //txtNewProductID.Visible = false;
+            prodNameTextBox.ReadOnly = false;
+            btuProAddback.Visible = false;
+            //lblNewProductIDD.Visible = false;
+            lblNewProName.Visible = false;
+            productIdComboBox.Enabled = true;
+        }
+
+
     }
 }

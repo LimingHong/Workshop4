@@ -12,6 +12,7 @@ namespace TravelExpertsClassLib
             // ERIC version
             string connectionString = @"Data Source=localhost;Initial Catalog=TravelExperts;Integrated Security=True";
 
+
             return new SqlConnection(connectionString);
         }
     }
