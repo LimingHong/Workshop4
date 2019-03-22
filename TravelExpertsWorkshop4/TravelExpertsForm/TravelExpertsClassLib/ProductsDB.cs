@@ -66,5 +66,72 @@ namespace TravelExpertsClassLib
 
             
         }
+
+        public static bool UpdateProduct(Products oldProducts, Products newProducts)
+        {
+            bool success = true;
+            SqlConnection con = TravelExpertsDB.GetConnection();
+            string updateStatement = "UPDATE Products set " +
+                               "ProdName=@ProdName " +
+                               "WHERE ProductId=@OldProductId ";
+            SqlCommand cmd = new SqlCommand(updateStatement, con);
+            if (newProducts.ProdName == null)
+            { cmd.Parameters.AddWithValue("@ProdName", DBNull.Value); }
+            else
+            { cmd.Parameters.AddWithValue("@ProdName", newProducts.ProdName); }
+
+            cmd.Parameters.AddWithValue("@OldProductID", oldProducts.ProdName);
+
+            if (oldProducts.ProdName == null)
+            { cmd.Parameters.AddWithValue("@OldProdName", DBNull.Value); }
+            else
+                cmd.Parameters.AddWithValue("@OldProdName", oldProducts.ProdName);
+
+            try
+            {
+                con.Open();
+                int rowsUpdated = cmd.ExecuteNonQuery();
+                if (rowsUpdated == 0) success = false; //did not update()
+            }
+            catch (Exception ex) { throw ex; }
+            finally { con.Close(); }
+
+            return success;
+
+
+        }
+
+        public static int AddProduct(Products prod)
+        {
+            int prodID = 0;
+            SqlConnection con = TravelExpertsDB.GetConnection();
+            string insertStatement = "INSERT INTO Products (ProdName) " +
+                                     "VALUES(@ProdName)";
+            SqlCommand cmd = new SqlCommand(insertStatement, con);
+            cmd.Parameters.AddWithValue("@ProdName", prod.ProdName);
+            
+            try
+            {
+                con.Open();
+                cmd.ExecuteNonQuery();
+                string selectQuery = "SELECT IDENT_CURRENT('Products') FROM Products"; // identity value
+                SqlCommand selectCommand = new SqlCommand(selectQuery, con);
+                prodID = Convert.ToInt32(selectCommand.ExecuteScalar()); // single value
+                // typecasting (int) does not work
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                con.Close();
+            }
+            return prodID;
+        }
+
+
+
+
     }
 }
