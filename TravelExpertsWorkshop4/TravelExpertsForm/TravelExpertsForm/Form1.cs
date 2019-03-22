@@ -20,6 +20,12 @@ namespace TravelExpertsForm
         protected List<ProSup> ProSupLinkages = ProSupDB.GetProSups();
         protected List<PacProSup> PacProSupLinkages = PacProSupDB.GetPacProSup() ;
 
+        /*
+         * Boolean indicators for Packages page
+         */
+        private bool EditPacStatus = false;
+
+
         public MainForm()
         {
             InitializeComponent();
@@ -91,6 +97,7 @@ namespace TravelExpertsForm
         {
             if (!String.IsNullOrEmpty(inputCB.Text))
             {
+                string formatNumerical = "";
                 int value = Convert.ToInt32(inputCB.SelectedValue);
 
                 Packages filterPackage = AllPackages.First(p => p.PackageId == value);
@@ -100,8 +107,18 @@ namespace TravelExpertsForm
                 pkgDescRichTextBox.Text = filterPackage.PkgDesc;
                 pkgStartDateDateTimePicker.Value = (DateTime)filterPackage.PkgStartDate;
                 pkgEndDateDateTimePicker.Value = (DateTime)filterPackage.PkgEndDate;
-                pkgAgencyCommissionTextBox.Text = filterPackage.PkgBasePrice.ToString("c2");
-                pkgBasePriceTextBox.Text = filterPackage.PkgBasePrice.ToString("c2");
+
+                if(EditPacStatus)
+                {
+                    formatNumerical = "f2";
+                }
+                else
+                {
+                    formatNumerical = "c2";
+                }
+                pkgAgencyCommissionTextBox.Text = filterPackage.PkgAgencyCommission.ToString(formatNumerical);
+                pkgBasePriceTextBox.Text = filterPackage.PkgBasePrice.ToString(formatNumerical);
+
             }
         }
 
@@ -153,7 +170,7 @@ namespace TravelExpertsForm
                 case "Adding":
                     ActionLabelPac.Text = "Adding";
                     AddPacIDTB.Visible = displayStatus;
-                    packageIdComboBox.Visible = !displayStatus;
+                    packageIdComboBox.Visible = packageIdComboBox.Enabled = !displayStatus;
                     pkgNameTextBox.Text =
                         pkgDescRichTextBox.Text =
                             pkgAgencyCommissionTextBox.Text =
@@ -161,18 +178,19 @@ namespace TravelExpertsForm
                     break;
 
                 case "Editing":
+                    EditPacStatus = true;
                     ActionLabelPac.Text = "Editing";
-                    pkgAgencyCommissionTextBox.Text = decimal.Parse(pkgAgencyCommissionTextBox.Text, NumberStyles.Any).ToString("f2");
-                    pkgBasePriceTextBox.Text = decimal.Parse(pkgBasePriceTextBox.Text, NumberStyles.Any).ToString("f2");
+                    DisplayPacInfo(packageIdComboBox);
+                    FilterPacProSup(packageIdComboBox);
                     break;
 
                 case "Cancel":
+                    EditPacStatus = displayStatus = false;
                     ActionLabelPac.Text = "Viewing";
-                    displayStatus = false;
                     DisplayPacInfo(packageIdComboBox);
                     FilterPacProSup(packageIdComboBox);
                     AddPacIDTB.Visible = displayStatus;
-                    packageIdComboBox.Visible = !displayStatus;
+                    packageIdComboBox.Visible = packageIdComboBox.Enabled = !displayStatus;
                     break;
             }
 

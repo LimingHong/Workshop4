@@ -64,6 +64,7 @@
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
             this.MainTabControl = new System.Windows.Forms.TabControl();
             this.ProductTab = new System.Windows.Forms.TabPage();
+<<<<<<< HEAD
             this.btnProEdit = new System.Windows.Forms.Button();
             this.btnProAdd = new System.Windows.Forms.Button();
             this.productsDataGridView = new System.Windows.Forms.DataGridView();
@@ -71,6 +72,8 @@
             this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.prodNameTextBox = new System.Windows.Forms.TextBox();
             this.productIdComboBox = new System.Windows.Forms.ComboBox();
+=======
+>>>>>>> 3c136d55445b04b5dbb443357e1ca69f521b45a8
             this.PackageTab = new System.Windows.Forms.TabPage();
             this.AddPacIDTB = new System.Windows.Forms.TextBox();
             this.ActionLabelPac = new System.Windows.Forms.Label();
@@ -78,6 +81,7 @@
             this.SavePacBtn = new System.Windows.Forms.Button();
             this.PacAddBtn = new System.Windows.Forms.Button();
             this.SuppliersTab = new System.Windows.Forms.TabPage();
+<<<<<<< HEAD
             this.supNameTextBox = new System.Windows.Forms.TextBox();
             this.supplierIdComboBox = new System.Windows.Forms.ComboBox();
             this.suppliersDataGridView = new System.Windows.Forms.DataGridView();
@@ -85,6 +89,8 @@
             this.dataGridViewTextBoxColumn4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.txtNewProductID = new System.Windows.Forms.TextBox();
             this.txtNewProductName = new System.Windows.Forms.TextBox();
+=======
+>>>>>>> 3c136d55445b04b5dbb443357e1ca69f521b45a8
             packageIdLabel = new System.Windows.Forms.Label();
             pkgAgencyCommissionLabel = new System.Windows.Forms.Label();
             pkgBasePriceLabel = new System.Windows.Forms.Label();
@@ -254,8 +260,13 @@
             // 
             // pkgDescRichTextBox
             // 
+<<<<<<< HEAD
             this.pkgDescRichTextBox.Location = new System.Drawing.Point(99, 186);
             this.pkgDescRichTextBox.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+=======
+            this.pkgDescRichTextBox.BackColor = System.Drawing.SystemColors.ControlLightLight;
+            this.pkgDescRichTextBox.Location = new System.Drawing.Point(66, 121);
+>>>>>>> 3c136d55445b04b5dbb443357e1ca69f521b45a8
             this.pkgDescRichTextBox.Name = "pkgDescRichTextBox";
             this.pkgDescRichTextBox.ReadOnly = true;
             this.pkgDescRichTextBox.Size = new System.Drawing.Size(442, 146);
@@ -395,6 +406,7 @@
             // 
             // ProductTab
             // 
+<<<<<<< HEAD
             this.ProductTab.Controls.Add(label1);
             this.ProductTab.Controls.Add(lblnewid);
             this.ProductTab.Controls.Add(this.txtNewProductName);
@@ -411,10 +423,17 @@
             this.ProductTab.Name = "ProductTab";
             this.ProductTab.Padding = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.ProductTab.Size = new System.Drawing.Size(1417, 824);
+=======
+            this.ProductTab.Location = new System.Drawing.Point(4, 22);
+            this.ProductTab.Name = "ProductTab";
+            this.ProductTab.Padding = new System.Windows.Forms.Padding(3);
+            this.ProductTab.Size = new System.Drawing.Size(942, 531);
+>>>>>>> 3c136d55445b04b5dbb443357e1ca69f521b45a8
             this.ProductTab.TabIndex = 1;
             this.ProductTab.Text = "Products";
             this.ProductTab.UseVisualStyleBackColor = true;
             // 
+<<<<<<< HEAD
             // btnProEdit
             // 
             this.btnProEdit.Location = new System.Drawing.Point(248, 451);
@@ -484,6 +503,8 @@
             this.productIdComboBox.ValueMember = "ProductId";
             this.productIdComboBox.SelectedIndexChanged += new System.EventHandler(this.productIdComboBox_SelectedIndexChanged_1);
             // 
+=======
+>>>>>>> 3c136d55445b04b5dbb443357e1ca69f521b45a8
             // PackageTab
             // 
             this.PackageTab.Controls.Add(this.AddPacIDTB);
@@ -520,11 +541,18 @@
             // 
             // AddPacIDTB
             // 
+<<<<<<< HEAD
             this.AddPacIDTB.Location = new System.Drawing.Point(243, 42);
             this.AddPacIDTB.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.AddPacIDTB.Name = "AddPacIDTB";
             this.AddPacIDTB.ReadOnly = true;
             this.AddPacIDTB.Size = new System.Drawing.Size(298, 26);
+=======
+            this.AddPacIDTB.Location = new System.Drawing.Point(162, 27);
+            this.AddPacIDTB.Name = "AddPacIDTB";
+            this.AddPacIDTB.ReadOnly = true;
+            this.AddPacIDTB.Size = new System.Drawing.Size(200, 20);
+>>>>>>> 3c136d55445b04b5dbb443357e1ca69f521b45a8
             this.AddPacIDTB.TabIndex = 41;
             this.AddPacIDTB.Visible = false;
             // 
@@ -532,19 +560,31 @@
             // 
             this.ActionLabelPac.AutoSize = true;
             this.ActionLabelPac.ForeColor = System.Drawing.Color.SeaGreen;
+<<<<<<< HEAD
             this.ActionLabelPac.Location = new System.Drawing.Point(12, 29);
             this.ActionLabelPac.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.ActionLabelPac.Name = "ActionLabelPac";
             this.ActionLabelPac.Size = new System.Drawing.Size(64, 20);
+=======
+            this.ActionLabelPac.Location = new System.Drawing.Point(8, 19);
+            this.ActionLabelPac.Name = "ActionLabelPac";
+            this.ActionLabelPac.Size = new System.Drawing.Size(44, 13);
+>>>>>>> 3c136d55445b04b5dbb443357e1ca69f521b45a8
             this.ActionLabelPac.TabIndex = 40;
             this.ActionLabelPac.Text = "Viewing";
             // 
             // CancelPacBtn
             // 
+<<<<<<< HEAD
             this.CancelPacBtn.Location = new System.Drawing.Point(446, 723);
             this.CancelPacBtn.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.CancelPacBtn.Name = "CancelPacBtn";
             this.CancelPacBtn.Size = new System.Drawing.Size(112, 35);
+=======
+            this.CancelPacBtn.Location = new System.Drawing.Point(297, 470);
+            this.CancelPacBtn.Name = "CancelPacBtn";
+            this.CancelPacBtn.Size = new System.Drawing.Size(75, 23);
+>>>>>>> 3c136d55445b04b5dbb443357e1ca69f521b45a8
             this.CancelPacBtn.TabIndex = 38;
             this.CancelPacBtn.Text = "Cancel";
             this.CancelPacBtn.UseVisualStyleBackColor = true;
@@ -563,6 +603,7 @@
             this.SavePacBtn.Visible = false;
             // 
             // PacAddBtn
+<<<<<<< HEAD
             // 
             this.PacAddBtn.Location = new System.Drawing.Point(134, 743);
             this.PacAddBtn.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
@@ -667,6 +708,26 @@
             label1.Size = new System.Drawing.Size(149, 20);
             label1.TabIndex = 45;
             label1.Text = "New Product Name:";
+=======
+            // 
+            this.PacAddBtn.Location = new System.Drawing.Point(89, 483);
+            this.PacAddBtn.Name = "PacAddBtn";
+            this.PacAddBtn.Size = new System.Drawing.Size(75, 23);
+            this.PacAddBtn.TabIndex = 36;
+            this.PacAddBtn.Text = "Add";
+            this.PacAddBtn.UseVisualStyleBackColor = true;
+            this.PacAddBtn.Click += new System.EventHandler(this.PacAddBtn_Click);
+            // 
+            // SuppliersTab
+            // 
+            this.SuppliersTab.Location = new System.Drawing.Point(4, 22);
+            this.SuppliersTab.Name = "SuppliersTab";
+            this.SuppliersTab.Padding = new System.Windows.Forms.Padding(3);
+            this.SuppliersTab.Size = new System.Drawing.Size(942, 531);
+            this.SuppliersTab.TabIndex = 2;
+            this.SuppliersTab.Text = "Suppliers";
+            this.SuppliersTab.UseVisualStyleBackColor = true;
+>>>>>>> 3c136d55445b04b5dbb443357e1ca69f521b45a8
             // 
             // MainForm
             // 
