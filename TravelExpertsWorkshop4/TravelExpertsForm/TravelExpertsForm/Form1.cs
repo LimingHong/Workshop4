@@ -38,116 +38,11 @@ namespace TravelExpertsForm
             PacProSupLinkages = PacProSupDB.GetPacProSup();
         }
 
-
-        /*
-         * KEEP IN MIND THAT
-         *          Pkg many:many Products
-         *          Pkg many:many Suppliers
-         *          vice versa
+        //$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+        /* Section: Package
+         * Author: Eric
          */
-
-
-        /* For LINQ in the future
-         *
-         * select p.PackageId ,pps.ProductSupplierId,PkgName,PkgStartDate,PkgEndDate,PkgDesc,PkgBasePrice,PkgAgencyCommission,ProductId,SupplierId from Packages_Products_Suppliers pps
-	        inner join  Packages p
-		    on p.PackageId = pps.PackageId
-	        inner join Products_Suppliers pp
-		    on pps.ProductSupplierId = pp.ProductSupplierId
-         */
-
-        /*
-         *select p.PackageId ,PkgName,pt.ProductId, ProdName,ss.SupplierId, ss.SupName from Packages_Products_Suppliers pps
-	            inner join  Packages p
-	            	on p.PackageId = pps.PackageId
-	            inner join Products_Suppliers pp
-	            	on pps.ProductSupplierId = pp.ProductSupplierId
-	            inner join Products pt
-	            	 on pt.ProductId = pp.ProductId
-	            inner join Suppliers ss
-	            	on ss.SupplierId = pp.SupplierId
-         *
-         * Querying for better visualization 
-         *
-         *
-         */
-
-        // filtering ProSup for data gridview
-
-        private void FilterPacProSup(ComboBox inputCB)
-        {
-
-            if (!String.IsNullOrEmpty(inputCB.Text))
-            {
-                int value = Convert.ToInt32(inputCB.SelectedValue);
-                productsBindingSource.DataSource = AllProducts;
-                suppliersBindingSource.DataSource = AllSuppliers;
-
-                var filteredProSup = from pps in PacProSupLinkages
-                                     where value == pps.PackageId
-                                     select pps;
-
-                //MessageBox.Show(filteredProSup.Count().ToString());
-
-                PacProSupBindingSource.DataSource = filteredProSup;
-                ProSupDataGridview.DataSource = PacProSupBindingSource;
-                this.ProSupDataGridview.Columns["PackageId"].Visible = false;
-                this.ProSupDataGridview.Columns["ProdName"].Visible = false;
-                this.ProSupDataGridview.Columns["SupName"].Visible = false;
-
-
-            }
-
-
-        }
-
-        private void DisplayPacInfo(ComboBox inputCB)
-        {
-            if (!String.IsNullOrEmpty(inputCB.Text))
-            {
-                string formatNumerical = "";
-                int value = Convert.ToInt32(inputCB.SelectedValue);
-
-                Packages filterPackage = AllPackages.First(p => p.PackageId == value);
-
-
-                pkgNameTextBox.Text = filterPackage.PkgName;
-                pkgDescRichTextBox.Text = filterPackage.PkgDesc;
-                pkgStartDateDateTimePicker.Value = (DateTime)filterPackage.PkgStartDate;
-                pkgEndDateDateTimePicker.Value = (DateTime)filterPackage.PkgEndDate;
-
-                if (EditPacStatus)
-                {
-                    formatNumerical = "f2";
-                }
-                else
-                {
-                    formatNumerical = "c2";
-                }
-                pkgAgencyCommissionTextBox.Text = filterPackage.PkgAgencyCommission.ToString(formatNumerical);
-                pkgBasePriceTextBox.Text = filterPackage.PkgBasePrice.ToString(formatNumerical);
-
-            }
-        }
-
-
-        private void BindPackages()
-        {
-            packagesBindingSource.DataSource = AllPackages;
-        }
-
-        private void Form1_Load(object sender, EventArgs e)
-        {
-            UpdateAllInfos();
-            MainTabControl.SelectTab(PackageTab);
-            BindPackages();
-            DisplayPacInfo(packageIdComboBox);
-            FilterPacProSup(packageIdComboBox);
-            DisplayProInfo(productIdComboBox);
-            DisplaySupInfo(supplierIdComboBox);
-        }
-
-
+        //Codes:
 
         private void packageIdComboBox_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -155,22 +50,12 @@ namespace TravelExpertsForm
             FilterPacProSup(packageIdComboBox);
 
         }
-
-        private void ProSupDataGridview_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
-
-        }
-
         private void EnableEditProSup_Click(object sender, EventArgs e)
         {
             EnableEditProSup.Visible = false;
             ProSupDataGridview.Enabled = true;
         }
 
-        private void tabPage1_Click(object sender, EventArgs e)
-        {
-
-        }
 
         private void AddEditConfig(string inputAction)
         {
@@ -233,6 +118,204 @@ namespace TravelExpertsForm
         {
             AddEditConfig("Cancel");
         }
+
+
+        private void FilterPacProSup(ComboBox inputCB)
+        {
+
+            if (!String.IsNullOrEmpty(inputCB.Text))
+            {
+                int value = Convert.ToInt32(inputCB.SelectedValue);
+                productsBindingSource.DataSource = AllProducts;
+                suppliersBindingSource.DataSource = AllSuppliers;
+
+                var filteredProSup = from pps in PacProSupLinkages
+                                     where value == pps.PackageId
+                                     select pps;
+
+                //MessageBox.Show(filteredProSup.Count().ToString());
+
+                PacProSupBindingSource.DataSource = filteredProSup;
+                ProSupDataGridview.DataSource = PacProSupBindingSource;
+                this.ProSupDataGridview.Columns["PackageId"].Visible = false;
+                this.ProSupDataGridview.Columns["ProdName"].Visible = false;
+                this.ProSupDataGridview.Columns["SupName"].Visible = false;
+
+
+            }
+
+
+
+        }
+        private void DisplayPacInfo(ComboBox inputCB)
+        {
+            if (!String.IsNullOrEmpty(inputCB.Text))
+            {
+                string formatNumerical = "";
+                int value = Convert.ToInt32(inputCB.SelectedValue);
+
+                Packages filterPackage = AllPackages.First(p => p.PackageId == value);
+
+
+                pkgNameTextBox.Text = filterPackage.PkgName;
+                pkgDescRichTextBox.Text = filterPackage.PkgDesc;
+                pkgStartDateDateTimePicker.Value = (DateTime)filterPackage.PkgStartDate;
+                pkgEndDateDateTimePicker.Value = (DateTime)filterPackage.PkgEndDate;
+
+                if (EditPacStatus)
+                {
+                    formatNumerical = "f2";
+                }
+                else
+                {
+                    formatNumerical = "c2";
+                }
+                pkgAgencyCommissionTextBox.Text = filterPackage.PkgAgencyCommission.ToString(formatNumerical);
+                pkgBasePriceTextBox.Text = filterPackage.PkgBasePrice.ToString(formatNumerical);
+
+            }
+        }
+
+
+        private void BindPackages()
+        {
+            packagesBindingSource.DataSource = AllPackages;
+        }
+
+        private void SavePacBtn_Click(object sender, EventArgs e)
+        {
+            string indicator = ""; // for testing purpose
+
+            if (AddPacStatus)
+            {
+
+                //testing = "Saving item in add mode ";
+
+            }
+
+            if (EditPacStatus)
+            {
+                /*
+                 * pkgNameTextBox
+                pkgDescRichTextBox
+                pkgStartDateDateTimePicker
+                pkgEndDateDateTimePicker           
+                pkgAgencyCommissionTextBox
+                pkgBasePriceTextBox
+                 */
+
+                //testing = "Saving item in edit mode ";
+                if (
+                    //check if present
+                    Validator.IsPresent(pkgNameTextBox, "Package Name") &&
+                    Validator.IsPresentRichTB(pkgDescRichTextBox, "Package Description") &&
+                    Validator.IsPresentDateTimePicker(pkgStartDateDateTimePicker, "Package Start Date") &&
+                    Validator.IsPresentDateTimePicker(pkgEndDateDateTimePicker, "Package End Date") &&
+                    Validator.IsPresent(pkgAgencyCommissionTextBox, "Agency Commission") &&
+                    Validator.IsPresent(pkgBasePriceTextBox, "Price") &&
+                    //check valid values
+                    Validator.IsDecimal(pkgAgencyCommissionTextBox, "Agency Commission") &&
+                    Validator.IsDecimal(pkgBasePriceTextBox, "Price") &&
+                    Validator.IsNonNegativeDecimal(pkgAgencyCommissionTextBox, "Agency Commission") &&
+                    Validator.IsNonNegativeDecimal(pkgBasePriceTextBox, "Price")
+                    )
+                {
+
+
+                    int value = Convert.ToInt32(packageIdComboBox.SelectedValue);
+
+                    Packages newPac = new Packages();
+
+                    newPac.PackageId = value;
+                    newPac.PkgName = pkgNameTextBox.Text;
+                    newPac.PkgStartDate = pkgStartDateDateTimePicker.Value;
+                    newPac.PkgEndDate = pkgEndDateDateTimePicker.Value;
+                    newPac.PkgDesc = pkgDescRichTextBox.Text;
+                    newPac.PkgBasePrice = Convert.ToDecimal(pkgBasePriceTextBox.Text);
+                    newPac.PkgAgencyCommission = Convert.ToDecimal(pkgAgencyCommissionTextBox.Text);
+
+                    indicator = "Update Package Failed. ";
+
+                    if (PackagesDB.UpdatePackage(newPac))
+                    {
+                        indicator = "Update Package Successful !";
+                        UpdateAllInfos();
+                    }
+
+                }
+
+
+            }
+
+            MessageBox.Show(indicator);
+        }
+
+        //$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+
+
+
+
+
+
+        //$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+        /* Section: Products
+         * Author: Liming
+         */
+        //Codes:
+
+
+        //$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+
+
+
+
+
+
+
+
+
+
+
+
+        //$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+        /* Section: Suppliers
+         * Author: Guido
+         */
+        //Codes:
+
+
+        //$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+
+
+
+
+        private void Form1_Load(object sender, EventArgs e)
+        {
+            UpdateAllInfos();
+            MainTabControl.SelectTab(PackageTab);
+            BindPackages();
+            DisplayPacInfo(packageIdComboBox);
+            FilterPacProSup(packageIdComboBox);
+            DisplayProInfo(productIdComboBox);
+            DisplaySupInfo(supplierIdComboBox);
+        }
+
+
+
+
+
+        private void ProSupDataGridview_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
+
+
+        private void tabPage1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+
 
 
         private void DisplaySupInfo(ComboBox supplierIdComboBox)
@@ -368,73 +451,7 @@ namespace TravelExpertsForm
             }
         }
 
-        private void SavePacBtn_Click(object sender, EventArgs e)
-        {
-            string indicator = ""; // for testing purpose
 
-            if (AddPacStatus)
-            {
-
-                //testing = "Saving item in add mode ";
-
-            }
-
-            if (EditPacStatus)
-            {
-                /*
-                 * pkgNameTextBox
-                pkgDescRichTextBox
-                pkgStartDateDateTimePicker
-                pkgEndDateDateTimePicker           
-                pkgAgencyCommissionTextBox
-                pkgBasePriceTextBox
-                 */
-
-                //testing = "Saving item in edit mode ";
-                if (
-                    //check if present
-                    Validator.IsPresent(pkgNameTextBox, "Package Name") &&
-                    Validator.IsPresentRichTB(pkgDescRichTextBox, "Package Description") &&
-                    Validator.IsPresentDateTimePicker(pkgStartDateDateTimePicker, "Package Start Date") &&
-                    Validator.IsPresentDateTimePicker(pkgEndDateDateTimePicker, "Package End Date") &&
-                    Validator.IsPresent(pkgAgencyCommissionTextBox, "Agency Commission") &&
-                    Validator.IsPresent(pkgBasePriceTextBox, "Price") &&
-                    //check valid values
-                    Validator.IsDecimal(pkgAgencyCommissionTextBox, "Agency Commission") &&
-                    Validator.IsDecimal(pkgBasePriceTextBox, "Price") &&
-                    Validator.IsNonNegativeDecimal(pkgAgencyCommissionTextBox, "Agency Commission") &&
-                    Validator.IsNonNegativeDecimal(pkgBasePriceTextBox, "Price")
-                    )
-                {
-
-
-                    int value = Convert.ToInt32(packageIdComboBox.SelectedValue);
-
-                    Packages newPac = new Packages();
-
-                    newPac.PackageId = value;
-                    newPac.PkgName = pkgNameTextBox.Text;
-                    newPac.PkgStartDate = pkgStartDateDateTimePicker.Value;
-                    newPac.PkgEndDate = pkgEndDateDateTimePicker.Value;
-                    newPac.PkgDesc = pkgDescRichTextBox.Text;
-                    newPac.PkgBasePrice = Convert.ToDecimal(pkgBasePriceTextBox.Text);
-                    newPac.PkgAgencyCommission = Convert.ToDecimal(pkgAgencyCommissionTextBox.Text);
-
-                    indicator = "Update Package Failed. ";
-
-                    if (PackagesDB.UpdatePackage(newPac))
-                    {
-                        indicator = "Update Package Successful !";
-                        UpdateAllInfos();
-                    }
-
-                }
-
-
-            }
-
-            MessageBox.Show(indicator);
-        }
         private void AddNewProduct(object sender, EventArgs e)
         {
             btnProAdd.Visible = true;
