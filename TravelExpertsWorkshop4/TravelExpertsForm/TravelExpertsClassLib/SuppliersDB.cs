@@ -11,7 +11,9 @@ using SqlDataReader = System.Data.SqlClient.SqlDataReader;
 namespace TravelExpertsClassLib
 {
     public class SuppliersDB:TravelExpertsDB
-    {
+    {   
+
+        //Method for creation of the list which will display data
         public static List<Suppliers> GetSuppliers()
         {
             List<Suppliers> newSuppliers = new List<Suppliers>(); // empty list object
@@ -19,7 +21,7 @@ namespace TravelExpertsClassLib
             {
                 Suppliers currentSupllier; // for reading
                 
-                string selectJoinQuery = "select * from Suppliers";
+                string selectJoinQuery = "SELECT * FROM Suppliers";
 
                 // block code style
                 using (SqlConnection con = GetConnection())

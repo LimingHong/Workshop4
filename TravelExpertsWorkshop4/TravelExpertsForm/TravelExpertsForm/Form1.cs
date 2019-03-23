@@ -248,6 +248,14 @@ namespace TravelExpertsForm
             Pro.ProdName = New.ProdName;
             return Pro;
         }
+
+        private Suppliers CreateObject(Suppliers New)
+        {
+            Suppliers Sup = new Suppliers();
+            Sup.SupplierId = New.SupplierId;
+            Sup.SupName = New.SupName;
+            return Sup;
+        }
         private Products FindOldProduct(ComboBox inputBox)
         {
             Products OldProduct = new Products();
@@ -346,6 +354,59 @@ namespace TravelExpertsForm
             }
         }
 
-        
+        //this event allows to display the info on the text box when you double click on the desired row from the gridview table,
+        // making easier to select the supplier and then edit its information
+        private void suppliersDataGridView_MouseDoubleClick(object sender, MouseEventArgs e)
+        {
+           
+            supplierIdComboBox.Text = suppliersDataGridView.SelectedRows[0].Cells[0].Value.ToString();
+            supNameTextBox.Text = suppliersDataGridView.SelectedRows[0].Cells[1].Value.ToString();
+        }
+
+
+        private Suppliers supplierUpdate(TextBox supNameTextBox, Suppliers supplier)
+        {
+            Suppliers newSupplier = CreateObject(supplier);
+            newSupplier.SupName = supNameTextBox.Text;
+            return newSupplier;
+        }
+        private Suppliers supplierUpdate1(TextBox newID, TextBox newName)
+        {
+            Suppliers Sup = new Suppliers();
+
+            Sup.SupplierId = Convert.ToInt32(txtNewProductID.Text);
+            Sup.SupName = txtNewProductName.Text;
+            return Sup;
+        }
+
+        //Method For Adding a new Supplier to database and therefore to the grid view as well.
+        private void btnAddSupp_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (Validator.IsPresent(supNameTextBox))
+                {
+
+
+
+
+                    Suppliers newSupplier = supplierUpdate1(txtNewProductID, txtNewProductName);
+
+
+                    newSupplier.SupplierId = SuppliersDB.AddSupplier(newSupplier);
+
+
+                    MessageBox.Show("Product is updated :)");
+                    productsDataGridView.DataSource = AllProducts;
+
+
+                }
+            }
+            //catch the other error and show the ex error message from db class
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, ex.GetType().ToString());
+            }
+        }
     }
 }

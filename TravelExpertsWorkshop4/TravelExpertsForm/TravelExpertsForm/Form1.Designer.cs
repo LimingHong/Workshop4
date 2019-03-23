@@ -42,9 +42,9 @@
             System.Windows.Forms.Label pkgEndDateLabel;
             System.Windows.Forms.Label pkgBasePriceLabel;
             System.Windows.Forms.Label pkgStartDateLabel;
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle31 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle32 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle33 = new System.Windows.Forms.DataGridViewCellStyle();
             this.packagesBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.productsBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.suppliersBindingSource = new System.Windows.Forms.BindingSource(this.components);
@@ -83,6 +83,15 @@
             this.supNameTextBox = new System.Windows.Forms.TextBox();
             this.supplierIdComboBox = new System.Windows.Forms.ComboBox();
             this.suppliersDataGridView = new System.Windows.Forms.DataGridView();
+            this.grpBoxSuppliers = new System.Windows.Forms.GroupBox();
+            this.grpBoxActions = new System.Windows.Forms.GroupBox();
+            this.btnSaveSupp = new System.Windows.Forms.Button();
+            this.btnAddSupp = new System.Windows.Forms.Button();
+            this.btnEditSupp = new System.Windows.Forms.Button();
+            this.btnCancelSupp = new System.Windows.Forms.Button();
+            this.grpNewSupp = new System.Windows.Forms.GroupBox();
+            this.txtNewSupp = new System.Windows.Forms.TextBox();
+            this.lblNewSuppName = new System.Windows.Forms.Label();
             this.dataGridViewTextBoxColumn3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             prodNameLabel = new System.Windows.Forms.Label();
@@ -109,6 +118,9 @@
             ((System.ComponentModel.ISupportInitialize)(this.productsDataGridView)).BeginInit();
             this.SuppliersTab.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.suppliersDataGridView)).BeginInit();
+            this.grpBoxSuppliers.SuspendLayout();
+            this.grpBoxActions.SuspendLayout();
+            this.grpNewSupp.SuspendLayout();
             this.SuspendLayout();
             // 
             // prodNameLabel
@@ -134,17 +146,17 @@
             // supNameLabel
             // 
             supNameLabel.AutoSize = true;
-            supNameLabel.Location = new System.Drawing.Point(147, 73);
+            supNameLabel.Location = new System.Drawing.Point(5, 32);
             supNameLabel.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             supNameLabel.Name = "supNameLabel";
-            supNameLabel.Size = new System.Drawing.Size(60, 13);
+            supNameLabel.Size = new System.Drawing.Size(79, 13);
             supNameLabel.TabIndex = 1;
-            supNameLabel.Text = "Sup Name:";
+            supNameLabel.Text = "Supplier Name:";
             // 
             // supplierIdLabel
             // 
             supplierIdLabel.AutoSize = true;
-            supplierIdLabel.Location = new System.Drawing.Point(147, 96);
+            supplierIdLabel.Location = new System.Drawing.Point(21, 55);
             supplierIdLabel.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             supplierIdLabel.Name = "supplierIdLabel";
             supplierIdLabel.Size = new System.Drawing.Size(60, 13);
@@ -248,37 +260,37 @@
             // 
             // ProSupDataGridview
             // 
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.ProSupDataGridview.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle31.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle31.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle31.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle31.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle31.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle31.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle31.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.ProSupDataGridview.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle31;
             this.ProSupDataGridview.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.ProSupDataGridview.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.ProdNameCB,
             this.SupNameCB});
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.ProSupDataGridview.DefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle32.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle32.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle32.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle32.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle32.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle32.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle32.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.ProSupDataGridview.DefaultCellStyle = dataGridViewCellStyle32;
             this.ProSupDataGridview.Enabled = false;
             this.ProSupDataGridview.Location = new System.Drawing.Point(456, 16);
             this.ProSupDataGridview.Name = "ProSupDataGridview";
-            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle3.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.ProSupDataGridview.RowHeadersDefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle33.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle33.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle33.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle33.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle33.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle33.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle33.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.ProSupDataGridview.RowHeadersDefaultCellStyle = dataGridViewCellStyle33;
             this.ProSupDataGridview.Size = new System.Drawing.Size(485, 487);
             this.ProSupDataGridview.TabIndex = 56;
             this.toolTip1.SetToolTip(this.ProSupDataGridview, "Click Edit to modify");
@@ -591,10 +603,11 @@
             // 
             // SuppliersTab
             // 
-            this.SuppliersTab.Controls.Add(supNameLabel);
-            this.SuppliersTab.Controls.Add(this.supNameTextBox);
-            this.SuppliersTab.Controls.Add(supplierIdLabel);
-            this.SuppliersTab.Controls.Add(this.supplierIdComboBox);
+            this.SuppliersTab.Controls.Add(this.grpNewSupp);
+            this.SuppliersTab.Controls.Add(this.btnCancelSupp);
+            this.SuppliersTab.Controls.Add(this.grpBoxActions);
+            this.SuppliersTab.Controls.Add(this.btnSaveSupp);
+            this.SuppliersTab.Controls.Add(this.grpBoxSuppliers);
             this.SuppliersTab.Controls.Add(this.suppliersDataGridView);
             this.SuppliersTab.Location = new System.Drawing.Point(4, 22);
             this.SuppliersTab.Name = "SuppliersTab";
@@ -607,10 +620,10 @@
             // supNameTextBox
             // 
             this.supNameTextBox.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.suppliersBindingSource, "SupName", true));
-            this.supNameTextBox.Location = new System.Drawing.Point(209, 70);
+            this.supNameTextBox.Location = new System.Drawing.Point(83, 29);
             this.supNameTextBox.Margin = new System.Windows.Forms.Padding(2);
             this.supNameTextBox.Name = "supNameTextBox";
-            this.supNameTextBox.Size = new System.Drawing.Size(82, 20);
+            this.supNameTextBox.Size = new System.Drawing.Size(158, 20);
             this.supNameTextBox.TabIndex = 2;
             // 
             // supplierIdComboBox
@@ -619,10 +632,10 @@
             this.supplierIdComboBox.DataSource = this.suppliersBindingSource;
             this.supplierIdComboBox.DisplayMember = "SupplierId";
             this.supplierIdComboBox.FormattingEnabled = true;
-            this.supplierIdComboBox.Location = new System.Drawing.Point(210, 94);
+            this.supplierIdComboBox.Location = new System.Drawing.Point(84, 53);
             this.supplierIdComboBox.Margin = new System.Windows.Forms.Padding(2);
             this.supplierIdComboBox.Name = "supplierIdComboBox";
-            this.supplierIdComboBox.Size = new System.Drawing.Size(82, 21);
+            this.supplierIdComboBox.Size = new System.Drawing.Size(158, 21);
             this.supplierIdComboBox.TabIndex = 4;
             this.supplierIdComboBox.ValueMember = "SupplierId";
             this.supplierIdComboBox.SelectedIndexChanged += new System.EventHandler(this.supplierIdComboBox_SelectedIndexChanged);
@@ -635,24 +648,120 @@
             this.dataGridViewTextBoxColumn3,
             this.dataGridViewTextBoxColumn4});
             this.suppliersDataGridView.DataSource = this.suppliersBindingSource;
-            this.suppliersDataGridView.Location = new System.Drawing.Point(425, 54);
+            this.suppliersDataGridView.Location = new System.Drawing.Point(103, 32);
             this.suppliersDataGridView.Margin = new System.Windows.Forms.Padding(2);
             this.suppliersDataGridView.Name = "suppliersDataGridView";
             this.suppliersDataGridView.RowTemplate.Height = 28;
-            this.suppliersDataGridView.Size = new System.Drawing.Size(299, 463);
+            this.suppliersDataGridView.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.suppliersDataGridView.Size = new System.Drawing.Size(340, 463);
             this.suppliersDataGridView.TabIndex = 0;
+            this.suppliersDataGridView.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.suppliersDataGridView_MouseDoubleClick);
+            // 
+            // grpBoxSuppliers
+            // 
+            this.grpBoxSuppliers.BackColor = System.Drawing.Color.Aquamarine;
+            this.grpBoxSuppliers.Controls.Add(this.supNameTextBox);
+            this.grpBoxSuppliers.Controls.Add(supNameLabel);
+            this.grpBoxSuppliers.Controls.Add(this.supplierIdComboBox);
+            this.grpBoxSuppliers.Controls.Add(supplierIdLabel);
+            this.grpBoxSuppliers.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.grpBoxSuppliers.Location = new System.Drawing.Point(529, 32);
+            this.grpBoxSuppliers.Name = "grpBoxSuppliers";
+            this.grpBoxSuppliers.Size = new System.Drawing.Size(276, 100);
+            this.grpBoxSuppliers.TabIndex = 5;
+            this.grpBoxSuppliers.TabStop = false;
+            this.grpBoxSuppliers.Text = "Supplier Info";
+            // 
+            // grpBoxActions
+            // 
+            this.grpBoxActions.Controls.Add(this.btnEditSupp);
+            this.grpBoxActions.Controls.Add(this.btnAddSupp);
+            this.grpBoxActions.Location = new System.Drawing.Point(529, 151);
+            this.grpBoxActions.Name = "grpBoxActions";
+            this.grpBoxActions.Size = new System.Drawing.Size(273, 89);
+            this.grpBoxActions.TabIndex = 6;
+            this.grpBoxActions.TabStop = false;
+            this.grpBoxActions.Text = "Actions";
+            // 
+            // btnSaveSupp
+            // 
+            this.btnSaveSupp.Location = new System.Drawing.Point(588, 383);
+            this.btnSaveSupp.Name = "btnSaveSupp";
+            this.btnSaveSupp.Size = new System.Drawing.Size(89, 39);
+            this.btnSaveSupp.TabIndex = 0;
+            this.btnSaveSupp.Text = "Save";
+            this.btnSaveSupp.UseVisualStyleBackColor = true;
+            // 
+            // btnAddSupp
+            // 
+            this.btnAddSupp.Location = new System.Drawing.Point(22, 30);
+            this.btnAddSupp.Name = "btnAddSupp";
+            this.btnAddSupp.Size = new System.Drawing.Size(89, 39);
+            this.btnAddSupp.TabIndex = 1;
+            this.btnAddSupp.Text = "Add New\r\nSupplier";
+            this.btnAddSupp.UseVisualStyleBackColor = true;
+            this.btnAddSupp.Click += new System.EventHandler(this.btnAddSupp_Click);
+            // 
+            // btnEditSupp
+            // 
+            this.btnEditSupp.Location = new System.Drawing.Point(151, 30);
+            this.btnEditSupp.Name = "btnEditSupp";
+            this.btnEditSupp.Size = new System.Drawing.Size(89, 39);
+            this.btnEditSupp.TabIndex = 2;
+            this.btnEditSupp.Text = "Edit\r\nSupplier";
+            this.btnEditSupp.UseVisualStyleBackColor = true;
+            // 
+            // btnCancelSupp
+            // 
+            this.btnCancelSupp.Location = new System.Drawing.Point(698, 383);
+            this.btnCancelSupp.Name = "btnCancelSupp";
+            this.btnCancelSupp.Size = new System.Drawing.Size(89, 39);
+            this.btnCancelSupp.TabIndex = 7;
+            this.btnCancelSupp.Text = "Cancel";
+            this.btnCancelSupp.UseVisualStyleBackColor = true;
+            // 
+            // grpNewSupp
+            // 
+            this.grpNewSupp.Controls.Add(this.lblNewSuppName);
+            this.grpNewSupp.Controls.Add(this.txtNewSupp);
+            this.grpNewSupp.Location = new System.Drawing.Point(529, 262);
+            this.grpNewSupp.Name = "grpNewSupp";
+            this.grpNewSupp.Size = new System.Drawing.Size(268, 95);
+            this.grpNewSupp.TabIndex = 8;
+            this.grpNewSupp.TabStop = false;
+            this.grpNewSupp.Text = "New Supplier";
+            // 
+            // txtNewSupp
+            // 
+            this.txtNewSupp.Location = new System.Drawing.Point(94, 37);
+            this.txtNewSupp.Name = "txtNewSupp";
+            this.txtNewSupp.Size = new System.Drawing.Size(164, 20);
+            this.txtNewSupp.TabIndex = 0;
+            // 
+            // lblNewSuppName
+            // 
+            this.lblNewSuppName.AutoSize = true;
+            this.lblNewSuppName.Location = new System.Drawing.Point(9, 31);
+            this.lblNewSuppName.Name = "lblNewSuppName";
+            this.lblNewSuppName.Size = new System.Drawing.Size(79, 26);
+            this.lblNewSuppName.TabIndex = 1;
+            this.lblNewSuppName.Text = "New\r\nSupplier Name:\r\n";
             // 
             // dataGridViewTextBoxColumn3
             // 
+            this.dataGridViewTextBoxColumn3.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.ColumnHeader;
             this.dataGridViewTextBoxColumn3.DataPropertyName = "SupplierId";
             this.dataGridViewTextBoxColumn3.HeaderText = "SupplierId";
             this.dataGridViewTextBoxColumn3.Name = "dataGridViewTextBoxColumn3";
+            this.dataGridViewTextBoxColumn3.Width = 79;
             // 
             // dataGridViewTextBoxColumn4
             // 
+            this.dataGridViewTextBoxColumn4.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells;
             this.dataGridViewTextBoxColumn4.DataPropertyName = "SupName";
             this.dataGridViewTextBoxColumn4.HeaderText = "SupName";
             this.dataGridViewTextBoxColumn4.Name = "dataGridViewTextBoxColumn4";
+            this.dataGridViewTextBoxColumn4.Width = 79;
             // 
             // MainForm
             // 
@@ -675,8 +784,12 @@
             this.ProductTab.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.productsDataGridView)).EndInit();
             this.SuppliersTab.ResumeLayout(false);
-            this.SuppliersTab.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.suppliersDataGridView)).EndInit();
+            this.grpBoxSuppliers.ResumeLayout(false);
+            this.grpBoxSuppliers.PerformLayout();
+            this.grpBoxActions.ResumeLayout(false);
+            this.grpNewSupp.ResumeLayout(false);
+            this.grpNewSupp.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -699,8 +812,6 @@
         private System.Windows.Forms.TextBox supNameTextBox;
         private System.Windows.Forms.ComboBox supplierIdComboBox;
         private System.Windows.Forms.DataGridView suppliersDataGridView;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn3;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn4;
         private System.Windows.Forms.Button btnProEdit;
         private System.Windows.Forms.Button btnProAdd;
         private System.Windows.Forms.TextBox txtNewProductName;
@@ -722,6 +833,17 @@
         private System.Windows.Forms.DateTimePicker pkgEndDateDateTimePicker;
         private System.Windows.Forms.TextBox pkgBasePriceTextBox;
         private System.Windows.Forms.DateTimePicker pkgStartDateDateTimePicker;
+        private System.Windows.Forms.GroupBox grpBoxActions;
+        private System.Windows.Forms.Button btnEditSupp;
+        private System.Windows.Forms.Button btnAddSupp;
+        private System.Windows.Forms.Button btnSaveSupp;
+        private System.Windows.Forms.GroupBox grpBoxSuppliers;
+        private System.Windows.Forms.Button btnCancelSupp;
+        private System.Windows.Forms.GroupBox grpNewSupp;
+        private System.Windows.Forms.Label lblNewSuppName;
+        private System.Windows.Forms.TextBox txtNewSupp;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn3;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn4;
     }
 }
 
