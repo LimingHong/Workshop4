@@ -20,6 +20,16 @@ namespace TravelExpertsClassLib
             }
             return true;
         }
+        public static bool IsPresentCombo(ComboBox textBox, string name)
+        {
+            if (textBox.DisplayMember == "")
+            {
+                MessageBox.Show(name + " is a required field.", "Entry Error");
+                textBox.Focus();
+                return false;
+            }
+            return true;
+        }
 
         public static bool IsPresentRichTB(RichTextBox richtextBox, string name)
         {

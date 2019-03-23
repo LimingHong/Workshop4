@@ -40,9 +40,9 @@
             System.Windows.Forms.Label pkgStartDateLabel;
             System.Windows.Forms.Label supplierIdLabel;
             System.Windows.Forms.Label supNameLabel;
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             this.packagesBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.productsBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.suppliersBindingSource = new System.Windows.Forms.BindingSource(this.components);
@@ -72,7 +72,7 @@
             this.btuProAddback = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
             this.txtNewProductName = new System.Windows.Forms.TextBox();
-            this.btnProEdit = new System.Windows.Forms.Button();
+            this.btnProductChange = new System.Windows.Forms.Button();
             this.btnProAdd = new System.Windows.Forms.Button();
             this.productsDataGridView = new System.Windows.Forms.DataGridView();
             this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -207,7 +207,7 @@
             // supplierIdLabel
             // 
             supplierIdLabel.AutoSize = true;
-            supplierIdLabel.Location = new System.Drawing.Point(14, 36);
+            supplierIdLabel.Location = new System.Drawing.Point(22, 41);
             supplierIdLabel.Margin = new System.Windows.Forms.Padding(1, 0, 1, 0);
             supplierIdLabel.Name = "supplierIdLabel";
             supplierIdLabel.Size = new System.Drawing.Size(60, 13);
@@ -238,38 +238,39 @@
             // 
             // ProSupDataGridview
             // 
-            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle4.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle4.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle4.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.ProSupDataGridview.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle4;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.ProSupDataGridview.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             this.ProSupDataGridview.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.ProSupDataGridview.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.ProdNameCB,
             this.SupNameCB});
-            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle5.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle5.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle5.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.ProSupDataGridview.DefaultCellStyle = dataGridViewCellStyle5;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.ProSupDataGridview.DefaultCellStyle = dataGridViewCellStyle2;
+            this.ProSupDataGridview.Dock = System.Windows.Forms.DockStyle.Right;
             this.ProSupDataGridview.Enabled = false;
-            this.ProSupDataGridview.Location = new System.Drawing.Point(456, 16);
+            this.ProSupDataGridview.Location = new System.Drawing.Point(579, 3);
             this.ProSupDataGridview.Name = "ProSupDataGridview";
-            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle6.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle6.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle6.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.ProSupDataGridview.RowHeadersDefaultCellStyle = dataGridViewCellStyle6;
-            this.ProSupDataGridview.Size = new System.Drawing.Size(323, 317);
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.ProSupDataGridview.RowHeadersDefaultCellStyle = dataGridViewCellStyle3;
+            this.ProSupDataGridview.Size = new System.Drawing.Size(323, 518);
             this.ProSupDataGridview.TabIndex = 56;
             this.toolTip1.SetToolTip(this.ProSupDataGridview, "Click Edit to modify");
             // 
@@ -304,7 +305,7 @@
             this.MainTabControl.Location = new System.Drawing.Point(0, 0);
             this.MainTabControl.Name = "MainTabControl";
             this.MainTabControl.SelectedIndex = 0;
-            this.MainTabControl.Size = new System.Drawing.Size(913, 487);
+            this.MainTabControl.Size = new System.Drawing.Size(913, 550);
             this.MainTabControl.TabIndex = 37;
             // 
             // PackageTab
@@ -334,7 +335,7 @@
             this.PackageTab.Location = new System.Drawing.Point(4, 22);
             this.PackageTab.Name = "PackageTab";
             this.PackageTab.Padding = new System.Windows.Forms.Padding(3);
-            this.PackageTab.Size = new System.Drawing.Size(905, 461);
+            this.PackageTab.Size = new System.Drawing.Size(905, 524);
             this.PackageTab.TabIndex = 0;
             this.PackageTab.Text = "1.Packages";
             this.PackageTab.UseVisualStyleBackColor = true;
@@ -479,7 +480,7 @@
             this.ProductTab.Controls.Add(this.btuProAddback);
             this.ProductTab.Controls.Add(this.button1);
             this.ProductTab.Controls.Add(this.txtNewProductName);
-            this.ProductTab.Controls.Add(this.btnProEdit);
+            this.ProductTab.Controls.Add(this.btnProductChange);
             this.ProductTab.Controls.Add(this.btnProAdd);
             this.ProductTab.Controls.Add(this.productsDataGridView);
             this.ProductTab.Controls.Add(prodNameLabel);
@@ -497,7 +498,7 @@
             // lblNewProName
             // 
             this.lblNewProName.AutoSize = true;
-            this.lblNewProName.Location = new System.Drawing.Point(35, 168);
+            this.lblNewProName.Location = new System.Drawing.Point(32, 247);
             this.lblNewProName.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblNewProName.Name = "lblNewProName";
             this.lblNewProName.Size = new System.Drawing.Size(103, 13);
@@ -507,7 +508,7 @@
             // 
             // btuProAddback
             // 
-            this.btuProAddback.Location = new System.Drawing.Point(319, 162);
+            this.btuProAddback.Location = new System.Drawing.Point(124, 288);
             this.btuProAddback.Margin = new System.Windows.Forms.Padding(2);
             this.btuProAddback.Name = "btuProAddback";
             this.btuProAddback.Size = new System.Drawing.Size(75, 23);
@@ -519,10 +520,10 @@
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(230, 46);
+            this.button1.Location = new System.Drawing.Point(242, 46);
             this.button1.Margin = new System.Windows.Forms.Padding(2);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(104, 31);
+            this.button1.Size = new System.Drawing.Size(112, 32);
             this.button1.TabIndex = 46;
             this.button1.Text = "Add a new Product";
             this.button1.UseVisualStyleBackColor = true;
@@ -530,7 +531,7 @@
             // 
             // txtNewProductName
             // 
-            this.txtNewProductName.Location = new System.Drawing.Point(149, 168);
+            this.txtNewProductName.Location = new System.Drawing.Point(146, 247);
             this.txtNewProductName.Margin = new System.Windows.Forms.Padding(2);
             this.txtNewProductName.Name = "txtNewProductName";
             this.txtNewProductName.Size = new System.Drawing.Size(68, 20);
@@ -538,19 +539,20 @@
             this.txtNewProductName.Tag = "Product Name";
             this.txtNewProductName.Visible = false;
             // 
-            // btnProEdit
+            // btnProductChange
             // 
-            this.btnProEdit.Location = new System.Drawing.Point(233, 83);
-            this.btnProEdit.Name = "btnProEdit";
-            this.btnProEdit.Size = new System.Drawing.Size(101, 30);
-            this.btnProEdit.TabIndex = 41;
-            this.btnProEdit.Text = "Change";
-            this.btnProEdit.UseVisualStyleBackColor = true;
-            this.btnProEdit.Click += new System.EventHandler(this.btnEdit_Click);
+            this.btnProductChange.Location = new System.Drawing.Point(242, 85);
+            this.btnProductChange.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.btnProductChange.Name = "btnProductChange";
+            this.btnProductChange.Size = new System.Drawing.Size(77, 30);
+            this.btnProductChange.TabIndex = 41;
+            this.btnProductChange.Text = "Change";
+            this.btnProductChange.UseVisualStyleBackColor = true;
+            this.btnProductChange.Click += new System.EventHandler(this.btnEdit_Click);
             // 
             // btnProAdd
             // 
-            this.btnProAdd.Location = new System.Drawing.Point(230, 163);
+            this.btnProAdd.Location = new System.Drawing.Point(35, 289);
             this.btnProAdd.Name = "btnProAdd";
             this.btnProAdd.Size = new System.Drawing.Size(75, 23);
             this.btnProAdd.TabIndex = 40;
@@ -567,11 +569,12 @@
             this.dataGridViewTextBoxColumn1,
             this.dataGridViewTextBoxColumn2});
             this.productsDataGridView.DataSource = this.productsBindingSource;
-            this.productsDataGridView.Location = new System.Drawing.Point(447, 46);
+            this.productsDataGridView.Dock = System.Windows.Forms.DockStyle.Right;
+            this.productsDataGridView.Location = new System.Drawing.Point(507, 2);
             this.productsDataGridView.Margin = new System.Windows.Forms.Padding(2);
             this.productsDataGridView.Name = "productsDataGridView";
             this.productsDataGridView.RowTemplate.Height = 28;
-            this.productsDataGridView.Size = new System.Drawing.Size(282, 512);
+            this.productsDataGridView.Size = new System.Drawing.Size(396, 457);
             this.productsDataGridView.TabIndex = 4;
             // 
             // dataGridViewTextBoxColumn1
@@ -633,7 +636,7 @@
             this.grpNewSupp.Margin = new System.Windows.Forms.Padding(2);
             this.grpNewSupp.Name = "grpNewSupp";
             this.grpNewSupp.Padding = new System.Windows.Forms.Padding(2);
-            this.grpNewSupp.Size = new System.Drawing.Size(179, 62);
+            this.grpNewSupp.Size = new System.Drawing.Size(259, 62);
             this.grpNewSupp.TabIndex = 8;
             this.grpNewSupp.TabStop = false;
             this.grpNewSupp.Text = "New Supplier";
@@ -650,7 +653,7 @@
             // 
             // txtNewSupp
             // 
-            this.txtNewSupp.Location = new System.Drawing.Point(63, 24);
+            this.txtNewSupp.Location = new System.Drawing.Point(112, 26);
             this.txtNewSupp.Margin = new System.Windows.Forms.Padding(2);
             this.txtNewSupp.Name = "txtNewSupp";
             this.txtNewSupp.Size = new System.Drawing.Size(111, 20);
@@ -722,7 +725,7 @@
             this.grpBoxSuppliers.Margin = new System.Windows.Forms.Padding(2);
             this.grpBoxSuppliers.Name = "grpBoxSuppliers";
             this.grpBoxSuppliers.Padding = new System.Windows.Forms.Padding(2);
-            this.grpBoxSuppliers.Size = new System.Drawing.Size(184, 65);
+            this.grpBoxSuppliers.Size = new System.Drawing.Size(293, 65);
             this.grpBoxSuppliers.TabIndex = 5;
             this.grpBoxSuppliers.TabStop = false;
             this.grpBoxSuppliers.Text = "Supplier Info";
@@ -730,7 +733,7 @@
             // supNameTextBox
             // 
             this.supNameTextBox.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.suppliersBindingSource, "SupName", true));
-            this.supNameTextBox.Location = new System.Drawing.Point(55, 19);
+            this.supNameTextBox.Location = new System.Drawing.Point(101, 14);
             this.supNameTextBox.Margin = new System.Windows.Forms.Padding(1);
             this.supNameTextBox.Name = "supNameTextBox";
             this.supNameTextBox.Size = new System.Drawing.Size(107, 20);
@@ -742,7 +745,7 @@
             this.supplierIdComboBox.DataSource = this.suppliersBindingSource;
             this.supplierIdComboBox.DisplayMember = "SupplierId";
             this.supplierIdComboBox.FormattingEnabled = true;
-            this.supplierIdComboBox.Location = new System.Drawing.Point(56, 34);
+            this.supplierIdComboBox.Location = new System.Drawing.Point(101, 41);
             this.supplierIdComboBox.Margin = new System.Windows.Forms.Padding(1);
             this.supplierIdComboBox.Name = "supplierIdComboBox";
             this.supplierIdComboBox.Size = new System.Drawing.Size(107, 21);
@@ -758,12 +761,13 @@
             this.dataGridViewTextBoxColumn3,
             this.dataGridViewTextBoxColumn4});
             this.suppliersDataGridView.DataSource = this.suppliersBindingSource;
-            this.suppliersDataGridView.Location = new System.Drawing.Point(69, 21);
+            this.suppliersDataGridView.Dock = System.Windows.Forms.DockStyle.Left;
+            this.suppliersDataGridView.Location = new System.Drawing.Point(2, 2);
             this.suppliersDataGridView.Margin = new System.Windows.Forms.Padding(1);
             this.suppliersDataGridView.Name = "suppliersDataGridView";
             this.suppliersDataGridView.RowTemplate.Height = 28;
             this.suppliersDataGridView.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.suppliersDataGridView.Size = new System.Drawing.Size(227, 301);
+            this.suppliersDataGridView.Size = new System.Drawing.Size(227, 457);
             this.suppliersDataGridView.TabIndex = 0;
             this.suppliersDataGridView.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.suppliersDataGridView_MouseDoubleClick);
             // 
@@ -787,7 +791,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(913, 487);
+            this.ClientSize = new System.Drawing.Size(913, 550);
             this.Controls.Add(this.MainTabControl);
             this.Name = "MainForm";
             this.Text = "Main Form";
@@ -829,7 +833,12 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn2;
         private System.Windows.Forms.TextBox prodNameTextBox;
         private System.Windows.Forms.ComboBox productIdComboBox;
-        private System.Windows.Forms.Button btnProEdit;
+        private System.Windows.Forms.TextBox supNameTextBox;
+        private System.Windows.Forms.ComboBox supplierIdComboBox;
+        private System.Windows.Forms.DataGridView suppliersDataGridView;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn3;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn4;
+        private System.Windows.Forms.Button btnProductChange;
         private System.Windows.Forms.Button btnProAdd;
         private System.Windows.Forms.TextBox txtNewProductName;
         private System.Windows.Forms.TextBox AddPacIDTB;
@@ -861,11 +870,6 @@
         private System.Windows.Forms.Button btnAddSupp;
         private System.Windows.Forms.Button btnSaveSupp;
         private System.Windows.Forms.GroupBox grpBoxSuppliers;
-        private System.Windows.Forms.TextBox supNameTextBox;
-        private System.Windows.Forms.ComboBox supplierIdComboBox;
-        private System.Windows.Forms.DataGridView suppliersDataGridView;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn3;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn4;
     }
 }
 
