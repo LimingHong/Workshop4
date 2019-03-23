@@ -108,7 +108,7 @@ namespace TravelExpertsClassLib
                 string selectQuery = "SELECT IDENT_CURRENT('Suppliers') FROM Suppliers"; // identity value
                 SqlCommand selectCommand = new SqlCommand(selectQuery, con);
                 SupID = Convert.ToInt32(selectCommand.ExecuteScalar()); // single value
-                // typecasting (int) does not work
+                // typecasting (int) does not work.
             }
             catch (Exception ex)
             {
