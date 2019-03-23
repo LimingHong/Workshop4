@@ -508,31 +508,9 @@ namespace TravelExpertsForm
         //Method For Adding a new Supplier to database and therefore to the grid view as well.
         private void btnAddSupp_Click(object sender, EventArgs e)
         {
-            //try
-            //{
-            //    if (Validator.IsPresent(supNameTextBox, "Supplier's Name"))
-            //    {
-
-
-
-
-            //        Suppliers newSupplier = supplierUpdate1(txtNewProductID, txtNewProductName);
-
-
-            //        newSupplier.SupplierId = SuppliersDB.AddSupplier(newSupplier);
-
-
-            //        MessageBox.Show("Product is updated :)");
-            //        productsDataGridView.DataSource = AllProducts;
-
-
-            //    }
-            //}
-            ////catch the other error and show the ex error message from db class
-            //catch (Exception ex)
-            //{
-            //    MessageBox.Show(ex.Message, ex.GetType().ToString());
-            //}
+            grpNewSupp.Visible = true; //displays textbox for adding a new supplier
         }
+
+
     }
 }
