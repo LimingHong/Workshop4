@@ -398,7 +398,7 @@ namespace TravelExpertsForm
                     Validator.IsNonNegativeDecimal(pkgBasePriceTextBox, "Price")
                     )
                 {
-                    Products newProduct = productUpdate1(txtNewProductName);
+
 
                     int value = Convert.ToInt32(packageIdComboBox.SelectedValue);
 
@@ -411,9 +411,6 @@ namespace TravelExpertsForm
                     newPac.PkgDesc = pkgDescRichTextBox.Text;
                     newPac.PkgBasePrice = Convert.ToDecimal(pkgBasePriceTextBox.Text);
                     newPac.PkgAgencyCommission = Convert.ToDecimal(pkgAgencyCommissionTextBox.Text);
-
-                    MessageBox.Show("Product is Added :)");
-
 
                     indicator = "Update Package Failed. ";
 
