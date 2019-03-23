@@ -72,7 +72,7 @@
             this.btuProAddback = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
             this.txtNewProductName = new System.Windows.Forms.TextBox();
-            this.btnProEdit = new System.Windows.Forms.Button();
+            this.btnProductChange = new System.Windows.Forms.Button();
             this.btnProAdd = new System.Windows.Forms.Button();
             this.productsDataGridView = new System.Windows.Forms.DataGridView();
             this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -487,7 +487,7 @@
             this.ProductTab.Controls.Add(this.btuProAddback);
             this.ProductTab.Controls.Add(this.button1);
             this.ProductTab.Controls.Add(this.txtNewProductName);
-            this.ProductTab.Controls.Add(this.btnProEdit);
+            this.ProductTab.Controls.Add(this.btnProductChange);
             this.ProductTab.Controls.Add(this.btnProAdd);
             this.ProductTab.Controls.Add(this.productsDataGridView);
             this.ProductTab.Controls.Add(prodNameLabel);
@@ -543,16 +543,16 @@
             this.txtNewProductName.Tag = "Product Name";
             this.txtNewProductName.Visible = false;
             // 
-            // btnProEdit
+            // btnProductChange
             // 
-            this.btnProEdit.Location = new System.Drawing.Point(349, 127);
-            this.btnProEdit.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.btnProEdit.Name = "btnProEdit";
-            this.btnProEdit.Size = new System.Drawing.Size(152, 46);
-            this.btnProEdit.TabIndex = 41;
-            this.btnProEdit.Text = "Change";
-            this.btnProEdit.UseVisualStyleBackColor = true;
-            this.btnProEdit.Click += new System.EventHandler(this.btnEdit_Click);
+            this.btnProductChange.Location = new System.Drawing.Point(349, 127);
+            this.btnProductChange.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.btnProductChange.Name = "btnProductChange";
+            this.btnProductChange.Size = new System.Drawing.Size(152, 46);
+            this.btnProductChange.TabIndex = 41;
+            this.btnProductChange.Text = "Change";
+            this.btnProductChange.UseVisualStyleBackColor = true;
+            this.btnProductChange.Click += new System.EventHandler(this.btnEdit_Click);
             // 
             // btnProAdd
             // 
@@ -724,7 +724,7 @@
         private System.Windows.Forms.DataGridView suppliersDataGridView;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn3;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn4;
-        private System.Windows.Forms.Button btnProEdit;
+        private System.Windows.Forms.Button btnProductChange;
         private System.Windows.Forms.Button btnProAdd;
         private System.Windows.Forms.TextBox txtNewProductName;
         private System.Windows.Forms.TextBox AddPacIDTB;

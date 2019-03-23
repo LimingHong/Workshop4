@@ -259,7 +259,7 @@ namespace TravelExpertsForm
         {
             Products Pro = new Products();
             Pro.ProductId = New.ProductId;
-            Pro.ProdName = New.ProdName;
+            Pro.ProdName = Convert.ToString(New.ProdName);
             return Pro;
         }
         private Products FindOldProduct(ComboBox inputBox)
@@ -280,7 +280,7 @@ namespace TravelExpertsForm
         private Products productUpdate(TextBox prodNameTextBox, Products product)
         {
             Products newProduct = CreateObject(product);
-            newProduct.ProdName = prodNameTextBox.Text;
+            newProduct.ProdName = Convert.ToString(prodNameTextBox.Text);
             return newProduct;
         }
         private Products productUpdate1(TextBox newName)
@@ -296,68 +296,68 @@ namespace TravelExpertsForm
 
         private void btnEdit_Click(object sender, EventArgs e)
         {
-            //try
-            //{
-            //    if (Validator.IsPresent(prodNameTextBox) && Validator.IsPresent(productIdComboBox))
-            //    {
-            //        Products findOldProduct = FindOldProduct(productIdComboBox);
+            try
+            {
+                if (Validator.IsPresentCombo(productIdComboBox, "ID"))
+                {
+                    Products findOldProduct = FindOldProduct(productIdComboBox);
 
 
-            //        if (findOldProduct != null)
-            //        {
-            //            Products newProduct = productUpdate(prodNameTextBox, CreateObject(findOldProduct));
+                    if (findOldProduct != null)
+                    {
+                        Products newProduct = productUpdate(prodNameTextBox, CreateObject(findOldProduct));
 
 
-            //            bool Success = ProductsDB.UpdateProduct(findOldProduct, newProduct);
+                        bool Success = ProductsDB.UpdateProduct(findOldProduct, newProduct);
 
-            //            if (Success)
-            //                MessageBox.Show("Product is updated :)");
-            //            productsDataGridView.DataSource = AllProducts;
-            //        }
-            //        else
-            //        {
-            //            MessageBox.Show("Cant find Product ID");
-            //        }
-            //    }
-            //    else
-            //    {
-            //        MessageBox.Show("The product id is invalid. ");
-            //    }
-            //}
-            ////catch the other error and show the ex error message from db class
-            //catch (Exception ex)
-            //{
-            //    MessageBox.Show(ex.Message, ex.GetType().ToString());
-            //}
+                        if (Success)
+                            MessageBox.Show("Product is updated :)");
+                        productsDataGridView.DataSource = AllProducts;
+                    }
+                    else
+                    {
+                        MessageBox.Show("Cant find Product ID");
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("The product id is invalid. ");
+                }
+            }
+            //catch the other error and show the ex error message from db class
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, ex.GetType().ToString());
+            }
         }
 
         private void btnProAdd_Click(object sender, EventArgs e)
         {
-            //try
-            //{
-            //    if (Validator.IsPresent(prodNameTextBox) && Validator.IsPresent(productIdComboBox))
-            //    {
+            try
+            {
+                if (Validator.IsPresent(txtNewProductName, "New Product Name"))
+                {
 
 
 
 
-            //        Products newProduct = productUpdate1(txtNewProductID, txtNewProductName);
+                    Products newProduct = productUpdate1(txtNewProductName);
 
 
-            //        newProduct.ProductId = ProductsDB.AddProduct(newProduct);
+                    newProduct.ProductId = ProductsDB.AddProduct(newProduct);
 
 
-            //        MessageBox.Show("Product is updated :)");
-            //        productsDataGridView.DataSource = AllProducts;
+                    MessageBox.Show("Product is updated :)");
+                    productsDataGridView.DataSource = AllProducts;
 
 
-            //    }
-            //}
-            ////catch the other error and show the ex error message from db class
-            //catch (Exception ex)
-            //{
-            //    MessageBox.Show(ex.Message, ex.GetType().ToString());
-            //}
+                }
+            }
+            //catch the other error and show the ex error message from db class
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, ex.GetType().ToString());
+            }
         }
 
         private void SavePacBtn_Click(object sender, EventArgs e)
