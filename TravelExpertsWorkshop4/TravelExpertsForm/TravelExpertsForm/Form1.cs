@@ -511,6 +511,9 @@ namespace TravelExpertsForm
             grpNewSupp.Visible = true; //displays textbox for adding a new supplier
         }
 
-
+        private void btnEditSupp_Click(object sender, EventArgs e)
+        {
+            supNameTextBox.Enabled = true; //allows to modify input on the text box
+        }
     }
 }
