@@ -94,6 +94,7 @@
             this.suppliersDataGridView = new System.Windows.Forms.DataGridView();
             this.dataGridViewTextBoxColumn3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.btnUpdateSupplier = new System.Windows.Forms.Button();
             prodNameLabel = new System.Windows.Forms.Label();
             productIdLabel = new System.Windows.Forms.Label();
             packageIdLabel = new System.Windows.Forms.Label();
@@ -490,7 +491,7 @@
             this.ProductTab.Location = new System.Drawing.Point(4, 22);
             this.ProductTab.Name = "ProductTab";
             this.ProductTab.Padding = new System.Windows.Forms.Padding(2);
-            this.ProductTab.Size = new System.Drawing.Size(905, 473);
+            this.ProductTab.Size = new System.Drawing.Size(905, 469);
             this.ProductTab.TabIndex = 1;
             this.ProductTab.Text = "2.Products";
             this.ProductTab.UseVisualStyleBackColor = true;
@@ -574,7 +575,7 @@
             this.productsDataGridView.Margin = new System.Windows.Forms.Padding(2);
             this.productsDataGridView.Name = "productsDataGridView";
             this.productsDataGridView.RowTemplate.Height = 28;
-            this.productsDataGridView.Size = new System.Drawing.Size(396, 469);
+            this.productsDataGridView.Size = new System.Drawing.Size(396, 465);
             this.productsDataGridView.TabIndex = 4;
             // 
             // dataGridViewTextBoxColumn1
@@ -617,7 +618,6 @@
             this.SuppliersTab.Controls.Add(this.grpNewSupp);
             this.SuppliersTab.Controls.Add(this.btnCancelSupp);
             this.SuppliersTab.Controls.Add(this.grpBoxActions);
-            this.SuppliersTab.Controls.Add(this.btnSaveSupp);
             this.SuppliersTab.Controls.Add(this.grpBoxSuppliers);
             this.SuppliersTab.Controls.Add(this.suppliersDataGridView);
             this.SuppliersTab.Location = new System.Drawing.Point(4, 22);
@@ -632,11 +632,12 @@
             // 
             this.grpNewSupp.Controls.Add(this.lblNewSuppName);
             this.grpNewSupp.Controls.Add(this.txtNewSupp);
+            this.grpNewSupp.Controls.Add(this.btnSaveSupp);
             this.grpNewSupp.Location = new System.Drawing.Point(451, 219);
             this.grpNewSupp.Margin = new System.Windows.Forms.Padding(2);
             this.grpNewSupp.Name = "grpNewSupp";
             this.grpNewSupp.Padding = new System.Windows.Forms.Padding(2);
-            this.grpNewSupp.Size = new System.Drawing.Size(259, 62);
+            this.grpNewSupp.Size = new System.Drawing.Size(306, 62);
             this.grpNewSupp.TabIndex = 8;
             this.grpNewSupp.TabStop = false;
             this.grpNewSupp.Text = "New Supplier";
@@ -707,7 +708,7 @@
             // 
             // btnSaveSupp
             // 
-            this.btnSaveSupp.Location = new System.Drawing.Point(495, 298);
+            this.btnSaveSupp.Location = new System.Drawing.Point(238, 23);
             this.btnSaveSupp.Margin = new System.Windows.Forms.Padding(2);
             this.btnSaveSupp.Name = "btnSaveSupp";
             this.btnSaveSupp.Size = new System.Drawing.Size(59, 25);
@@ -719,6 +720,7 @@
             // grpBoxSuppliers
             // 
             this.grpBoxSuppliers.BackColor = System.Drawing.Color.Aquamarine;
+            this.grpBoxSuppliers.Controls.Add(this.btnUpdateSupplier);
             this.grpBoxSuppliers.Controls.Add(this.supNameTextBox);
             this.grpBoxSuppliers.Controls.Add(supNameLabel);
             this.grpBoxSuppliers.Controls.Add(this.supplierIdComboBox);
@@ -728,7 +730,7 @@
             this.grpBoxSuppliers.Margin = new System.Windows.Forms.Padding(2);
             this.grpBoxSuppliers.Name = "grpBoxSuppliers";
             this.grpBoxSuppliers.Padding = new System.Windows.Forms.Padding(2);
-            this.grpBoxSuppliers.Size = new System.Drawing.Size(275, 85);
+            this.grpBoxSuppliers.Size = new System.Drawing.Size(370, 85);
             this.grpBoxSuppliers.TabIndex = 5;
             this.grpBoxSuppliers.TabStop = false;
             this.grpBoxSuppliers.Text = "Supplier Info";
@@ -790,6 +792,17 @@
             this.dataGridViewTextBoxColumn4.HeaderText = "SupName";
             this.dataGridViewTextBoxColumn4.Name = "dataGridViewTextBoxColumn4";
             this.dataGridViewTextBoxColumn4.Width = 79;
+            // 
+            // btnUpdateSupplier
+            // 
+            this.btnUpdateSupplier.Location = new System.Drawing.Point(278, 14);
+            this.btnUpdateSupplier.Margin = new System.Windows.Forms.Padding(2);
+            this.btnUpdateSupplier.Name = "btnUpdateSupplier";
+            this.btnUpdateSupplier.Size = new System.Drawing.Size(59, 25);
+            this.btnUpdateSupplier.TabIndex = 2;
+            this.btnUpdateSupplier.Text = "Update";
+            this.btnUpdateSupplier.UseVisualStyleBackColor = true;
+            this.btnUpdateSupplier.Visible = false;
             // 
             // MainForm
             // 
@@ -874,6 +887,7 @@
         private System.Windows.Forms.Button btnAddSupp;
         private System.Windows.Forms.Button btnSaveSupp;
         private System.Windows.Forms.GroupBox grpBoxSuppliers;
+        private System.Windows.Forms.Button btnUpdateSupplier;
     }
 }
 

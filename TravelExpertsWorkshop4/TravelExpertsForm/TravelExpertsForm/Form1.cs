@@ -514,6 +514,7 @@ namespace TravelExpertsForm
         private void btnEditSupp_Click(object sender, EventArgs e)
         {
             supNameTextBox.Enabled = true; //allows to modify input on the text box
+            btnUpdateSupplier.Visible = true; //button for update editted supplier name
         }
 
         private void btnSaveSupp_Click(object sender, EventArgs e)
