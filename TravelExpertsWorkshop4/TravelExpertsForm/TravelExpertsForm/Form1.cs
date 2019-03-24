@@ -521,7 +521,7 @@ namespace TravelExpertsForm
         {
             try
             {
-                if (Validator.IsPresent(supNameTextBox))
+                if (Validator.IsPresent(txtNewSupp))
                 {
 
 
