@@ -496,12 +496,12 @@ namespace TravelExpertsForm
             newSupplier.SupName = supNameTextBox.Text;
             return newSupplier;
         }
-        private Suppliers supplierUpdate1(TextBox newID, TextBox newName)
+        private Suppliers supplierUpdate1(TextBox newName)
         {
             Suppliers Sup = new Suppliers();
 
-            Sup.SupplierId = Convert.ToInt32(newID);
-            Sup.SupName = newName.Text;
+            //Sup.SupplierId = Convert.ToInt32(txtNewSupp.Text);
+            Sup.SupName = txtNewSupp.Text;
             return Sup;
         }
 
@@ -514,6 +514,35 @@ namespace TravelExpertsForm
         private void btnEditSupp_Click(object sender, EventArgs e)
         {
             supNameTextBox.Enabled = true; //allows to modify input on the text box
+        }
+
+        private void btnSaveSupp_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (Validator.IsPresent(supNameTextBox))
+                {
+
+
+
+
+                    Suppliers newSupplier = supplierUpdate1(txtNewSupp);
+
+
+                    newSupplier.SupplierId = SuppliersDB.AddSupplier(newSupplier);
+
+
+                    MessageBox.Show("Supplier has been updated :)");
+                    suppliersDataGridView.DataSource = AllSuppliers;
+
+
+                }
+            }
+            //catch the other error and show the ex error message from db class
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, ex.GetType().ToString());
+            }
         }
     }
 }
