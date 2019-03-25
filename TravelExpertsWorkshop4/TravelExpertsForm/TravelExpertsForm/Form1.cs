@@ -521,7 +521,7 @@ namespace TravelExpertsForm
         {
             try
             {
-                if (Validator.IsPresent(txtNewSupp))
+                if (Validator.IsPresent(txtNewSupp,"New Supplier Name"))
                 {
 
 
