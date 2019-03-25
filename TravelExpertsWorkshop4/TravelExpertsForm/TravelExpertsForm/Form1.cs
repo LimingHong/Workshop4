@@ -22,6 +22,9 @@ namespace TravelExpertsForm
         private bool EditPacStatus = false;
         private bool AddPacStatus = false;
 
+        // variable for ProSupID
+        private int selectedProductSupplierId = -1;
+
         public MainForm()
         {
             InitializeComponent();
@@ -140,8 +143,9 @@ namespace TravelExpertsForm
                 PacProSupBindingSource.DataSource = filteredProSup;
                 ProSupDataGridview.DataSource = PacProSupBindingSource;
                 this.ProSupDataGridview.Columns["PackageId"].Visible = false;
-                this.ProSupDataGridview.Columns["ProdName"].Visible = false;
-                this.ProSupDataGridview.Columns["SupName"].Visible = false;
+                this.ProSupDataGridview.Columns["ProductId"].Visible = false;
+                this.ProSupDataGridview.Columns["SupplierId"].Visible = false;
+                this.ProSupDataGridview.Columns["ProductSupplierId"].Visible = false;
 
 
             }
@@ -352,13 +356,76 @@ namespace TravelExpertsForm
             MessageBox.Show(statusTest);
         }
 
+        // editing packages 
         private void EditProSupCancelBtn_Click(object sender, EventArgs e)
         {
 
-            ProSupDataGridview.Enabled = EditProSupPanel.Visible = false;
+            EditProSupPanel.Visible = false;
             AddProSup.Visible = true;
+            selectedProductSupplierId = -1;
         }
 
+        private void EditProSupSaveBtn_Click(object sender, EventArgs e)
+        {
+            string operationStatus = "Failed to Update Product and Supplier . Try Again";
+            bool existed = false;
+            int inputProductID = Convert.ToInt32(EditProCB.SelectedValue);
+            long inputSupplierID = Convert.ToInt64(EditSupCB.SelectedValue);
+
+            foreach (ProSup pps in ProSupLinkages)
+            {
+                if (pps.ProductId == inputProductID &&
+                    pps.SupplierId == inputSupplierID) existed = true;
+            }
+
+            if (!existed)
+            {
+                ProSup inputProSup = new ProSup();
+                inputProSup.ProductSupplierId = selectedProductSupplierId;
+                inputProSup.ProductId = inputProductID;
+                inputProSup.SupplierId = inputSupplierID;
+                if (ProSupDB.UpdateProSup(inputProSup))
+                {
+                    operationStatus = "Successfully updated product and supplier for the package !";
+                    UpdateAllInfos();
+                    BindPackages();
+                    DisplayPacInfo(packageIdComboBox);
+                    FilterPacProSup(packageIdComboBox);
+                }
+
+            }
+            else
+            {
+                operationStatus = "This pair of product and supplier is already existed for this package.";
+            }
+
+            MessageBox.Show(operationStatus);
+        }
+
+        private void ProSupDataGridview_CellMouseClick(object sender, DataGridViewCellMouseEventArgs e)
+        {
+            EditProSupPanel.Visible = true;
+            AddProSup.Visible = false;
+            if (e.RowIndex != -1)
+            {
+                DataGridViewRow selectedRow = ProSupDataGridview.Rows[e.RowIndex];
+
+                selectedProductSupplierId = Convert.ToInt32(selectedRow.Cells[5].Value);
+
+                EditProCB.DataSource = AllProducts;
+                EditProCB.DisplayMember = "ProdName";
+                EditProCB.ValueMember = "ProductId";
+                EditProCB.SelectedValue = selectedRow.Cells[1].Value;
+
+                EditSupCB.DataSource = AllSuppliers;
+                EditSupCB.DisplayMember = "SupName";
+                EditSupCB.ValueMember = "SupplierId";
+                EditSupCB.SelectedValue = selectedRow.Cells[3].Value;
+
+                //MessageBox.Show(selectedRow.Cells[5].Value.ToString());
+            }
+
+        }
         //$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
 
 
@@ -637,11 +704,5 @@ namespace TravelExpertsForm
         }
 
 
-
-        private void ProSupDataGridview_MouseClick(object sender, MouseEventArgs e)
-        {
-            ProSupDataGridview.Enabled = EditProSupPanel.Visible = true;
-            AddProSup.Visible = false;
-        }
     }
 }

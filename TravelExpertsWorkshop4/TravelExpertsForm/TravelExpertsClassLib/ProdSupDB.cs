@@ -2,9 +2,6 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace TravelExpertsClassLib
 {
@@ -53,10 +50,48 @@ namespace TravelExpertsClassLib
                 throw e;
             }
             return proSup;
+        }
+
+        public static bool UpdateProSup(ProSup inputProSup)
+        {
+            bool success = true;
+
+            // block code style
+            string UpdateStatement = " UPDATE Products_Suppliers SET " +
+                                     "ProductId = @ProductId, " +
+                                     "SupplierId = @SupplierId " +
+                                     "WHERE ProductSupplierId = @ProductSupplierId";
 
 
+            SqlConnection con = GetConnection();
+
+            SqlCommand cmd = new SqlCommand(UpdateStatement, con);
 
 
+            cmd.Parameters.AddWithValue("@ProductId", inputProSup.ProductId);
+            cmd.Parameters.AddWithValue("@SupplierId", inputProSup.SupplierId);
+            cmd.Parameters.AddWithValue("@ProductSupplierId", inputProSup.ProductSupplierId);
+
+            try
+            {
+                // use cmd anywhere in this block
+                // any exception will be thrown to the place where this method was called
+                con.Open();
+                int rowsUpdated = cmd.ExecuteNonQuery();
+                if (rowsUpdated == 0) success = false;
+
+            }
+            catch (Exception e)
+            {
+
+                throw e;
+            }
+            finally
+            {
+                con.Close();
+            }
+
+            return success;
         }
     }
 

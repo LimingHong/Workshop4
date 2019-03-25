@@ -15,7 +15,7 @@ namespace TravelExpertsClassLib
             {
                 PacProSup currentPacProSup; // for reading
 
-                string selectJoinQuery = "select p.PackageId ,PkgName,pt.ProductId, ProdName,ss.SupplierId, ss.SupName " +
+                string selectJoinQuery = "select pp.ProductSupplierId, p.PackageId ,PkgName,pt.ProductId, ProdName,ss.SupplierId, ss.SupName " +
                                          "from Packages_Products_Suppliers pps " +
                                          "inner join  Packages p " +
                                          "on p.PackageId = pps.PackageId " +
@@ -49,7 +49,7 @@ namespace TravelExpertsClassLib
                             currentPacProSup.ProdName = dr["ProdName"] as string;
                             currentPacProSup.SupplierId = Convert.ToInt64(dr["SupplierId"]);
                             currentPacProSup.SupName = dr["SupName"] as string;
-
+                            currentPacProSup.ProductSupplierId = Convert.ToInt32(dr["ProductSupplierId"]);
                             newPacProSup.Add(currentPacProSup);
                         }
                     }
