@@ -2,16 +2,13 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using SqlDataReader = System.Data.SqlClient.SqlDataReader;
 
 namespace TravelExpertsClassLib
 {
-    public class SuppliersDB:TravelExpertsDB
-    {   
+    public class SuppliersDB : TravelExpertsDB
+    {
 
         //Method for creation of the list which will display data
         public static List<Suppliers> GetSuppliers()
@@ -20,7 +17,7 @@ namespace TravelExpertsClassLib
             try
             {
                 Suppliers currentSupllier; // for reading
-                
+
                 string selectJoinQuery = "SELECT * FROM Suppliers";
 
                 // block code style
@@ -42,7 +39,7 @@ namespace TravelExpertsClassLib
                             //SupplierId SupName
                             currentSupllier.SupplierId = Convert.ToInt64(dr["SupplierId"]);
                             currentSupllier.SupName = dr["SupName"] as string;
-                            
+
 
                             newSuppliers.Add(currentSupllier);
                         }
@@ -51,7 +48,7 @@ namespace TravelExpertsClassLib
 
 
             }
-            catch (Exception )
+            catch (Exception)
             {
                 MessageBox.Show("Connection Error. Failed to retrieve Suppliers information");
             }

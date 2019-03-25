@@ -38,6 +38,7 @@ namespace TravelExpertsForm
             PacProSupLinkages = PacProSupDB.GetPacProSup();
         }
 
+
         //$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
         /* Section: Package
          * Author: Eric
@@ -50,11 +51,7 @@ namespace TravelExpertsForm
             FilterPacProSup(packageIdComboBox);
 
         }
-        private void EnableEditProSup_Click(object sender, EventArgs e)
-        {
-            EnableEditProSup.Visible = false;
-            ProSupDataGridview.Enabled = true;
-        }
+
 
 
         private void AddEditConfig(string inputAction)
@@ -67,6 +64,9 @@ namespace TravelExpertsForm
                     ActionLabelPac.Text = "Adding";
                     AddPacIDTB.Visible = displayStatus;
                     packageIdComboBox.Visible = packageIdComboBox.Enabled = !displayStatus;
+
+                    AddPacIDTB.Text = (AllPackages.OrderByDescending(p => p.PackageId).FirstOrDefault().PackageId + 1).ToString();
+
                     pkgNameTextBox.Text =
                         pkgDescRichTextBox.Text =
                             pkgAgencyCommissionTextBox.Text =
@@ -106,7 +106,6 @@ namespace TravelExpertsForm
             AddEditConfig("Adding");
             PacProSupBindingSource.DataSource = new List<PacProSup>();
 
-
         }
 
         private void EditPacBtn_Click(object sender, EventArgs e)
@@ -133,7 +132,10 @@ namespace TravelExpertsForm
                                      where value == pps.PackageId
                                      select pps;
 
-                //MessageBox.Show(filteredProSup.Count().ToString());
+                if (filteredProSup.Count() == 0)
+                {
+                    filteredProSup = new List<PacProSup>();
+                }
 
                 PacProSupBindingSource.DataSource = filteredProSup;
                 ProSupDataGridview.DataSource = PacProSupBindingSource;
@@ -143,10 +145,8 @@ namespace TravelExpertsForm
 
 
             }
-
-
-
         }
+
         private void DisplayPacInfo(ComboBox inputCB)
         {
             if (!String.IsNullOrEmpty(inputCB.Text))
@@ -190,6 +190,44 @@ namespace TravelExpertsForm
             {
 
                 //testing = "Saving item in add mode ";
+                if (
+                    //check if present
+                    Validator.IsPresent(pkgNameTextBox, "Package Name") &&
+                    Validator.IsPresentRichTB(pkgDescRichTextBox, "Package Description") &&
+                    Validator.IsPresentDateTimePicker(pkgStartDateDateTimePicker, "Package Start Date") &&
+                    Validator.IsPresentDateTimePicker(pkgEndDateDateTimePicker, "Package End Date") &&
+                    Validator.IsPresent(pkgAgencyCommissionTextBox, "Agency Commission") &&
+                    Validator.IsPresent(pkgBasePriceTextBox, "Price") &&
+                    //check valid values
+                    Validator.IsDecimal(pkgAgencyCommissionTextBox, "Agency Commission") &&
+                    Validator.IsDecimal(pkgBasePriceTextBox, "Price") &&
+                    Validator.IsNonNegativeDecimal(pkgAgencyCommissionTextBox, "Agency Commission") &&
+                    Validator.IsNonNegativeDecimal(pkgBasePriceTextBox, "Price")
+                )
+                {
+                    int value = Convert.ToInt32(packageIdComboBox.SelectedValue);
+
+                    Packages newPac = new Packages();
+
+                    newPac.PackageId = value;
+                    newPac.PkgName = pkgNameTextBox.Text;
+                    newPac.PkgStartDate = pkgStartDateDateTimePicker.Value;
+                    newPac.PkgEndDate = pkgEndDateDateTimePicker.Value;
+                    newPac.PkgDesc = pkgDescRichTextBox.Text;
+                    newPac.PkgBasePrice = Convert.ToDecimal(pkgBasePriceTextBox.Text);
+                    newPac.PkgAgencyCommission = Convert.ToDecimal(pkgAgencyCommissionTextBox.Text);
+
+                    indicator = "Adding Package Failed. ";
+
+                    if (PackagesDB.AddPackage(newPac))
+                    {
+                        indicator = "Adding Package Successful !";
+                        UpdateAllInfos();
+                        BindPackages();
+                        CancelPacBtn.PerformClick();
+                    }
+
+                }
 
             }
 
@@ -250,6 +288,77 @@ namespace TravelExpertsForm
             MessageBox.Show(indicator);
         }
 
+        private void AddProSup_Click(object sender, EventArgs e)
+        {
+            ProductAddComboB.DataSource = AllProducts;
+            ProductAddComboB.DisplayMember = "ProdName";
+            ProductAddComboB.ValueMember = "ProductId";
+
+            SupplierAddComboB.DataSource = AllSuppliers;
+            SupplierAddComboB.DisplayMember = "SupName";
+            SupplierAddComboB.ValueMember = "SupplierId";
+
+
+            AddProSupPanel.Visible = AddProSupPanel.Enabled = true;
+            AddProSup.Visible = false;
+        }
+
+        private void AddProSupCancel_Click(object sender, EventArgs e)
+        {
+            AddProSupPanel.Visible = AddProSupPanel.Enabled = false;
+            AddProSup.Visible = true;
+        }
+
+        private void AddProSupConfirmBtn_Click(object sender, EventArgs e)
+        {
+            bool existed = false;
+            string statusTest = "Failed";
+
+            UpdateAllInfos();
+            int inputPackageID = Convert.ToInt32(packageIdComboBox.SelectedValue);
+            int inputProductID = Convert.ToInt32(ProductAddComboB.SelectedValue);
+            long inputSupplierID = Convert.ToInt64(SupplierAddComboB.SelectedValue);
+
+            foreach (PacProSup pps in PacProSupLinkages)
+            {
+                if (pps.PackageId == inputPackageID && pps.ProductId == inputProductID &&
+                    pps.SupplierId == inputSupplierID) existed = true;
+            }
+
+            if (!existed)
+            {
+
+                PacProSup newPPS = new PacProSup();
+                newPPS.PackageId = inputPackageID;
+                newPPS.ProductId = inputProductID;
+                newPPS.SupplierId = inputSupplierID;
+
+
+                if (PacProSupDB.AddPacProSup(newPPS))
+                {
+                    statusTest = "Adding Successful !";
+                    UpdateAllInfos();
+                    BindPackages();
+                    DisplayPacInfo(packageIdComboBox);
+                    FilterPacProSup(packageIdComboBox);
+                }
+            }
+            else
+            {
+                statusTest = "That is already Existed for the current package !";
+            }
+
+
+            MessageBox.Show(statusTest);
+        }
+
+        private void EditProSupCancelBtn_Click(object sender, EventArgs e)
+        {
+
+            ProSupDataGridview.Enabled = EditProSupPanel.Visible = false;
+            AddProSup.Visible = true;
+        }
+
         //$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
 
 
@@ -300,14 +409,6 @@ namespace TravelExpertsForm
             DisplaySupInfo(supplierIdComboBox);
         }
 
-
-
-
-
-        private void ProSupDataGridview_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
-
-        }
 
 
         private void tabPage1_Click(object sender, EventArgs e)
@@ -533,6 +634,14 @@ namespace TravelExpertsForm
             //{
             //    MessageBox.Show(ex.Message, ex.GetType().ToString());
             //}
+        }
+
+
+
+        private void ProSupDataGridview_MouseClick(object sender, MouseEventArgs e)
+        {
+            ProSupDataGridview.Enabled = EditProSupPanel.Visible = true;
+            AddProSup.Visible = false;
         }
     }
 }
