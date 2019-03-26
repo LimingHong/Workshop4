@@ -24,6 +24,7 @@ namespace TravelExpertsForm
 
         // variable for ProSupID
         private int selectedProductSupplierId = -1;
+        private bool GridViewProSupEdit = false;
 
         public MainForm()
         {
@@ -52,7 +53,7 @@ namespace TravelExpertsForm
         {
             DisplayPacInfo(packageIdComboBox);
             FilterPacProSup(packageIdComboBox);
-
+            CancelPacBtn.Text = "Cancel";
         }
 
 
@@ -64,7 +65,7 @@ namespace TravelExpertsForm
             {
                 case "Adding":
                     AddPacStatus = true;
-                    ActionLabelPac.Text = "Adding";
+                    ActionLabelPac.Text = "Adding Package";
                     AddPacIDTB.Visible = displayStatus;
                     packageIdComboBox.Visible = packageIdComboBox.Enabled = !displayStatus;
 
@@ -78,7 +79,7 @@ namespace TravelExpertsForm
 
                 case "Editing":
                     EditPacStatus = true;
-                    ActionLabelPac.Text = "Editing";
+                    ActionLabelPac.Text = "Editing Package";
                     DisplayPacInfo(packageIdComboBox);
                     FilterPacProSup(packageIdComboBox);
                     break;
@@ -102,10 +103,12 @@ namespace TravelExpertsForm
                 pkgDescRichTextBox.ReadOnly =
                     pkgAgencyCommissionTextBox.ReadOnly =
                         pkgBasePriceTextBox.ReadOnly = !displayStatus;
+
         }
 
         private void PacAddBtn_Click(object sender, EventArgs e)
         {
+            AddProSup.Visible = ProSupDataGridview.Enabled = false;
             AddEditConfig("Adding");
             PacProSupBindingSource.DataSource = new List<PacProSup>();
 
@@ -113,12 +116,15 @@ namespace TravelExpertsForm
 
         private void EditPacBtn_Click(object sender, EventArgs e)
         {
+            CancelPacBtn.Text = "Cancel";
             AddEditConfig("Editing");
         }
 
         private void CancelPacBtn_Click(object sender, EventArgs e)
         {
             AddEditConfig("Cancel");
+            AddProSup.Visible = ProSupDataGridview.Enabled = true;
+            CancelPacBtn.Text = "Cancel";
         }
 
 
@@ -188,8 +194,7 @@ namespace TravelExpertsForm
 
         private void SavePacBtn_Click(object sender, EventArgs e)
         {
-            string indicator = ""; // for testing purpose
-
+            string indicator = "Operation Failed. ";
             if (AddPacStatus)
             {
 
@@ -209,6 +214,8 @@ namespace TravelExpertsForm
                     Validator.IsNonNegativeDecimal(pkgBasePriceTextBox, "Price")
                 )
                 {
+
+                    indicator = "Adding Package Failed. "; // for testing purpose
                     int value = Convert.ToInt32(packageIdComboBox.SelectedValue);
 
                     Packages newPac = new Packages();
@@ -221,7 +228,6 @@ namespace TravelExpertsForm
                     newPac.PkgBasePrice = Convert.ToDecimal(pkgBasePriceTextBox.Text);
                     newPac.PkgAgencyCommission = Convert.ToDecimal(pkgAgencyCommissionTextBox.Text);
 
-                    indicator = "Adding Package Failed. ";
 
                     if (PackagesDB.AddPackage(newPac))
                     {
@@ -230,7 +236,7 @@ namespace TravelExpertsForm
                         BindPackages();
                         CancelPacBtn.PerformClick();
                     }
-
+                    //AddProSup.Visible = ProSupDataGridview.Enabled = true; 
                 }
 
             }
@@ -282,6 +288,7 @@ namespace TravelExpertsForm
                     {
                         indicator = "Update Package Successful !";
                         UpdateAllInfos();
+                        CancelPacBtn.Text = "Close";
                     }
 
                 }
@@ -289,11 +296,12 @@ namespace TravelExpertsForm
 
             }
 
-            MessageBox.Show(indicator);
+            MessageBox.Show(indicator, "Status");
         }
 
         private void AddProSup_Click(object sender, EventArgs e)
         {
+            AddProSupCancel.Text = "Cancel";
             ProductAddComboB.DataSource = AllProducts;
             ProductAddComboB.DisplayMember = "ProdName";
             ProductAddComboB.ValueMember = "ProductId";
@@ -345,6 +353,7 @@ namespace TravelExpertsForm
                     BindPackages();
                     DisplayPacInfo(packageIdComboBox);
                     FilterPacProSup(packageIdComboBox);
+                    AddProSupCancel.Text = "Close";
                 }
             }
             else
@@ -353,14 +362,15 @@ namespace TravelExpertsForm
             }
 
 
-            MessageBox.Show(statusTest);
+            MessageBox.Show(statusTest, "Status");
+
         }
 
         // editing packages 
         private void EditProSupCancelBtn_Click(object sender, EventArgs e)
         {
 
-            EditProSupPanel.Visible = false;
+            EditProSupPanel.Visible = GridViewProSupEdit = false;
             AddProSup.Visible = true;
             selectedProductSupplierId = -1;
         }
@@ -391,6 +401,7 @@ namespace TravelExpertsForm
                     BindPackages();
                     DisplayPacInfo(packageIdComboBox);
                     FilterPacProSup(packageIdComboBox);
+                    EditProSupCancelBtn.Text = "Close";
                 }
 
             }
@@ -399,11 +410,13 @@ namespace TravelExpertsForm
                 operationStatus = "This pair of product and supplier is already existed for this package.";
             }
 
-            MessageBox.Show(operationStatus);
+            MessageBox.Show(operationStatus, "Status");
+            GridViewProSupEdit = false;
         }
 
         private void ProSupDataGridview_CellMouseClick(object sender, DataGridViewCellMouseEventArgs e)
         {
+            EditProSupCancelBtn.Text = "Cancel";
             EditProSupPanel.Visible = true;
             AddProSup.Visible = false;
             if (e.RowIndex != -1)
@@ -421,11 +434,40 @@ namespace TravelExpertsForm
                 EditSupCB.DisplayMember = "SupName";
                 EditSupCB.ValueMember = "SupplierId";
                 EditSupCB.SelectedValue = selectedRow.Cells[3].Value;
-
+                GridViewProSupEdit = true;
                 //MessageBox.Show(selectedRow.Cells[5].Value.ToString());
             }
 
         }
+
+        private void ProSupDataGridview_SelectionChanged(object sender, EventArgs e)
+        {
+            if (GridViewProSupEdit)
+            {
+                DataGridView selectedRow = (DataGridView)sender;
+
+                //User selected WHOLE ROW (by clicking in the margin)
+                if (selectedRow.SelectedRows.Count > 0 || selectedRow.SelectedCells.Count > 0)
+                {
+
+                    selectedProductSupplierId = Convert.ToInt32(selectedRow.Rows[selectedRow.SelectedCells[0].RowIndex].Cells[5].Value);
+
+                    EditProCB.DataSource = AllProducts;
+                    EditProCB.DisplayMember = "ProdName";
+                    EditProCB.ValueMember = "ProductId";
+                    EditProCB.SelectedValue = selectedRow.Rows[selectedRow.SelectedCells[0].RowIndex].Cells[1].Value;
+
+                    EditSupCB.DataSource = AllSuppliers;
+                    EditSupCB.DisplayMember = "SupName";
+                    EditSupCB.ValueMember = "SupplierId";
+                    EditSupCB.SelectedValue = selectedRow.Rows[selectedRow.SelectedCells[0].RowIndex].Cells[3].Value;
+
+                }
+            }
+
+
+        }
+
         //$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
 
 
