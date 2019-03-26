@@ -759,7 +759,6 @@
             // 
             // supplierIdComboBox
             // 
-            this.supplierIdComboBox.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.suppliersBindingSource, "SupplierId", true));
             this.supplierIdComboBox.DataSource = this.suppliersBindingSource;
             this.supplierIdComboBox.DisplayMember = "SupplierId";
             this.supplierIdComboBox.FormattingEnabled = true;

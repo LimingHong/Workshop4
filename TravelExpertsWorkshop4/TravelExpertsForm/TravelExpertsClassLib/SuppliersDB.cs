@@ -123,9 +123,38 @@ namespace TravelExpertsClassLib
             return success;
         }
 
-        public static long UpdateSupplier(Suppliers newSupplier)
+        public static bool UpdateSupplier(Suppliers newSupplier)
         {
-            throw new NotImplementedException();
+            bool success = true;
+
+            SqlConnection con = TravelExpertsDB.GetConnection();
+
+            string insertStatement = "UPDATE Suppliers SET SupName = @SupName " +
+                                     "WHERE SupplierId = @SupplierId ";
+
+            SqlCommand cmd = new SqlCommand(insertStatement, con);
+
+            cmd.Parameters.AddWithValue("@SupName", newSupplier.SupName);
+            cmd.Parameters.AddWithValue("@SupplierId", newSupplier.SupplierId);
+
+
+            try
+            {
+                con.Open();
+                int rowsUpdated = cmd.ExecuteNonQuery();
+                if (rowsUpdated == 0) success = false;
+
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                con.Close();
+            }
+
+            return success;
         }
     }
 }
