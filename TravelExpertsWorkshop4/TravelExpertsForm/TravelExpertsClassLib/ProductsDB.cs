@@ -69,6 +69,8 @@ namespace TravelExpertsClassLib
 
         public static bool UpdateProduct(Products oldProducts, Products newProducts)
         {
+            System.Console.WriteLine("Old Prod #" + oldProducts.ProductId + ": " + oldProducts.ProdName);
+            System.Console.WriteLine("New Prod #" + newProducts.ProductId + ": " + newProducts.ProdName);
             bool success = true;
             SqlConnection con = TravelExpertsDB.GetConnection();
             string updateStatement = "UPDATE Products set " +
@@ -79,13 +81,12 @@ namespace TravelExpertsClassLib
             { cmd.Parameters.AddWithValue("@ProdName", DBNull.Value); }
             else
             { cmd.Parameters.AddWithValue("@ProdName", newProducts.ProdName); }
+            cmd.Parameters.AddWithValue("@OldProductId", oldProducts.ProductId);
 
-            cmd.Parameters.AddWithValue("@OldProductID", oldProducts.ProdName);
-
-            if (oldProducts.ProdName == null)
+            /*if (oldProducts.ProdName == null)
             { cmd.Parameters.AddWithValue("@OldProdName", DBNull.Value); }
             else
-                cmd.Parameters.AddWithValue("@OldProdName", oldProducts.ProdName);
+                cmd.Parameters.AddWithValue("@OldProdName", oldProducts.ProdName);*/
 
             try
             {
