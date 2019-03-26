@@ -2,16 +2,13 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using SqlDataReader = System.Data.SqlClient.SqlDataReader;
 
 namespace TravelExpertsClassLib
 {
-    public class SuppliersDB:TravelExpertsDB
-    {   
+    public class SuppliersDB : TravelExpertsDB
+    {
 
         //Method for creation of the list which will display data
         public static List<Suppliers> GetSuppliers()
@@ -20,7 +17,7 @@ namespace TravelExpertsClassLib
             try
             {
                 Suppliers currentSupllier; // for reading
-                
+
                 string selectJoinQuery = "SELECT * FROM Suppliers";
 
                 // block code style
@@ -42,7 +39,7 @@ namespace TravelExpertsClassLib
                             //SupplierId SupName
                             currentSupllier.SupplierId = Convert.ToInt64(dr["SupplierId"]);
                             currentSupllier.SupName = dr["SupName"] as string;
-                            
+
 
                             newSuppliers.Add(currentSupllier);
                         }
@@ -51,7 +48,7 @@ namespace TravelExpertsClassLib
 
 
             }
-            catch (Exception )
+            catch (Exception)
             {
                 MessageBox.Show("Connection Error. Failed to retrieve Suppliers information");
             }
@@ -92,28 +89,27 @@ namespace TravelExpertsClassLib
 
         }
 
-        public static int AddSupplier(Suppliers Sup)
+        public static bool AddSupplier(Suppliers Sup)
         {
-            int SupID = 0;
-            SqlConnection con = TravelExpertsDB.GetConnection();
-            string insertStatement = "INSERT INTO Suppliers(SupplierId, SupName) " +
-                                     "SELECT MAX(SupplierId) + 1, @SupName FROM Suppliers";
+            bool success = true;
 
-            //previous version, which assigns to the USpplirId a value of 0 causing and error later on
-            //"INSERT INTO Products (ProdName) " +
-            //                         "VALUES(@ProdName)";
+            SqlConnection con = TravelExpertsDB.GetConnection();
+
+            string insertStatement = "INSERT INTO Suppliers(SupplierId, SupName) " +
+                                     "VALUES (@MaxSupId , @SupName)";
 
             SqlCommand cmd = new SqlCommand(insertStatement, con);
+
             cmd.Parameters.AddWithValue("@SupName", Sup.SupName);
+            cmd.Parameters.AddWithValue("@MaxSupId", Sup.SupplierId);
+
 
             try
             {
                 con.Open();
-                cmd.ExecuteNonQuery();
-                string selectQuery = "SELECT IDENT_CURRENT('Suppliers') FROM Suppliers"; // identity value
-                SqlCommand selectCommand = new SqlCommand(selectQuery, con);
-                SupID = Convert.ToInt32(selectCommand.ExecuteScalar()); // single value
-                // typecasting (int) does not work.
+                int rowsUpdated = cmd.ExecuteNonQuery();
+                if (rowsUpdated == 0) success = false;
+
             }
             catch (Exception ex)
             {
@@ -123,7 +119,8 @@ namespace TravelExpertsClassLib
             {
                 con.Close();
             }
-            return SupID;
+
+            return success;
         }
 
         public static long UpdateSupplier(Suppliers newSupplier)

@@ -490,20 +490,6 @@ namespace TravelExpertsForm
         }
 
 
-        private Suppliers supplierUpdate(TextBox supNameTextBox, Suppliers supplier)
-        {
-            Suppliers newSupplier = CreateObject(supplier);
-            newSupplier.SupName = supNameTextBox.Text;
-            return newSupplier;
-        }
-        private Suppliers supplierUpdate1(TextBox newName)
-        {
-            Suppliers Sup = new Suppliers();
-
-            //Sup.SupplierId = Convert.ToInt32(txtNewSupp.Text);
-            Sup.SupName = txtNewSupp.Text;
-            return Sup;
-        }
 
         //Method For Adding a new Supplier to database and therefore to the grid view as well.
         private void btnAddSupp_Click(object sender, EventArgs e)
@@ -521,21 +507,20 @@ namespace TravelExpertsForm
         {
             try
             {
-                if (Validator.IsPresent(txtNewSupp,"New Supplier Name"))
+                if (Validator.IsPresent(txtNewSupp, "New Supplier Name"))
                 {
 
+                    Suppliers newSupplier = new Suppliers();
 
+                    newSupplier.SupName = txtNewSupp.Text;
 
+                    newSupplier.SupplierId = AllSuppliers.Max(s => s.SupplierId) + 1;
 
-                    Suppliers newSupplier = supplierUpdate1(txtNewSupp);
-
-
-                    newSupplier.SupplierId = SuppliersDB.AddSupplier(newSupplier);
-
-
-                    MessageBox.Show("Supplier has been updated :)");
-                    suppliersDataGridView.DataSource = AllSuppliers;
-
+                    if (SuppliersDB.AddSupplier(newSupplier))
+                    {
+                        MessageBox.Show("Supplier has been updated :)");
+                        suppliersDataGridView.DataSource = AllSuppliers;
+                    }
 
                 }
             }
@@ -552,9 +537,6 @@ namespace TravelExpertsForm
             {
                 if (Validator.IsPresent(supNameTextBox, "Supplier New Name"))
                 {
-
-
-
 
                     Suppliers updateSupplier = supplierUpdate(supNameTextBox);
 
