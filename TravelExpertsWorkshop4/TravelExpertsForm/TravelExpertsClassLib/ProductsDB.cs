@@ -79,13 +79,8 @@ namespace TravelExpertsClassLib
             { cmd.Parameters.AddWithValue("@ProdName", DBNull.Value); }
             else
             { cmd.Parameters.AddWithValue("@ProdName", newProducts.ProdName); }
+            cmd.Parameters.AddWithValue("@OldProductId", oldProducts.ProductId);
 
-            cmd.Parameters.AddWithValue("@OldProductID", oldProducts.ProdName);
-
-            if (oldProducts.ProdName == null)
-            { cmd.Parameters.AddWithValue("@OldProdName", DBNull.Value); }
-            else
-                cmd.Parameters.AddWithValue("@OldProdName", oldProducts.ProdName);
 
             try
             {
