@@ -495,12 +495,16 @@ namespace TravelExpertsForm
         private void btnAddSupp_Click(object sender, EventArgs e)
         {
             grpNewSupp.Visible = true; //displays textbox for adding a new supplier
+
+            supNameTextBox.Enabled = false; 
+            btnUpdateSupplier.Visible = false;
         }
 
         private void btnEditSupp_Click(object sender, EventArgs e)
         {
             supNameTextBox.Enabled = true; //allows to modify input on the text box
             btnUpdateSupplier.Visible = true; //button for update editted supplier name
+            grpNewSupp.Visible = false;
         }
 
         private void btnSaveSupp_Click(object sender, EventArgs e)
