@@ -35,8 +35,8 @@
             this.label6 = new System.Windows.Forms.Label();
             this.uxTimeDisplay = new System.Windows.Forms.Label();
             this.uxUserNameLabel = new System.Windows.Forms.Label();
-            this.label1 = new System.Windows.Forms.Label();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.uxDateDisplay = new System.Windows.Forms.Label();
             this.uxBtnScreenSize = new System.Windows.Forms.Button();
             this.uxClosingBtn = new System.Windows.Forms.Button();
             this.button8 = new System.Windows.Forms.Button();
@@ -55,11 +55,12 @@
             this.uxBtnIndicatorCus = new System.Windows.Forms.Panel();
             this.uxBtnIndicatorPro = new System.Windows.Forms.Panel();
             this.uxBtnIndicatorSup = new System.Windows.Forms.Panel();
-            this.uxDateDisplay = new System.Windows.Forms.Label();
+            this.uxUserProfilePic = new DesktopAppTravelExperts.CircularPicturebox();
             this.panel2.SuspendLayout();
             this.panel3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.panelLeft.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.uxUserProfilePic)).BeginInit();
             this.SuspendLayout();
             // 
             // timerTime
@@ -73,7 +74,7 @@
             this.uxUserRoleLabel.AutoSize = true;
             this.uxUserRoleLabel.Font = new System.Drawing.Font("Century Gothic", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.uxUserRoleLabel.ForeColor = System.Drawing.Color.White;
-            this.uxUserRoleLabel.Location = new System.Drawing.Point(162, 41);
+            this.uxUserRoleLabel.Location = new System.Drawing.Point(261, 48);
             this.uxUserRoleLabel.Name = "uxUserRoleLabel";
             this.uxUserRoleLabel.Size = new System.Drawing.Size(63, 16);
             this.uxUserRoleLabel.TabIndex = 0;
@@ -84,7 +85,7 @@
             this.label6.AutoSize = true;
             this.label6.Font = new System.Drawing.Font("Century Gothic", 10F, System.Drawing.FontStyle.Bold);
             this.label6.ForeColor = System.Drawing.Color.White;
-            this.label6.Location = new System.Drawing.Point(106, 41);
+            this.label6.Location = new System.Drawing.Point(209, 48);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(46, 17);
             this.label6.TabIndex = 0;
@@ -105,28 +106,18 @@
             // uxUserNameLabel
             // 
             this.uxUserNameLabel.AutoSize = true;
-            this.uxUserNameLabel.Font = new System.Drawing.Font("Century Gothic", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.uxUserNameLabel.Font = new System.Drawing.Font("Century Gothic", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.uxUserNameLabel.ForeColor = System.Drawing.Color.White;
-            this.uxUserNameLabel.Location = new System.Drawing.Point(165, 18);
+            this.uxUserNameLabel.Location = new System.Drawing.Point(174, 25);
             this.uxUserNameLabel.Name = "uxUserNameLabel";
-            this.uxUserNameLabel.Size = new System.Drawing.Size(77, 16);
+            this.uxUserNameLabel.Size = new System.Drawing.Size(138, 23);
             this.uxUserNameLabel.TabIndex = 0;
-            this.uxUserNameLabel.Text = "USERNAME";
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Century Gothic", 10F, System.Drawing.FontStyle.Bold);
-            this.label1.ForeColor = System.Drawing.Color.White;
-            this.label1.Location = new System.Drawing.Point(69, 18);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(83, 17);
-            this.label1.TabIndex = 0;
-            this.label1.Text = "Welcome :";
+            this.uxUserNameLabel.Text = "First Lastname";
             // 
             // panel2
             // 
             this.panel2.BackColor = System.Drawing.Color.Black;
+            this.panel2.Controls.Add(this.uxUserProfilePic);
             this.panel2.Controls.Add(this.uxDateDisplay);
             this.panel2.Controls.Add(this.uxBtnScreenSize);
             this.panel2.Controls.Add(this.uxClosingBtn);
@@ -134,13 +125,25 @@
             this.panel2.Controls.Add(this.label6);
             this.panel2.Controls.Add(this.uxTimeDisplay);
             this.panel2.Controls.Add(this.uxUserNameLabel);
-            this.panel2.Controls.Add(this.label1);
             this.panel2.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel2.Location = new System.Drawing.Point(215, 0);
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(985, 92);
             this.panel2.TabIndex = 4;
             this.panel2.MouseDown += new System.Windows.Forms.MouseEventHandler(this.panel2_MouseDown);
+            // 
+            // uxDateDisplay
+            // 
+            this.uxDateDisplay.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.uxDateDisplay.AutoSize = true;
+            this.uxDateDisplay.Font = new System.Drawing.Font("Century Gothic", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.uxDateDisplay.ForeColor = System.Drawing.Color.White;
+            this.uxDateDisplay.Location = new System.Drawing.Point(598, 31);
+            this.uxDateDisplay.Name = "uxDateDisplay";
+            this.uxDateDisplay.Size = new System.Drawing.Size(171, 16);
+            this.uxDateDisplay.TabIndex = 9;
+            this.uxDateDisplay.Text = "Thursday, March 30, 2019";
+            this.uxDateDisplay.TextAlign = System.Drawing.ContentAlignment.TopRight;
             // 
             // uxBtnScreenSize
             // 
@@ -401,18 +404,16 @@
             this.uxBtnIndicatorSup.Size = new System.Drawing.Size(7, 60);
             this.uxBtnIndicatorSup.TabIndex = 3;
             // 
-            // uxDateDisplay
+            // uxUserProfilePic
             // 
-            this.uxDateDisplay.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.uxDateDisplay.AutoSize = true;
-            this.uxDateDisplay.Font = new System.Drawing.Font("Century Gothic", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.uxDateDisplay.ForeColor = System.Drawing.Color.White;
-            this.uxDateDisplay.Location = new System.Drawing.Point(598, 31);
-            this.uxDateDisplay.Name = "uxDateDisplay";
-            this.uxDateDisplay.Size = new System.Drawing.Size(171, 16);
-            this.uxDateDisplay.TabIndex = 9;
-            this.uxDateDisplay.Text = "Thursday, March 30, 2019";
-            this.uxDateDisplay.TextAlign = System.Drawing.ContentAlignment.TopRight;
+            this.uxUserProfilePic.BackColor = System.Drawing.Color.DarkGray;
+            this.uxUserProfilePic.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("uxUserProfilePic.BackgroundImage")));
+            this.uxUserProfilePic.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.uxUserProfilePic.Location = new System.Drawing.Point(71, 8);
+            this.uxUserProfilePic.Name = "uxUserProfilePic";
+            this.uxUserProfilePic.Size = new System.Drawing.Size(80, 80);
+            this.uxUserProfilePic.TabIndex = 10;
+            this.uxUserProfilePic.TabStop = false;
             // 
             // Dashboard
             // 
@@ -431,6 +432,7 @@
             this.panel3.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.panelLeft.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.uxUserProfilePic)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -442,7 +444,6 @@
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label uxTimeDisplay;
         private System.Windows.Forms.Label uxUserNameLabel;
-        private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.Button button8;
         private System.Windows.Forms.Panel uxBtnIndicatorPac;
@@ -463,5 +464,6 @@
         private System.Windows.Forms.Panel uxBtnIndicatorSet;
         private System.Windows.Forms.Button uxBtnScreenSize;
         private System.Windows.Forms.Label uxDateDisplay;
+        private CircularPicturebox uxUserProfilePic;
     }
 }
