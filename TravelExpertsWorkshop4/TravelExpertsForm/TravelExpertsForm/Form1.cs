@@ -519,6 +519,7 @@ namespace TravelExpertsForm
                     if (SuppliersDB.AddSupplier(newSupplier))
                     {
                         MessageBox.Show("Supplier has been updated :)");
+                        UpdateAllInfos();
                         suppliersDataGridView.DataSource = AllSuppliers;
                     }
 
@@ -545,6 +546,7 @@ namespace TravelExpertsForm
                     if (SuppliersDB.UpdateSupplier(updateSupplier))
                     {
                         MessageBox.Show("Supplier has been updated :)");
+                        UpdateAllInfos();
                         suppliersDataGridView.DataSource = AllSuppliers;
                     }
                 }
