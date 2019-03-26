@@ -65,6 +65,41 @@ namespace TravelExpertsForm
          */
         //Codes:
 
+        private int ValidatePrice(TextBox BasePriceInput, TextBox CommissionInput)
+        {
+            int indicator = 1;
+            decimal BasePrice = 0;
+            decimal AgentCommission = 0;
+
+            BasePriceInput.BackColor = Color.Red;
+            CommissionInput.BackColor = Color.Red;
+            BasePriceInput.BackColor = Color.WhiteSmoke;
+            CommissionInput.ForeColor = Color.WhiteSmoke;
+
+            if (Decimal.TryParse(BasePriceInput.Text, out BasePrice) &&
+                Decimal.TryParse(CommissionInput.Text, out AgentCommission))
+            {
+                if (BasePrice > AgentCommission)
+                {
+                    indicator = 0;
+                    BasePriceInput.BackColor = Color.White;
+                    CommissionInput.BackColor = Color.White;
+                    BasePriceInput.ForeColor = Color.Black;
+                    CommissionInput.ForeColor = Color.Black;
+                }
+                else
+                {
+                    MessageBox.Show("Agency's commission should not be larger than package Base Price.", "Status");
+                }
+            }
+            else
+            {
+                MessageBox.Show("Error During Conversion Process. \nPlease Try Again.", "Status");
+            }
+
+            return indicator;
+        }
+
         private int ValidateTime(DateTimePicker StartInputDateTimePicker, DateTimePicker EndInputDateTimePicker)
         {
             /*
@@ -282,7 +317,7 @@ namespace TravelExpertsForm
                     newPac.PkgBasePrice = Convert.ToDecimal(pkgBasePriceTextBox.Text);
                     newPac.PkgAgencyCommission = Convert.ToDecimal(pkgAgencyCommissionTextBox.Text);
 
-                    if (ValidateTime(pkgStartDateDateTimePicker, pkgEndDateDateTimePicker) == 0)
+                    if (ValidateTime(pkgStartDateDateTimePicker, pkgEndDateDateTimePicker) == 0 && ValidatePrice(pkgBasePriceTextBox, pkgAgencyCommissionTextBox) == 0)
                     {
 
                         if (PackagesDB.AddPackage(newPac))
@@ -340,7 +375,7 @@ namespace TravelExpertsForm
                     newPac.PkgAgencyCommission = Convert.ToDecimal(pkgAgencyCommissionTextBox.Text);
 
                     indicator = "Update Package Failed. ";
-                    if (ValidateTime(pkgStartDateDateTimePicker, pkgEndDateDateTimePicker) == 0)
+                    if (ValidateTime(pkgStartDateDateTimePicker, pkgEndDateDateTimePicker) == 0 && ValidatePrice(pkgBasePriceTextBox, pkgAgencyCommissionTextBox) == 0)
                     {
                         if (PackagesDB.UpdatePackage(newPac))
                         {
