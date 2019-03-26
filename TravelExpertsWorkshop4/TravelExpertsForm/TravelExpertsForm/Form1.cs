@@ -262,7 +262,7 @@ namespace TravelExpertsForm
          * Author: Liming
          */
         //Codes:
-
+        
 
         //$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
 
@@ -389,7 +389,7 @@ namespace TravelExpertsForm
         {
             try
             {
-                if (Validator.IsPresentCombo(productIdComboBox, "ID"))
+                if (Validator.IsPresentCombo(productIdComboBox, "ID")&& Validator.IsPresent(prodNameTextBox, "New Product Name") && Validator.IsCorrectLength(prodNameTextBox, "Name", 9) && Validator.IsNameValid(prodNameTextBox, "Name"))
                 {
                     Products findOldProduct = FindOldProduct(productIdComboBox);
 
@@ -412,7 +412,7 @@ namespace TravelExpertsForm
                 }
                 else
                 {
-                    MessageBox.Show("The product id is invalid. ");
+                    MessageBox.Show("Please re-enter. ");
                 }
             }
             //catch the other error and show the ex error message from db class
@@ -426,7 +426,7 @@ namespace TravelExpertsForm
         {
             try
             {
-                if (Validator.IsPresent(txtNewProductName, "New Product Name"))
+                if (Validator.IsPresent(txtNewProductName, "New Product Name") && Validator.IsCorrectLength(txtNewProductName,"Name",9) && Validator.IsNameValid(txtNewProductName,"Name"))
                 {
 
 
@@ -534,5 +534,7 @@ namespace TravelExpertsForm
             //    MessageBox.Show(ex.Message, ex.GetType().ToString());
             //}
         }
+
+       
     }
 }
