@@ -545,5 +545,39 @@ namespace TravelExpertsForm
                 MessageBox.Show(ex.Message, ex.GetType().ToString());
             }
         }
+
+        private void btnUpdateSupplier_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (Validator.IsPresent(supNameTextBox, "Supplier New Name"))
+                {
+
+
+
+
+                    Suppliers updateSupplier = supplierUpdate(supNameTextBox);
+
+
+                    updateSupplier.SupplierId = SuppliersDB.UpdateSupplier(updateSupplier);
+
+
+                    MessageBox.Show("Supplier has been updated :)");
+                    suppliersDataGridView.DataSource = AllSuppliers;
+
+
+                }
+            }
+            //catch the other error and show the ex error message from db class
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, ex.GetType().ToString());
+            }
+        }
+
+        private Suppliers supplierUpdate(TextBox txtNewSupp)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

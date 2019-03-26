@@ -126,6 +126,9 @@ namespace TravelExpertsClassLib
             return SupID;
         }
 
-
+        public static long UpdateSupplier(Suppliers newSupplier)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

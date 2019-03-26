@@ -83,18 +83,18 @@
             this.grpNewSupp = new System.Windows.Forms.GroupBox();
             this.lblNewSuppName = new System.Windows.Forms.Label();
             this.txtNewSupp = new System.Windows.Forms.TextBox();
+            this.btnSaveSupp = new System.Windows.Forms.Button();
             this.btnCancelSupp = new System.Windows.Forms.Button();
             this.grpBoxActions = new System.Windows.Forms.GroupBox();
             this.btnEditSupp = new System.Windows.Forms.Button();
             this.btnAddSupp = new System.Windows.Forms.Button();
-            this.btnSaveSupp = new System.Windows.Forms.Button();
             this.grpBoxSuppliers = new System.Windows.Forms.GroupBox();
+            this.btnUpdateSupplier = new System.Windows.Forms.Button();
             this.supNameTextBox = new System.Windows.Forms.TextBox();
             this.supplierIdComboBox = new System.Windows.Forms.ComboBox();
             this.suppliersDataGridView = new System.Windows.Forms.DataGridView();
             this.dataGridViewTextBoxColumn3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.btnUpdateSupplier = new System.Windows.Forms.Button();
             prodNameLabel = new System.Windows.Forms.Label();
             productIdLabel = new System.Windows.Forms.Label();
             packageIdLabel = new System.Windows.Forms.Label();
@@ -661,6 +661,17 @@
             this.txtNewSupp.Size = new System.Drawing.Size(111, 20);
             this.txtNewSupp.TabIndex = 0;
             // 
+            // btnSaveSupp
+            // 
+            this.btnSaveSupp.Location = new System.Drawing.Point(238, 23);
+            this.btnSaveSupp.Margin = new System.Windows.Forms.Padding(2);
+            this.btnSaveSupp.Name = "btnSaveSupp";
+            this.btnSaveSupp.Size = new System.Drawing.Size(59, 25);
+            this.btnSaveSupp.TabIndex = 0;
+            this.btnSaveSupp.Text = "Save";
+            this.btnSaveSupp.UseVisualStyleBackColor = true;
+            this.btnSaveSupp.Click += new System.EventHandler(this.btnSaveSupp_Click);
+            // 
             // btnCancelSupp
             // 
             this.btnCancelSupp.Location = new System.Drawing.Point(568, 298);
@@ -679,17 +690,17 @@
             this.grpBoxActions.Margin = new System.Windows.Forms.Padding(2);
             this.grpBoxActions.Name = "grpBoxActions";
             this.grpBoxActions.Padding = new System.Windows.Forms.Padding(2);
-            this.grpBoxActions.Size = new System.Drawing.Size(208, 87);
+            this.grpBoxActions.Size = new System.Drawing.Size(206, 87);
             this.grpBoxActions.TabIndex = 6;
             this.grpBoxActions.TabStop = false;
             this.grpBoxActions.Text = "Actions";
             // 
             // btnEditSupp
             // 
-            this.btnEditSupp.Location = new System.Drawing.Point(108, 30);
+            this.btnEditSupp.Location = new System.Drawing.Point(112, 30);
             this.btnEditSupp.Margin = new System.Windows.Forms.Padding(2);
             this.btnEditSupp.Name = "btnEditSupp";
-            this.btnEditSupp.Size = new System.Drawing.Size(79, 37);
+            this.btnEditSupp.Size = new System.Drawing.Size(72, 37);
             this.btnEditSupp.TabIndex = 2;
             this.btnEditSupp.Text = "Edit\r\nSupplier";
             this.btnEditSupp.UseVisualStyleBackColor = true;
@@ -705,17 +716,6 @@
             this.btnAddSupp.Text = "Add New\r\nSupplier";
             this.btnAddSupp.UseVisualStyleBackColor = true;
             this.btnAddSupp.Click += new System.EventHandler(this.btnAddSupp_Click);
-            // 
-            // btnSaveSupp
-            // 
-            this.btnSaveSupp.Location = new System.Drawing.Point(238, 23);
-            this.btnSaveSupp.Margin = new System.Windows.Forms.Padding(2);
-            this.btnSaveSupp.Name = "btnSaveSupp";
-            this.btnSaveSupp.Size = new System.Drawing.Size(59, 25);
-            this.btnSaveSupp.TabIndex = 0;
-            this.btnSaveSupp.Text = "Save";
-            this.btnSaveSupp.UseVisualStyleBackColor = true;
-            this.btnSaveSupp.Click += new System.EventHandler(this.btnSaveSupp_Click);
             // 
             // grpBoxSuppliers
             // 
@@ -734,6 +734,18 @@
             this.grpBoxSuppliers.TabIndex = 5;
             this.grpBoxSuppliers.TabStop = false;
             this.grpBoxSuppliers.Text = "Supplier Info";
+            // 
+            // btnUpdateSupplier
+            // 
+            this.btnUpdateSupplier.Location = new System.Drawing.Point(278, 14);
+            this.btnUpdateSupplier.Margin = new System.Windows.Forms.Padding(2);
+            this.btnUpdateSupplier.Name = "btnUpdateSupplier";
+            this.btnUpdateSupplier.Size = new System.Drawing.Size(59, 25);
+            this.btnUpdateSupplier.TabIndex = 2;
+            this.btnUpdateSupplier.Text = "Update";
+            this.btnUpdateSupplier.UseVisualStyleBackColor = true;
+            this.btnUpdateSupplier.Visible = false;
+            this.btnUpdateSupplier.Click += new System.EventHandler(this.btnUpdateSupplier_Click);
             // 
             // supNameTextBox
             // 
@@ -792,17 +804,6 @@
             this.dataGridViewTextBoxColumn4.HeaderText = "SupName";
             this.dataGridViewTextBoxColumn4.Name = "dataGridViewTextBoxColumn4";
             this.dataGridViewTextBoxColumn4.Width = 79;
-            // 
-            // btnUpdateSupplier
-            // 
-            this.btnUpdateSupplier.Location = new System.Drawing.Point(278, 14);
-            this.btnUpdateSupplier.Margin = new System.Windows.Forms.Padding(2);
-            this.btnUpdateSupplier.Name = "btnUpdateSupplier";
-            this.btnUpdateSupplier.Size = new System.Drawing.Size(59, 25);
-            this.btnUpdateSupplier.TabIndex = 2;
-            this.btnUpdateSupplier.Text = "Update";
-            this.btnUpdateSupplier.UseVisualStyleBackColor = true;
-            this.btnUpdateSupplier.Visible = false;
             // 
             // MainForm
             // 
