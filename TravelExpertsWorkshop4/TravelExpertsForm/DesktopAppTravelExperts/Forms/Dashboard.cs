@@ -23,6 +23,10 @@ namespace DesktopAppTravelExperts.Forms
 
         private bool ScreenFull = false;
 
+        // section switching
+        private string[] SectionStageTab = { "package", "product", "supplier", "customer", "sale", "setting" };
+        private int SectionStageTabIndex = 0;
+
 
         // for time display very update of 1 second
         private void timerTime_Tick(object sender, EventArgs e)
@@ -47,8 +51,21 @@ namespace DesktopAppTravelExperts.Forms
             uxDateDisplay.Text = DateTime.Now.ToLongDateString();
             uxTimeDisplay.Text = DateTime.Now.ToLongTimeString();
             uxUserProfilePic.BackgroundImageLayout = ImageLayout.Stretch;
+            PageSectionIndicate(SectionStageTab[SectionStageTabIndex]);
+
 
         }
+
+
+        private void Dashboard_Load(object sender, System.EventArgs e)
+        {
+            this.Focus();
+            this.KeyPreview = true;
+            this.KeyDown += new KeyEventHandler(Dashboard_KeyDown);
+
+
+        }
+
 
         /// <summary>
         /// enter one of these package, product, supplier, customer, sale, setting
@@ -109,10 +126,6 @@ namespace DesktopAppTravelExperts.Forms
             Close();
         }
 
-        private void Dashboard_Load(object sender, System.EventArgs e)
-        {
-
-        }
 
         private void uxBtnPackages_Click(object sender, System.EventArgs e)
         {
@@ -258,5 +271,30 @@ namespace DesktopAppTravelExperts.Forms
             uxBtnSettings.BackColor = Color.Black;
         }
 
+        private void Dashboard_KeyDown(object sender, KeyEventArgs e)
+        {
+
+            if (e.Control && e.KeyCode == Keys.W)
+            {
+                Close();
+            }
+
+        }
+
+        private void Dashboard_KeyUp(object sender, KeyEventArgs e)
+        {
+            if (e.Control && e.KeyCode == Keys.Tab)
+            {
+                SectionStageTabIndex += 1;
+
+                if (SectionStageTabIndex > SectionStageTab.Length - 1)
+                {
+                    SectionStageTabIndex = 0;
+                }
+
+                PageSectionIndicate(SectionStageTab[SectionStageTabIndex]);
+                Console.WriteLine(SectionStageTab[SectionStageTabIndex] + SectionStageTabIndex.ToString());
+            }
+        }
     }
 }

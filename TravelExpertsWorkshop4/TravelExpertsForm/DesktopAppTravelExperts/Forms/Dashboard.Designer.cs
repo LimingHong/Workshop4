@@ -427,6 +427,8 @@
             this.Name = "Dashboard";
             this.Text = "Dashboard";
             this.Load += new System.EventHandler(this.Dashboard_Load);
+            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Dashboard_KeyDown);
+            this.KeyUp += new System.Windows.Forms.KeyEventHandler(this.Dashboard_KeyUp);
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
             this.panel3.ResumeLayout(false);
