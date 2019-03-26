@@ -1,4 +1,5 @@
-﻿using System;
+﻿using DesktopAppTravelExperts.Forms;
+using System;
 using System.Windows.Forms;
 
 namespace DesktopAppTravelExperts
@@ -14,8 +15,8 @@ namespace DesktopAppTravelExperts
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
 
-            //Application.Run(new Dashboard()); // for testing 
-            Application.Run(new LoginPage());
+            Application.Run(new Dashboard()); // for testing 
+            //Application.Run(new LoginPage());
         }
     }
 }
