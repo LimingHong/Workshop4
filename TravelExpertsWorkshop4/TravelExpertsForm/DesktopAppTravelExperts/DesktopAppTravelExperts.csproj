@@ -91,6 +91,11 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <ProjectReference Include="..\TravelExpertsClassLib\TravelExpertsClassLib.csproj">
+      <Project>{05669508-d98a-4a2e-8e9b-e3d7d08f5a82}</Project>
+      <Name>TravelExpertsClassLib</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
