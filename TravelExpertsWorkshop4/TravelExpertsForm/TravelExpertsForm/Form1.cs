@@ -538,16 +538,15 @@ namespace TravelExpertsForm
                 if (Validator.IsPresent(supNameTextBox, "Supplier New Name"))
                 {
 
-                    Suppliers updateSupplier = supplierUpdate(supNameTextBox);
+                    Suppliers updateSupplier = new Suppliers();
+                    updateSupplier.SupplierId = Convert.ToInt64(supplierIdComboBox.SelectedValue);
+                    updateSupplier.SupName = supNameTextBox.Text.ToUpper().Trim();
 
-
-                    updateSupplier.SupplierId = SuppliersDB.UpdateSupplier(updateSupplier);
-
-
-                    MessageBox.Show("Supplier has been updated :)");
-                    suppliersDataGridView.DataSource = AllSuppliers;
-
-
+                    if (SuppliersDB.UpdateSupplier(updateSupplier))
+                    {
+                        MessageBox.Show("Supplier has been updated :)");
+                        suppliersDataGridView.DataSource = AllSuppliers;
+                    }
                 }
             }
             //catch the other error and show the ex error message from db class
@@ -557,9 +556,5 @@ namespace TravelExpertsForm
             }
         }
 
-        private Suppliers supplierUpdate(TextBox txtNewSupp)
-        {
-            throw new NotImplementedException();
-        }
     }
 }
