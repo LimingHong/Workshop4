@@ -46,7 +46,7 @@ namespace DesktopAppTravelExperts.Forms
             // display time
             uxDateDisplay.Text = DateTime.Now.ToLongDateString();
             uxTimeDisplay.Text = DateTime.Now.ToLongTimeString();
-
+            uxUserProfilePic.BackgroundImageLayout = ImageLayout.Stretch;
 
         }
 
