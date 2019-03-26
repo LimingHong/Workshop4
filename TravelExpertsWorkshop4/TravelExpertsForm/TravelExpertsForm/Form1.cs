@@ -25,6 +25,7 @@ namespace TravelExpertsForm
         // variable for ProSupID
         private int selectedProductSupplierId = -1;
         private bool GridViewProSupEdit = false;
+        private DateTime CurrentDateTime = DateTime.Now;
 
         public MainForm()
         {
@@ -42,6 +43,21 @@ namespace TravelExpertsForm
             PacProSupLinkages = PacProSupDB.GetPacProSup();
         }
 
+        private void Form1_Load(object sender, EventArgs e)
+        {
+            UpdateAllInfos();
+            MainTabControl.SelectTab(PackageTab);
+            BindPackages();
+            DisplayPacInfo(packageIdComboBox);
+            FilterPacProSup(packageIdComboBox);
+            DisplayProInfo(productIdComboBox);
+            DisplaySupInfo(supplierIdComboBox);
+
+            // set error messages to empty strings
+            StartDateErrorLabel.Text = EndDateErrorLabel.Text = "";
+            ValidateTime(pkgStartDateDateTimePicker, pkgEndDateDateTimePicker);
+        }
+
 
         //$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
         /* Section: Package
@@ -49,11 +65,49 @@ namespace TravelExpertsForm
          */
         //Codes:
 
+        private int ValidateTime(DateTimePicker StartInputDateTimePicker, DateTimePicker EndInputDateTimePicker)
+        {
+            /*
+             *  Less than zero : If t1 is earlier than t2.
+                Zero : If t1 is the same as t2.
+
+                Greater than zero : If t1 is later than t2.
+             */
+            int indicator = 0;
+
+            int End_Now = DateTime.Compare(EndInputDateTimePicker.Value, CurrentDateTime);
+            int End_Start = DateTime.Compare(StartInputDateTimePicker.Value, EndInputDateTimePicker.Value); // End date has to be after Start
+
+            if (End_Start < 0) // end date is later than start 
+            {
+                if (End_Now <= 0) // end date is sooner than Now which the package is out of date
+                {
+                    StartDateErrorLabel.Text = EndDateErrorLabel.Text =
+                        "These dates have been expired.\nPlease fix this error.";
+                    indicator = 2;
+                }
+                else
+                {
+                    StartDateErrorLabel.Text = EndDateErrorLabel.Text = "";
+                }
+            }
+            else // if the end date is equal to or sooner than start date 
+            {
+                StartDateErrorLabel.Text = EndDateErrorLabel.Text =
+                    "Start date Shouldn't be \n later than or equal to the End date.";
+                indicator = 1;
+            }
+
+            return indicator;
+        }
+
+
         private void packageIdComboBox_SelectedIndexChanged(object sender, EventArgs e)
         {
             DisplayPacInfo(packageIdComboBox);
             FilterPacProSup(packageIdComboBox);
             CancelPacBtn.Text = "Cancel";
+            ValidateTime(pkgStartDateDateTimePicker, pkgEndDateDateTimePicker);
         }
 
 
@@ -228,15 +282,18 @@ namespace TravelExpertsForm
                     newPac.PkgBasePrice = Convert.ToDecimal(pkgBasePriceTextBox.Text);
                     newPac.PkgAgencyCommission = Convert.ToDecimal(pkgAgencyCommissionTextBox.Text);
 
-
-                    if (PackagesDB.AddPackage(newPac))
+                    if (ValidateTime(pkgStartDateDateTimePicker, pkgEndDateDateTimePicker) == 0)
                     {
-                        indicator = "Adding Package Successful !";
-                        UpdateAllInfos();
-                        BindPackages();
-                        CancelPacBtn.PerformClick();
+
+                        if (PackagesDB.AddPackage(newPac))
+                        {
+                            indicator = "Adding Package Successful !";
+                            UpdateAllInfos();
+                            BindPackages();
+                            CancelPacBtn.PerformClick();
+                        }
                     }
-                    //AddProSup.Visible = ProSupDataGridview.Enabled = true; 
+
                 }
 
             }
@@ -283,12 +340,14 @@ namespace TravelExpertsForm
                     newPac.PkgAgencyCommission = Convert.ToDecimal(pkgAgencyCommissionTextBox.Text);
 
                     indicator = "Update Package Failed. ";
-
-                    if (PackagesDB.UpdatePackage(newPac))
+                    if (ValidateTime(pkgStartDateDateTimePicker, pkgEndDateDateTimePicker) == 0)
                     {
-                        indicator = "Update Package Successful !";
-                        UpdateAllInfos();
-                        CancelPacBtn.Text = "Close";
+                        if (PackagesDB.UpdatePackage(newPac))
+                        {
+                            indicator = "Update Package Successful !";
+                            UpdateAllInfos();
+                            CancelPacBtn.Text = "Close";
+                        }
                     }
 
                 }
@@ -313,12 +372,14 @@ namespace TravelExpertsForm
 
             AddProSupPanel.Visible = AddProSupPanel.Enabled = true;
             AddProSup.Visible = false;
+            ProSupDataGridview.Enabled = false;
         }
 
         private void AddProSupCancel_Click(object sender, EventArgs e)
         {
             AddProSupPanel.Visible = AddProSupPanel.Enabled = false;
             AddProSup.Visible = true;
+            ProSupDataGridview.Enabled = true;
         }
 
         private void AddProSupConfirmBtn_Click(object sender, EventArgs e)
@@ -507,16 +568,6 @@ namespace TravelExpertsForm
 
 
 
-        private void Form1_Load(object sender, EventArgs e)
-        {
-            UpdateAllInfos();
-            MainTabControl.SelectTab(PackageTab);
-            BindPackages();
-            DisplayPacInfo(packageIdComboBox);
-            FilterPacProSup(packageIdComboBox);
-            DisplayProInfo(productIdComboBox);
-            DisplaySupInfo(supplierIdComboBox);
-        }
 
 
 
