@@ -19,6 +19,12 @@ namespace DesktopAppTravelExperts
             InitializeComponent();
         }
 
+        private void LoginPage_Load(object sender, EventArgs e)
+        {
+            this.Focus();
+            this.KeyPreview = true;
+            this.KeyDown += new KeyEventHandler(LoginPage_KeyDown);
+        }
         private void uxClosingBtn_Click(object sender, System.EventArgs e)
         {
             Close();
@@ -84,5 +90,6 @@ namespace DesktopAppTravelExperts
         {
             label2.ForeColor = Color.White;
         }
+
     }
 }
