@@ -96,8 +96,13 @@ namespace TravelExpertsClassLib
         {
             int SupID = 0;
             SqlConnection con = TravelExpertsDB.GetConnection();
-            string insertStatement = "INSERT INTO Suppliers (SupName) " +
-                                     "VALUES(@SupName)";
+            string insertStatement = "INSERT INTO Suppliers(SupplierId, SupName) " +
+                                     "SELECT MAX(SupplierId) + 1, @SupName FROM Suppliers";
+
+            //previous version, which assigns to the USpplirId a value of 0 causing and error later on
+            //"INSERT INTO Products (ProdName) " +
+            //                         "VALUES(@ProdName)";
+
             SqlCommand cmd = new SqlCommand(insertStatement, con);
             cmd.Parameters.AddWithValue("@SupName", Sup.SupName);
 
