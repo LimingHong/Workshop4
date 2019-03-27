@@ -159,6 +159,65 @@ namespace TravelExpertsClassLib
             return success;
         }
 
+        public static bool AddPackage(Packages inputPackages)
+        {
+
+            bool success = true;
+
+            // block code style
+            string InsertStatement = "INSERT INTO Packages" +
+                                        "( PkgName," +
+                                           "PkgStartDate," +
+                                           "PkgEndDate," +
+                                           "PkgDesc," +
+                                           "PkgBasePrice," +
+                                           "PkgAgencyCommission)" +
+                                           "VALUES " +
+                                        "( " +
+                                            "@PkgName, " +
+                                            "@PkgStartDate, " +
+                                            "@PkgEndDate, " +
+                                            "@PkgDesc, " +
+                                            "@PkgBasePrice, " +
+                                            "@PkgAgencyCommission " +
+
+                                        ")";
+
+
+            SqlConnection con = GetConnection();
+
+            SqlCommand cmd = new SqlCommand(InsertStatement, con);
+
+
+            cmd.Parameters.AddWithValue("@PkgName", inputPackages.PkgName);
+            cmd.Parameters.AddWithValue("@PkgStartDate", inputPackages.PkgStartDate);
+            cmd.Parameters.AddWithValue("@PkgEndDate", inputPackages.PkgEndDate);
+            cmd.Parameters.AddWithValue("@PkgDesc", inputPackages.PkgDesc);
+            cmd.Parameters.AddWithValue("@PkgBasePrice", inputPackages.PkgBasePrice);
+            cmd.Parameters.AddWithValue("@PkgAgencyCommission", inputPackages.PkgAgencyCommission);
+
+            try
+            {
+                // use cmd anywhere in this block
+                // any exception will be thrown to the place where this method was called
+                con.Open();
+                int rowsUpdated = cmd.ExecuteNonQuery();
+                if (rowsUpdated == 0) success = false;
+
+            }
+            catch (Exception e)
+            {
+
+                throw e;
+            }
+            finally
+            {
+                con.Close();
+            }
+
+            return success;
+        }
+
 
     }
 }
