@@ -42,6 +42,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Agents.cs" />
+    <Compile Include="LoginInfosDB.cs" />
     <Compile Include="TravelExpertsDB.cs" />
     <Compile Include="Packages.cs" />
     <Compile Include="PackagesDB.cs" />
