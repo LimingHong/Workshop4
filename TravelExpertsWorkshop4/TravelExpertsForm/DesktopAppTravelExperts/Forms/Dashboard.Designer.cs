@@ -677,6 +677,7 @@
             // 
             // EditProSupPanel
             // 
+            this.EditProSupPanel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.EditProSupPanel.BackColor = System.Drawing.Color.WhiteSmoke;
             this.EditProSupPanel.Controls.Add(this.EditSupCB);
             this.EditProSupPanel.Controls.Add(this.EditProSupCancelBtn);
@@ -685,7 +686,7 @@
             this.EditProSupPanel.Controls.Add(this.label4);
             this.EditProSupPanel.Controls.Add(this.label3);
             this.EditProSupPanel.Controls.Add(this.label5);
-            this.EditProSupPanel.Location = new System.Drawing.Point(526, 339);
+            this.EditProSupPanel.Location = new System.Drawing.Point(545, 354);
             this.EditProSupPanel.Name = "EditProSupPanel";
             this.EditProSupPanel.Size = new System.Drawing.Size(413, 123);
             this.EditProSupPanel.TabIndex = 66;
@@ -777,6 +778,7 @@
             // 
             // AddProSupPanel
             // 
+            this.AddProSupPanel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.AddProSupPanel.BackColor = System.Drawing.Color.White;
             this.AddProSupPanel.Controls.Add(this.label1);
             this.AddProSupPanel.Controls.Add(this.AddProSupCancel);
@@ -785,7 +787,7 @@
             this.AddProSupPanel.Controls.Add(this.ProductAddComboB);
             this.AddProSupPanel.Controls.Add(this.label2);
             this.AddProSupPanel.Controls.Add(this.ProductAddlabel);
-            this.AddProSupPanel.Location = new System.Drawing.Point(525, 311);
+            this.AddProSupPanel.Location = new System.Drawing.Point(541, 372);
             this.AddProSupPanel.Name = "AddProSupPanel";
             this.AddProSupPanel.Size = new System.Drawing.Size(414, 148);
             this.AddProSupPanel.TabIndex = 65;
@@ -1199,8 +1201,9 @@
             // 
             // AddProSup
             // 
+            this.AddProSup.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.AddProSup.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.AddProSup.Location = new System.Drawing.Point(676, 497);
+            this.AddProSup.Location = new System.Drawing.Point(698, 534);
             this.AddProSup.Name = "AddProSup";
             this.AddProSup.Size = new System.Drawing.Size(126, 23);
             this.AddProSup.TabIndex = 64;
@@ -1211,11 +1214,11 @@
             // PackageTab
             // 
             this.PackageTab.BackColor = System.Drawing.Color.Transparent;
-            this.PackageTab.Controls.Add(this.EndDateErrorLabel);
-            this.PackageTab.Controls.Add(this.StartDateErrorLabel);
-            this.PackageTab.Controls.Add(this.EditProSupPanel);
             this.PackageTab.Controls.Add(this.AddProSupPanel);
             this.PackageTab.Controls.Add(this.AddProSup);
+            this.PackageTab.Controls.Add(this.EditProSupPanel);
+            this.PackageTab.Controls.Add(this.EndDateErrorLabel);
+            this.PackageTab.Controls.Add(this.StartDateErrorLabel);
             this.PackageTab.Controls.Add(this.AddPacIDTB);
             this.PackageTab.Controls.Add(this.ActionLabelPac);
             this.PackageTab.Controls.Add(this.CancelPacBtn);
@@ -1309,6 +1312,7 @@
             // 
             dataGridViewCellStyle1.ForeColor = System.Drawing.Color.Black;
             this.ProSupDataGridview.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
+            this.ProSupDataGridview.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.ProSupDataGridview.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Control;
@@ -1356,7 +1360,6 @@
             this.ProdNameCB.Name = "ProdNameCB";
             this.ProdNameCB.Resizable = System.Windows.Forms.DataGridViewTriState.True;
             this.ProdNameCB.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.ProdNameCB.Width = 200;
             // 
             // SupNameCB
             // 
@@ -1365,7 +1368,6 @@
             this.SupNameCB.Name = "SupNameCB";
             this.SupNameCB.Resizable = System.Windows.Forms.DataGridViewTriState.True;
             this.SupNameCB.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.SupNameCB.Width = 200;
             // 
             // packageIdComboBox
             // 
