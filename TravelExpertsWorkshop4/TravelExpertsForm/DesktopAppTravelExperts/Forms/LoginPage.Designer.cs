@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(LoginPage));
             this.uxLoginControlBar = new System.Windows.Forms.Panel();
             this.uxClosingBtn = new System.Windows.Forms.Button();
@@ -44,6 +45,8 @@
             this.uxEmailTB = new System.Windows.Forms.TextBox();
             this.uxEmailLabel = new System.Windows.Forms.Label();
             this.uxCancelLabel = new System.Windows.Forms.Label();
+            this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
+            this.uxUsernameEmailTooltipLabel = new System.Windows.Forms.Label();
             this.uxLoginControlBar.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             this.panel1.SuspendLayout();
@@ -131,6 +134,8 @@
             this.uxUsernameTb.Size = new System.Drawing.Size(447, 31);
             this.uxUsernameTb.TabIndex = 14;
             this.uxUsernameTb.KeyDown += new System.Windows.Forms.KeyEventHandler(this.uxUsernameTb_KeyDown);
+            this.uxUsernameTb.MouseEnter += new System.EventHandler(this.uxUsernameTb_MouseEnter);
+            this.uxUsernameTb.MouseLeave += new System.EventHandler(this.uxUsernameTb_MouseLeave);
             // 
             // label4
             // 
@@ -184,9 +189,9 @@
             this.label1.ForeColor = System.Drawing.Color.WhiteSmoke;
             this.label1.Location = new System.Drawing.Point(90, 330);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(93, 20);
+            this.label1.Size = new System.Drawing.Size(87, 20);
             this.label1.TabIndex = 12;
-            this.label1.Text = "User Name:";
+            this.label1.Text = "Username:";
             // 
             // pictureBox2
             // 
@@ -217,7 +222,6 @@
             this.uxEmailTB.Name = "uxEmailTB";
             this.uxEmailTB.Size = new System.Drawing.Size(447, 31);
             this.uxEmailTB.TabIndex = 20;
-            this.uxEmailTB.UseSystemPasswordChar = true;
             this.uxEmailTB.Visible = false;
             // 
             // uxEmailLabel
@@ -250,12 +254,25 @@
             this.uxCancelLabel.Visible = false;
             this.uxCancelLabel.Click += new System.EventHandler(this.uxCancelLabel_Click);
             // 
+            // uxUsernameEmailTooltipLabel
+            // 
+            this.uxUsernameEmailTooltipLabel.AutoSize = true;
+            this.uxUsernameEmailTooltipLabel.BackColor = System.Drawing.Color.Transparent;
+            this.uxUsernameEmailTooltipLabel.ForeColor = System.Drawing.Color.Lime;
+            this.uxUsernameEmailTooltipLabel.Location = new System.Drawing.Point(184, 336);
+            this.uxUsernameEmailTooltipLabel.Name = "uxUsernameEmailTooltipLabel";
+            this.uxUsernameEmailTooltipLabel.Size = new System.Drawing.Size(148, 13);
+            this.uxUsernameEmailTooltipLabel.TabIndex = 21;
+            this.uxUsernameEmailTooltipLabel.Text = "YourEmail@travelexperts.com";
+            this.uxUsernameEmailTooltipLabel.Visible = false;
+            // 
             // LoginPage
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
             this.ClientSize = new System.Drawing.Size(635, 727);
+            this.Controls.Add(this.uxUsernameEmailTooltipLabel);
             this.Controls.Add(this.uxCancelLabel);
             this.Controls.Add(this.uxEmailTB);
             this.Controls.Add(this.uxEmailLabel);
@@ -300,5 +317,7 @@
         private System.Windows.Forms.TextBox uxEmailTB;
         private System.Windows.Forms.Label uxEmailLabel;
         private System.Windows.Forms.Label uxCancelLabel;
+        private System.Windows.Forms.ToolTip toolTip1;
+        private System.Windows.Forms.Label uxUsernameEmailTooltipLabel;
     }
 }

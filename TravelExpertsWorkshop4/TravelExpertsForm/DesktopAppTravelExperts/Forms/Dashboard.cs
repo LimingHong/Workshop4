@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Drawing;
+using System.Globalization;
 using System.Linq;
+using System.Threading;
 using System.Windows.Forms;
 using TravelExpertsClassLib;
 
@@ -9,6 +11,8 @@ namespace DesktopAppTravelExperts.Forms
 {
     public partial class Dashboard : Form
     {
+        public Agents currentAgent = null;
+
         protected List<Packages> AllPackages;
         protected List<Products> AllProducts;
         protected List<Suppliers> AllSuppliers;
@@ -89,6 +93,7 @@ namespace DesktopAppTravelExperts.Forms
             MainTabControl.ItemSize = new Size(0, 1);
             MainTabControl.SizeMode = TabSizeMode.Fixed;
             MainTabControl.BackColor = Color.Transparent;
+
         }
 
 
@@ -110,6 +115,13 @@ namespace DesktopAppTravelExperts.Forms
             // set error messages to empty strings
             StartDateErrorLabel.Text = EndDateErrorLabel.Text = "";
             ValidateTime(pkgStartDateDateTimePicker, pkgEndDateDateTimePicker);
+
+            // setting for agent display
+            CultureInfo cultureInfo = Thread.CurrentThread.CurrentCulture;
+            TextInfo textInfo = cultureInfo.TextInfo;
+
+            uxUserNameLabel.Text = textInfo.ToTitleCase(currentAgent.AgtFirstName.ToString() + " " + currentAgent.AgtLastName.ToString());
+            uxUserRoleLabel.Text = textInfo.ToTitleCase(currentAgent.AgtPosition.ToString());
 
 
         }

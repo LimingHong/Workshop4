@@ -4,7 +4,7 @@ using System.Data.SqlClient;
 
 namespace TravelExpertsClassLib
 {
-    class LoginInfosDB : TravelExpertsDB
+    public class LoginInfosDB : TravelExpertsDB
     {
 
         /// <summary>
@@ -14,15 +14,15 @@ namespace TravelExpertsClassLib
         {
             // block code style
             string CheckTable =
-                " IF NOT EXISTS (SELECT * FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_NAME = N'AccLoginInfos' )" +
-                "BEGIN" +
+                " IF NOT EXISTS (SELECT * FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_NAME = N'AccLoginInfos' ) " +
+                "BEGIN " +
                 "CREATE TABLE AccLoginInfos( " +
                 "ID int NOT NULL IDENTITY(1,1) PRIMARY KEY, " +
                 "accUserName varchar(255) NOT NULL, " +
                 "accPassWord varchar(255) NOT NULL, " +
                 "AgentId int , " +
                 "FOREIGN KEY(AgentId) REFERENCES Agents(AgentId) " +
-                ");" +
+                "); " +
                 "END";
 
 
@@ -46,6 +46,7 @@ namespace TravelExpertsClassLib
                 con.Close();
             }
         }
+
 
 
         public static bool CreateAccount(Agents inputAgentInfo)
@@ -77,6 +78,7 @@ namespace TravelExpertsClassLib
                 // use cmd anywhere in this block
                 // any exception will be thrown to the place where this method was called
                 con.Open();
+                GetExistenceLoginInfosTable();
                 int rowsUpdated = cmd.ExecuteNonQuery();
                 if (rowsUpdated == 0) success = false;
 
@@ -95,7 +97,7 @@ namespace TravelExpertsClassLib
         }
 
 
-        private static bool FindAgentExistingAcc(string accUserName, string accPassWord, out Agents SessionStoreAgentAcc)
+        public static bool FindAgentExistingAcc(string accUserName, string accPassWord, out Agents SessionStoreAgentAcc)
         {
             bool success = true;
 
@@ -117,7 +119,7 @@ namespace TravelExpertsClassLib
 
                         //any exception will be thrown to the place where this method was called
                         con.Open(); // open connection
-
+                        GetExistenceLoginInfosTable();
                         cmd.Parameters.AddWithValue("@inputUserName", accUserName);
                         cmd.Parameters.AddWithValue("@inputPassword", accPassWord);
 

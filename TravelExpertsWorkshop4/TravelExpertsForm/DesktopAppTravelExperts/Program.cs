@@ -16,6 +16,7 @@ namespace DesktopAppTravelExperts
 
             //Application.Run(new Dashboard()); // for testing 
             Application.Run(new LoginPage());
+
         }
     }
 }

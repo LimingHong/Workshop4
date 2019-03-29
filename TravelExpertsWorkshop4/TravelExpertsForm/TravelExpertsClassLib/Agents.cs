@@ -1,6 +1,6 @@
 ﻿namespace TravelExpertsClassLib
 {
-    class Agents
+    public class Agents
     {
         public int AgentId { get; set; }
         public string AgtFirstName { get; set; }

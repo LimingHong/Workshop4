@@ -1,18 +1,22 @@
-﻿using System;
+﻿using DesktopAppTravelExperts.Forms;
+using System;
 using System.Drawing;
+using System.Globalization;
+using System.Threading;
 using System.Windows.Forms;
+using TravelExpertsClassLib;
 
 namespace DesktopAppTravelExperts
 {
     public partial class LoginPage : Form
     {
+
         // boolean parameters for form modes recognition
         private int FormMode = 0; // 0 = login, 1 = Sign-up , 2 = forgot password
-
+        protected Agents currentUser;
 
         public const int WM_NCLBUTTONDOWN = 0xA1;
         public const int HT_CAPTION = 0x2;
-
 
         [System.Runtime.InteropServices.DllImportAttribute("user32.dll")]
         public static extern int SendMessage(IntPtr hWnd, int Msg, int wParam, int lParam);
@@ -24,6 +28,7 @@ namespace DesktopAppTravelExperts
         {
             InitializeComponent();
         }
+
 
         private void LoginPage_Load(object sender, EventArgs e)
         {
@@ -65,19 +70,88 @@ namespace DesktopAppTravelExperts
             }
         }
 
+        private void CleanAllInputFields()
+        {
+            uxUsernameTb.Text = uxPasswordTb.Text = uxEmailTB.Text = "";
+        }
+
         private void uxBtnSubmit_Click(object sender, EventArgs e)
         {
             string test = "";
+            Agents inputUser = new Agents();
+
             switch (FormMode)
             {
                 case 0:
                     test = "Login";
+                    string inputUserName, inputPassword;
+                    if (Validator.IsPresent(uxUsernameTb, "Username")
+                        && Validator.IsPresent(uxPasswordTb, "Password")
+                        && Validator.IsEmail(uxUsernameTb, "username")
+                    )
+                    {
+                        inputUserName = uxUsernameTb.Text.Trim();
+                        inputPassword = uxPasswordTb.Text.Trim();
+
+                        if (LoginInfosDB.FindAgentExistingAcc(inputUserName, inputPassword, out inputUser))
+                        {
+                            currentUser = new Agents
+                            {
+                                AgentId = inputUser.AgentId,
+                                AgtFirstName = inputUser.AgtFirstName,
+                                AgtLastName = inputUser.AgtLastName,
+                                AgtEmail = inputUser.AgtEmail,
+                                AgtPosition = inputUser.AgtPosition,
+                                AgtBusPhone = inputUser.AgtBusPhone,
+                                AgtMiddleInitial = inputUser.AgtMiddleInitial,
+                                AgencyId = inputUser.AgencyId,
+                            };
+                            MessageBox.Show("Login Successful!" +
+                                            "\n " + currentUser.AgentId +
+                                            "\n" + currentUser.AgtFirstName + " " + currentUser.AgtLastName);
+                            this.Hide();
+                            Dashboard newDashboard = new Dashboard();
+                            newDashboard.currentAgent = currentUser;
+                            newDashboard.ShowDialog();
+                        }
+                    }
+
                     break;
                 case 1:
+
                     test = "Sign Up";
+
+                    if (Validator.IsPresent(uxUsernameTb, "First name")
+                        && Validator.IsPresent(uxPasswordTb, "Last name")
+                        && Validator.IsPresent(uxEmailTB, "Email")
+                        && Validator.IsEmail(uxEmailTB, "Email")
+                    )
+                    {
+                        CultureInfo cultureInfo = Thread.CurrentThread.CurrentCulture;
+                        TextInfo textInfo = cultureInfo.TextInfo;
+
+                        inputUser.AgtFirstName = textInfo.ToTitleCase(uxUsernameTb.Text.Trim().ToLower());
+                        inputUser.AgtLastName = textInfo.ToTitleCase(uxPasswordTb.Text.Trim());
+                        inputUser.AgtEmail = uxEmailTB.Text.Trim();
+
+                        if (LoginInfosDB.CreateAccount(inputUser))
+                        {
+                            MessageBox.Show("Signup Successful!");
+                            MessageBox.Show(
+                                "Temporary Sign-in Option: \n --- Username: \nYour Email\n --- Password: \nYour first and last name  with each name's first letter capitalized and without spacing", "Account Info");
+                            CleanAllInputFields();
+                            SwitchMode(0);
+                            FormMode = 0;
+
+                        }
+                    }
+
                     break;
                 case 2:
                     test = "Forgot Password";
+
+
+
                     break;
 
             }
@@ -112,40 +186,82 @@ namespace DesktopAppTravelExperts
             label2.ForeColor = Color.White;
         }
 
+
+        // forgotpassword is clicked
+        private void SwitchMode(int inputIndicator)
+        {
+            bool turnOn = true;
+            string FirstLabel = "";
+            string SeconLabel = "";
+            string StringButton = "";
+
+            switch (inputIndicator)
+            {
+                case 0:
+                    turnOn = false; // get rid of label panel
+                    FirstLabel = "Username:";
+                    SeconLabel = "Password:";
+                    StringButton = "Login";
+                    break;
+
+                case 1:
+                case 2:
+                    FirstLabel = "First Name:";
+                    SeconLabel = "Last Name:";
+
+                    if (inputIndicator == 2)
+                    {
+                        StringButton = "Find Password";
+                    }
+                    else
+                    {
+                        StringButton = "Sign Up";
+                    }
+
+                    break;
+
+            }
+
+            panel1.Visible = !turnOn; // get rid of label panel
+            label1.Text = FirstLabel;
+            label4.Text = SeconLabel;
+            uxBtnSubmit.Text = StringButton;
+            uxEmailLabel.Visible = uxEmailTB.Visible = turnOn;
+            uxCancelLabel.Visible = turnOn;
+            uxPasswordTb.UseSystemPasswordChar = !turnOn;
+
+        }
+
         private void label2_Click(object sender, EventArgs e)
         {
             FormMode = 1; // indicate signing up
-            panel1.Visible = false; // get rid of label panel
-            label1.Text = "First Name:";
-            label4.Text = "Last Name:";
-            uxBtnSubmit.Text = "Sign Up";
-            uxEmailLabel.Visible = uxEmailTB.Visible = true;
-            uxCancelLabel.Visible = true;
-
+            SwitchMode(1);
 
         }
 
-        // forgotpassword is clicked
         private void label5_Click(object sender, EventArgs e)
         {
             FormMode = 2; // indicate that this is forgotpassword mode
-            panel1.Visible = false; // get rid of label panel
-            label1.Text = "First Name:";
-            label4.Text = "Last Name:";
-            uxBtnSubmit.Text = "Find Password";
-            uxEmailLabel.Visible = uxEmailTB.Visible = true;
-            uxCancelLabel.Visible = true;
+            SwitchMode(2);
         }
+
 
         private void uxCancelLabel_Click(object sender, EventArgs e)
         {
             FormMode = 0; // indicate signing up
-            panel1.Visible = true; // get rid of label panel
-            label1.Text = "Username:";
-            label4.Text = "Password:";
-            uxBtnSubmit.Text = "Login";
-            uxEmailLabel.Visible = uxEmailTB.Visible = false;
-            uxCancelLabel.Visible = false;
+            SwitchMode(0);
+        }
+
+        private void uxUsernameTb_MouseEnter(object sender, EventArgs e)
+        {
+
+            if (FormMode == 0) uxUsernameEmailTooltipLabel.Visible = true;
+        }
+
+        private void uxUsernameTb_MouseLeave(object sender, EventArgs e)
+        {
+
+            uxUsernameEmailTooltipLabel.Visible = false;
         }
     }
 }

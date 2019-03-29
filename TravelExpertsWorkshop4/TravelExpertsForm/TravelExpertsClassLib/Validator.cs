@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Net.Mail;
 using System.Text.RegularExpressions;
 using System.Windows.Forms;
 
@@ -9,6 +10,21 @@ namespace TravelExpertsClassLib
     /// </summary>
     public static class Validator
     {
+        public static bool IsEmail(TextBox emailTB, string name)
+        {
+            try
+            {
+                MailAddress m = new MailAddress(emailTB.Text);
+
+                return true;
+            }
+            catch (FormatException)
+            {
+                MessageBox.Show(" Please use Email format, for " + name + ". ", "Entry Error");
+                emailTB.Focus();
+                return false;
+            }
+        }
 
         public static bool IsNameValid(TextBox textBox, string name)
         {
