@@ -114,6 +114,10 @@ namespace DesktopAppTravelExperts
                             newDashboard.currentAgent = currentUser;
                             newDashboard.ShowDialog();
                         }
+                        else
+                        {
+                            MessageBox.Show("Login Fail !");
+                        }
                     }
 
                     break;
@@ -144,12 +148,17 @@ namespace DesktopAppTravelExperts
                             FormMode = 0;
 
                         }
+                        else
+                        {
+                            MessageBox.Show("The information you have provided indicates that you are not a member of our team. Access is only granted for Travel Experts Agents.", "Status:");
+                            CleanAllInputFields();
+                        }
                     }
 
                     break;
                 case 2:
                     test = "Forgot Password";
-
+                    MessageBox.Show("Funcionality Still Underconstruction!", "Status:");
 
 
                     break;
@@ -194,7 +203,7 @@ namespace DesktopAppTravelExperts
             string FirstLabel = "";
             string SeconLabel = "";
             string StringButton = "";
-
+            CleanAllInputFields();
             switch (inputIndicator)
             {
                 case 0:
