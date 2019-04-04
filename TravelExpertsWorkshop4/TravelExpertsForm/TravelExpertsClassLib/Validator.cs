@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Net.Mail;
+using System.Text.RegularExpressions;
 using System.Windows.Forms;
 
 namespace TravelExpertsClassLib
@@ -8,8 +10,34 @@ namespace TravelExpertsClassLib
     /// </summary>
     public static class Validator
     {
+        public static bool IsEmail(TextBox emailTB, string name)
+        {
+            try
+            {
+                MailAddress m = new MailAddress(emailTB.Text);
 
+                return true;
+            }
+            catch (FormatException)
+            {
+                MessageBox.Show(" Please use Email format, for " + name + ". ", "Entry Error");
+                emailTB.Focus();
+                return false;
+            }
+        }
 
+        public static bool IsNameValid(TextBox textBox, string name)
+        {
+            string pattern = @"^[a-zA-Z0-9]*$";
+            if (!Regex.IsMatch(textBox.Text, pattern))
+            {
+                MessageBox.Show(name + "Please use a-z A-Z 0-9", "Entry Error");
+                textBox.Focus();
+                return false;
+            }
+
+            return true;
+        }
         public static bool IsPresent(TextBox textBox, string name)
         {
             if (textBox.Text == "")
