@@ -77,6 +77,7 @@
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
     </Compile>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -96,6 +97,31 @@
       <Project>{05669508-d98a-4a2e-8e9b-e3d7d08f5a82}</Project>
       <Name>TravelExpertsClassLib</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup />
+  <ItemGroup>
+    <None Include="Resources\Agent1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Agent2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Agent3.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Agent4.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Agent5.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Agent6.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Agent7.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Agent8.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

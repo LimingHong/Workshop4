@@ -9,7 +9,7 @@ namespace TravelExpertsClassLib
         {
             string connectionString = @"Data Source=localhost\sqlexpress;Initial Catalog=TravelExperts;Integrated Security=True";
 
-             //ERIC version
+            // ERIC version
             //string connectionString = @"Data Source=localhost;Initial Catalog=TravelExperts;Integrated Security=True";
 
 

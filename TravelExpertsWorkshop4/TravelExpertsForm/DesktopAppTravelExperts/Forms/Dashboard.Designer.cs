@@ -41,11 +41,11 @@
             System.Windows.Forms.Label prodNameLabel;
             System.Windows.Forms.Label productIdLabel;
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Dashboard));
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle51 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle52 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle53 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle54 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle55 = new System.Windows.Forms.DataGridViewCellStyle();
             this.timerTime = new System.Windows.Forms.Timer(this.components);
             this.uxUserRoleLabel = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
@@ -303,7 +303,7 @@
             this.uxUserRoleLabel.AutoSize = true;
             this.uxUserRoleLabel.Font = new System.Drawing.Font("Century Gothic", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.uxUserRoleLabel.ForeColor = System.Drawing.Color.White;
-            this.uxUserRoleLabel.Location = new System.Drawing.Point(261, 48);
+            this.uxUserRoleLabel.Location = new System.Drawing.Point(256, 54);
             this.uxUserRoleLabel.Name = "uxUserRoleLabel";
             this.uxUserRoleLabel.Size = new System.Drawing.Size(63, 16);
             this.uxUserRoleLabel.TabIndex = 0;
@@ -314,7 +314,7 @@
             this.label6.AutoSize = true;
             this.label6.Font = new System.Drawing.Font("Century Gothic", 10F, System.Drawing.FontStyle.Bold);
             this.label6.ForeColor = System.Drawing.Color.White;
-            this.label6.Location = new System.Drawing.Point(209, 48);
+            this.label6.Location = new System.Drawing.Point(204, 54);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(46, 17);
             this.label6.TabIndex = 0;
@@ -337,7 +337,7 @@
             this.uxUserNameLabel.AutoSize = true;
             this.uxUserNameLabel.Font = new System.Drawing.Font("Century Gothic", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.uxUserNameLabel.ForeColor = System.Drawing.Color.White;
-            this.uxUserNameLabel.Location = new System.Drawing.Point(174, 25);
+            this.uxUserNameLabel.Location = new System.Drawing.Point(169, 31);
             this.uxUserNameLabel.Name = "uxUserNameLabel";
             this.uxUserNameLabel.Size = new System.Drawing.Size(138, 23);
             this.uxUserNameLabel.TabIndex = 0;
@@ -357,18 +357,17 @@
             this.panel2.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel2.Location = new System.Drawing.Point(215, 0);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(985, 92);
+            this.panel2.Size = new System.Drawing.Size(985, 100);
             this.panel2.TabIndex = 4;
             this.panel2.MouseDown += new System.Windows.Forms.MouseEventHandler(this.panel2_MouseDown);
             // 
             // uxUserProfilePic
             // 
             this.uxUserProfilePic.BackColor = System.Drawing.Color.DarkGray;
-            this.uxUserProfilePic.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("uxUserProfilePic.BackgroundImage")));
             this.uxUserProfilePic.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.uxUserProfilePic.Location = new System.Drawing.Point(71, 8);
+            this.uxUserProfilePic.Location = new System.Drawing.Point(85, 8);
             this.uxUserProfilePic.Name = "uxUserProfilePic";
-            this.uxUserProfilePic.Size = new System.Drawing.Size(80, 80);
+            this.uxUserProfilePic.Size = new System.Drawing.Size(78, 89);
             this.uxUserProfilePic.TabIndex = 10;
             this.uxUserProfilePic.TabStop = false;
             // 
@@ -397,7 +396,7 @@
             this.uxBtnScreenSize.Image = ((System.Drawing.Image)(resources.GetObject("uxBtnScreenSize.Image")));
             this.uxBtnScreenSize.Location = new System.Drawing.Point(837, 0);
             this.uxBtnScreenSize.Name = "uxBtnScreenSize";
-            this.uxBtnScreenSize.Size = new System.Drawing.Size(74, 92);
+            this.uxBtnScreenSize.Size = new System.Drawing.Size(74, 100);
             this.uxBtnScreenSize.TabIndex = 7;
             this.uxBtnScreenSize.UseVisualStyleBackColor = false;
             this.uxBtnScreenSize.Click += new System.EventHandler(this.uxBtnScreenSize_Click);
@@ -414,7 +413,7 @@
             this.uxClosingBtn.Image = ((System.Drawing.Image)(resources.GetObject("uxClosingBtn.Image")));
             this.uxClosingBtn.Location = new System.Drawing.Point(911, 0);
             this.uxClosingBtn.Name = "uxClosingBtn";
-            this.uxClosingBtn.Size = new System.Drawing.Size(74, 92);
+            this.uxClosingBtn.Size = new System.Drawing.Size(74, 100);
             this.uxClosingBtn.TabIndex = 5;
             this.uxClosingBtn.UseVisualStyleBackColor = false;
             this.uxClosingBtn.Click += new System.EventHandler(this.uxClosingBtn_Click);
@@ -686,7 +685,7 @@
             this.EditProSupPanel.Controls.Add(this.label4);
             this.EditProSupPanel.Controls.Add(this.label3);
             this.EditProSupPanel.Controls.Add(this.label5);
-            this.EditProSupPanel.Location = new System.Drawing.Point(545, 354);
+            this.EditProSupPanel.Location = new System.Drawing.Point(545, 346);
             this.EditProSupPanel.Name = "EditProSupPanel";
             this.EditProSupPanel.Size = new System.Drawing.Size(413, 123);
             this.EditProSupPanel.TabIndex = 66;
@@ -787,7 +786,7 @@
             this.AddProSupPanel.Controls.Add(this.ProductAddComboB);
             this.AddProSupPanel.Controls.Add(this.label2);
             this.AddProSupPanel.Controls.Add(this.ProductAddlabel);
-            this.AddProSupPanel.Location = new System.Drawing.Point(541, 372);
+            this.AddProSupPanel.Location = new System.Drawing.Point(541, 364);
             this.AddProSupPanel.Name = "AddProSupPanel";
             this.AddProSupPanel.Size = new System.Drawing.Size(414, 148);
             this.AddProSupPanel.TabIndex = 65;
@@ -1203,7 +1202,7 @@
             // 
             this.AddProSup.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.AddProSup.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.AddProSup.Location = new System.Drawing.Point(698, 534);
+            this.AddProSup.Location = new System.Drawing.Point(698, 526);
             this.AddProSup.Name = "AddProSup";
             this.AddProSup.Size = new System.Drawing.Size(126, 23);
             this.AddProSup.TabIndex = 64;
@@ -1245,7 +1244,7 @@
             this.PackageTab.Margin = new System.Windows.Forms.Padding(0);
             this.PackageTab.Name = "PackageTab";
             this.PackageTab.Padding = new System.Windows.Forms.Padding(3);
-            this.PackageTab.Size = new System.Drawing.Size(977, 602);
+            this.PackageTab.Size = new System.Drawing.Size(977, 594);
             this.PackageTab.TabIndex = 0;
             this.PackageTab.Text = "1.Packages";
             // 
@@ -1310,44 +1309,44 @@
             // 
             // ProSupDataGridview
             // 
-            dataGridViewCellStyle1.ForeColor = System.Drawing.Color.Black;
-            this.ProSupDataGridview.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle51.ForeColor = System.Drawing.Color.Black;
+            this.ProSupDataGridview.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle51;
             this.ProSupDataGridview.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.ProSupDataGridview.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.ProSupDataGridview.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle52.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle52.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle52.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle52.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle52.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle52.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle52.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.ProSupDataGridview.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle52;
             this.ProSupDataGridview.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.ProSupDataGridview.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.ProdNameCB,
             this.SupNameCB});
-            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle3.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle3.ForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.ProSupDataGridview.DefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle53.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle53.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle53.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle53.ForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle53.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle53.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle53.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.ProSupDataGridview.DefaultCellStyle = dataGridViewCellStyle53;
             this.ProSupDataGridview.Dock = System.Windows.Forms.DockStyle.Right;
             this.ProSupDataGridview.Location = new System.Drawing.Point(529, 3);
             this.ProSupDataGridview.Name = "ProSupDataGridview";
-            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle4.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle4.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle4.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.ProSupDataGridview.RowHeadersDefaultCellStyle = dataGridViewCellStyle4;
-            dataGridViewCellStyle5.ForeColor = System.Drawing.Color.Black;
-            this.ProSupDataGridview.RowsDefaultCellStyle = dataGridViewCellStyle5;
-            this.ProSupDataGridview.Size = new System.Drawing.Size(445, 596);
+            dataGridViewCellStyle54.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle54.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle54.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle54.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle54.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle54.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle54.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.ProSupDataGridview.RowHeadersDefaultCellStyle = dataGridViewCellStyle54;
+            dataGridViewCellStyle55.ForeColor = System.Drawing.Color.Black;
+            this.ProSupDataGridview.RowsDefaultCellStyle = dataGridViewCellStyle55;
+            this.ProSupDataGridview.Size = new System.Drawing.Size(445, 588);
             this.ProSupDataGridview.TabIndex = 56;
             this.toolTip1.SetToolTip(this.ProSupDataGridview, "Click Edit to modify");
             this.ProSupDataGridview.CellMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.ProSupDataGridview_CellMouseClick);
@@ -1462,12 +1461,12 @@
             this.MainTabControl.Controls.Add(this.SettingsTab);
             this.MainTabControl.Dock = System.Windows.Forms.DockStyle.Fill;
             this.MainTabControl.DrawMode = System.Windows.Forms.TabDrawMode.OwnerDrawFixed;
-            this.MainTabControl.Location = new System.Drawing.Point(215, 92);
+            this.MainTabControl.Location = new System.Drawing.Point(215, 100);
             this.MainTabControl.Margin = new System.Windows.Forms.Padding(0);
             this.MainTabControl.Name = "MainTabControl";
             this.MainTabControl.Padding = new System.Drawing.Point(0, 0);
             this.MainTabControl.SelectedIndex = 0;
-            this.MainTabControl.Size = new System.Drawing.Size(985, 628);
+            this.MainTabControl.Size = new System.Drawing.Size(985, 620);
             this.MainTabControl.TabIndex = 38;
             // 
             // CustomersTab
@@ -1616,7 +1615,6 @@
         private System.Windows.Forms.Panel uxBtnIndicatorSet;
         private System.Windows.Forms.Button uxBtnScreenSize;
         private System.Windows.Forms.Label uxDateDisplay;
-        private CircularPicturebox uxUserProfilePic;
         private System.Windows.Forms.ComboBox ProductAddComboB;
         private System.Windows.Forms.Label EndDateErrorLabel;
         private System.Windows.Forms.Label StartDateErrorLabel;
@@ -1695,5 +1693,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn productIdDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn prodNameDataGridViewTextBoxColumn;
         private System.Windows.Forms.BindingSource productsBindingSource;
+        private CircularPicturebox uxUserProfilePic;
     }
 }

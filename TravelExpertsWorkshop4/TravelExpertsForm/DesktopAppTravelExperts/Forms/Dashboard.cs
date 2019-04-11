@@ -51,11 +51,18 @@ namespace DesktopAppTravelExperts.Forms
         private string[] SectionStageTab = { "package", "product", "supplier", "customer", "sale", "setting" };
         private int SectionStageTabIndex = 0;
 
+        private void DisplayTime()
+        {
+            var inTimeZone = TimeZoneInfo.FindSystemTimeZoneById("Mountain Standard Time");
+            DateTime inTime = TimeZoneInfo.ConvertTime(DateTime.Now, TimeZoneInfo.Local, inTimeZone);
+
+            uxTimeDisplay.Text = inTime.ToLongTimeString();
+        }
 
         // for time display very update of 1 second
         private void timerTime_Tick(object sender, EventArgs e)
         {
-            uxTimeDisplay.Text = DateTime.Now.ToLongTimeString();
+            DisplayTime();
         }
 
         /// <summary>
@@ -84,7 +91,7 @@ namespace DesktopAppTravelExperts.Forms
 
             // display time
             uxDateDisplay.Text = DateTime.Now.ToLongDateString();
-            uxTimeDisplay.Text = DateTime.Now.ToLongTimeString();
+            DisplayTime();
             uxUserProfilePic.BackgroundImageLayout = ImageLayout.Stretch;
 
 
@@ -122,6 +129,13 @@ namespace DesktopAppTravelExperts.Forms
 
             uxUserNameLabel.Text = textInfo.ToTitleCase(currentAgent.AgtFirstName.ToString() + " " + currentAgent.AgtLastName.ToString());
             uxUserRoleLabel.Text = textInfo.ToTitleCase(currentAgent.AgtPosition.ToString());
+
+            //just for display purposes
+            if (currentAgent.AgentId < 9)
+            {
+                var imageName = "Agent" + currentAgent.AgentId;
+                uxUserProfilePic.BackgroundImage = (Bitmap)Properties.Resources.ResourceManager.GetObject(imageName);
+            }
 
 
         }
@@ -189,7 +203,8 @@ namespace DesktopAppTravelExperts.Forms
 
         private void uxClosingBtn_Click(object sender, System.EventArgs e)
         {
-            Close();
+            this.Close();
+            Environment.Exit(1);
         }
 
 

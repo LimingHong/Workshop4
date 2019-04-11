@@ -86,7 +86,7 @@ namespace TravelExpertsClassLib
             catch (Exception e)
             {
 
-                throw e;
+                success = false;
             }
             finally
             {
@@ -100,6 +100,8 @@ namespace TravelExpertsClassLib
         public static bool FindAgentExistingAcc(string accUserName, string accPassWord, out Agents SessionStoreAgentAcc)
         {
             bool success = true;
+
+            SessionStoreAgentAcc = new Agents();
 
             try
             {
@@ -129,8 +131,14 @@ namespace TravelExpertsClassLib
 
                         SessionStoreAgentAcc = new Agents();
 
-                        while (dr.Read()) // while there is data in data reader
+                        if (!dr.Read())
                         {
+                            success = false;
+                        }
+                        else
+                        {
+                            // while there is data in data reader
+
                             /*
                              * [AgentId]
                               ,[AgtFirstName]
@@ -152,6 +160,8 @@ namespace TravelExpertsClassLib
                             SessionStoreAgentAcc.AgencyId = Convert.ToInt32(dr["AgencyId"]);
 
                         }
+
+
                     }
 
                 }
@@ -159,8 +169,8 @@ namespace TravelExpertsClassLib
             }
             catch (Exception e)
             {
-                success = false;
                 throw e;
+                success = false;
             }
 
             return success;
