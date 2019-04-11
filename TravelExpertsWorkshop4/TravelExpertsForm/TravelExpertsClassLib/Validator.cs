@@ -25,7 +25,9 @@ namespace TravelExpertsClassLib
                 return false;
             }
         }
-
+        /// <summary>
+        /// Author: Liming Hong
+        /// </summary>
         public static bool IsNameValid(TextBox textBox, string name)
         {
             string pattern = @"^[a-zA-Z0-9]*$";
@@ -38,6 +40,9 @@ namespace TravelExpertsClassLib
 
             return true;
         }
+        /// <summary>
+        /// Author: Liming Hong
+        /// </summary>
         public static bool IsPresent(TextBox textBox, string name)
         {
             if (textBox.Text == "")
@@ -80,7 +85,9 @@ namespace TravelExpertsClassLib
             }
             return true;
         }
-
+        /// <summary>
+        /// Author: Liming Hong
+        /// </summary>
         public static bool IsCorrectLength(TextBox textBox, string name, int maxLen)
         {
             if ((textBox.Text).Length > maxLen)
