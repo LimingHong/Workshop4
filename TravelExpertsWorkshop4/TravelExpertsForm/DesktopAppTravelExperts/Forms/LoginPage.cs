@@ -164,7 +164,7 @@ namespace DesktopAppTravelExperts
                     break;
 
             }
-            MessageBox.Show("Clicked while in " + test + " mode");
+            //MessageBox.Show("Clicked while in " + test + " mode");
         }
 
         private void uxPasswordTb_KeyDown(object sender, KeyEventArgs e)
