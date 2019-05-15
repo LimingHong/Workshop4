@@ -5,6 +5,7 @@
 [ericT135](https://github.com/ericT135) | [LimingHong](https://github.com/LimingHong) | [guidoamaya](https://github.com/guidoamaya) 
 
 ##Project Overview:
+
 ![login](screenshots/1.png "Login Form")
 ![MainForm](screenshots/2.png "Main Form")
 
