@@ -988,7 +988,7 @@ namespace DesktopAppTravelExperts.Forms
 
 
         //*******************************************************************************************
-        // products
+        // products Author: Liming Hong
 
         private void productIdComboBox_SelectedIndexChanged_1(object sender, EventArgs e)
         {
