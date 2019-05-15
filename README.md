@@ -4,7 +4,7 @@
 ### Contributors
 [ericT135](https://github.com/ericT135) | [LimingHong](https://github.com/LimingHong) | [guidoamaya](https://github.com/guidoamaya) 
 
-##Project Overview:
+## Project Overview:
 ![login](screenshots/1.gif "Login Form")
 
 ## Software and Tech stack used:
