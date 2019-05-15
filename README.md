@@ -3,8 +3,6 @@
 
 ## Contributors
 [ericT135](https://github.com/ericT135) | [LimingHong](https://github.com/LimingHong) | [guidoamaya](https://github.com/guidoamaya) 
-[![Build Status][travis-image]][travis-url]
-[![Downloads Stats][npm-downloads]][npm-url]
 
 One to two paragraph statement about your product and what it does.
 
